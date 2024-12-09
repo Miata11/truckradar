@@ -9,4 +9,16 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :foodtrucks do
+    # resources :reviews, only: [:create, :destroy]
+    resources :dishes, only: [:new, :create]
+    resources :favorites, only: [:new, :create, :destroy]
+  end
+
+  # resources :favorites, only: [:index, :create, :destroy]
+
+  get 'dashboard', to: 'pages#dashboard'
+
+  resources :dishes
 end

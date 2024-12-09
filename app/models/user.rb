@@ -4,7 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :foodtrucks, :favorites, :reviews
+  has_many :favorites
+  has_many :foodtrucks
+
+  # has_many :reviews,
 
   validates :first_name, presence: true
   validates :last_name, presence: true
