@@ -22,4 +22,9 @@ class Foodtruck < ApplicationRecord
   validates :name, presence: true
   validates :category, presence: true
   validates :address_default, presence: true
+
+
+  include PgSearch::Model
+  multisearchable against: [:name, :category, :address_default]
+
 end
