@@ -3,7 +3,8 @@ class FoodtrucksController < ApplicationController
 
   def index
     if params[:query].present?
-      @foodtrucks = PgSearch.multisearch(params[:query])
+      # @foodtrucks = PgSearch.multisearch(params[:query])
+      @foodtrucks = Foodtruck.search_by_foodtrucks(params[:query])
       # The `geocoded` scope filters only flats with coordinates
       @markers = @foodtrucks.geocoded.map do |foodtruck|
       {
@@ -11,13 +12,15 @@ class FoodtrucksController < ApplicationController
         lng: foodtruck.longitude,
         info_window_html: render_to_string(partial:"popupmap", locals: {foodtruck: foodtruck})
       }
-      else
-      @markers = @foodtrucks.all.geocoded.map do |foodtruck|
+      end
+    else
+      @markers = Foodtruck.all.geocoded.map do |foodtruck|
       {
         lat: foodtruck.latitude,
         lng: foodtruck.longitude,
         info_window_html: render_to_string(partial:"popupmap", locals: {foodtruck: foodtruck})
       }
+      end
     end
   end
 end

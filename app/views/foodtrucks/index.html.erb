@@ -15,13 +15,11 @@
     </div>
   </div>
   AFFICHAGE DES RESULTATS :
-  <% if params[:query] %>
-  <% @foodtrucks.each do |result| %>
-    <%# if result.searchable.is_a?(Foodtruck) %>
-      <h2><%= link_to result.searchable.name, foodtruck_path(result.searchable) %></h2>
-      <p>Catégorie : <%= result.searchable.category %></p>
-      <p>Adresse : <%= result.searchable.address_default %></p>
-    <%# end %>
-    <% end %>
-   <% end %>
+
+
+  <div style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 </div>

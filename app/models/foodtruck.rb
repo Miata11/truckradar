@@ -12,7 +12,7 @@ class Foodtruck < ApplicationRecord
     obj.latitude.present? && obj.longitude.present? &&
     (obj.will_save_change_to_latitude? || obj.will_save_change_to_longitude?)
   }
-  
+
   belongs_to :user
 
   has_many :dishes
@@ -25,6 +25,10 @@ class Foodtruck < ApplicationRecord
 
 
   include PgSearch::Model
-  multisearchable against: [:name, :category, :address_default]
-
+  # multisearchable against: [:name, :category, :address_default]
+  pg_search_scope :search_by_foodtrucks,
+  against: [:name, :category, :address_default],
+  using: {
+    tsearch:{prefix:true}
+  }
 end
