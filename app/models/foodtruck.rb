@@ -1,7 +1,9 @@
 class Foodtruck < ApplicationRecord
   belongs_to :user
 
-  has_many :dishes, :reviews, :favorites
+  has_many :dishes
+  has_many :reviews
+  has_many :favorites
 
   validates :name, presence: true
   validates :category, presence: true
