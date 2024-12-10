@@ -23,4 +23,9 @@ class FoodtrucksController < ApplicationController
       end
     end
   end
+
+  def show
+    @foodtruck = Foodtruck.find(params[:id])
+  end
+
 end

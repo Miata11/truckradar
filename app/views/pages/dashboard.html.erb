@@ -1,0 +1,18 @@
+<div class="container">
+<h1>Mon Tableau de Bord</h1>
+
+<h2>Mes favoris</h2>
+<% if @favorites.any? %>
+  <ul>
+    <% @favorites.each do |favorite| %>
+      <li>
+        <%= favorite.foodtruck.name %> - <%= favorite.foodtruck.category %>
+        <%= link_to "Voir", foodtruck_path(favorite.foodtruck), class: "btn btn-primary" %>
+        <%= button_to "Retirer", foodtruck_favorite_path(favorite.foodtruck, favorite), method: :delete, class: "btn btn-danger" %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Vous n'avez aucun favori pour le moment.</p>
+<% end %>
+</div>

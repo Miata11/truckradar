@@ -4,6 +4,7 @@ Geocoder.configure(lookup: :null)
 Dish.destroy_all
 Foodtruck.destroy_all
 User.destroy_all
+Favorite.destroy_all
 
 users = [
   {
