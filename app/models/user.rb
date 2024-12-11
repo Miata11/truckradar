@@ -15,7 +15,11 @@ class User < ApplicationRecord
 
   # has_many :reviews,
 
+
+  # validates :siret, presence: true, if: role?
+  # validates :company_name, presence: true, if: -> { role }
   validates :first_name, presence: true
   validates :last_name, presence: true
+
 
 end

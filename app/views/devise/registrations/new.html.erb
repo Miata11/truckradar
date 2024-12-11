@@ -4,6 +4,26 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+
+<!-- Case à cocher : Êtes-vous un professionnel ? -->
+ <!--   <%= f.input :role, as: :boolean, label: "Êtes-vous un professionnel ?",
+                input_html: { data: { action: "change->toggle#toggleFields" } } %>
+
+<!-- Champs professionnels -->
+    <div data-toggle-target="professionalFields" style="display: none;">
+      <%= f.input :siret, label: "N° de SIRET",
+                  input_html: { pattern: "\\d{14}", title: "Le SIRET doit contenir exactement 14 chiffres" } %>
+      <%= f.input :company_name, label: "Nom de société" %>
+    </div>
+
+ <!-- Champs personnels -->
+      <div data-toggle-target="personalFields">
+      <%= f.input :first_name, label: "Prénom", required: true %>
+      <%= f.input :last_name, label: "Nom", required: true %>
+      <%= f.input :address_default, label: "Adresse", required: true %>
+    </div>
+
+
     <%= f.input :email,
                 required: true,
                 autofocus: true,
@@ -18,7 +38,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Créer mon compte" %>
   </div>
 <% end %>
 
