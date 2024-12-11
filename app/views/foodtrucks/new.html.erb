@@ -1,0 +1,41 @@
+
+<div class="container my-5">
+  <h1 class="text-center">Créer un nouveau Foodtruck</h1>
+  <%= simple_form_for @foodtruck, html: { multipart: true } do |f| %>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= f.input :name, label: "Nom du Foodtruck*", required: true, input_html: { class: "form-control" } %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :company_name, label: "Nom de la société", input_html: { class: "form-control" } %>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= f.input :category, label: "Catégorie*", as: :select, collection: [
+          "Asiatique", "Burger", "Mexicain", "Veggie", "Pizza", "Indien", "Français", "Coffeeshop"
+        ], prompt: "Choisir une catégorie", required: true, input_html: { class: "form-control" } %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :phone_number, label: "Numéro de téléphone", input_html: { class: "form-control" } %>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <%= f.input :description, label: "Description", as: :text, input_html: { class: "form-control", rows: 5 } %>
+    </div>
+
+    <div class="row mb-3">
+      <%= f.input :address_default, label: "Adresse par défaut*", required: true, input_html: { class: "form-control" } %>
+    </div>
+
+    <div class="row mb-3">
+      <%= f.input :photo, label: "Photo*", as: :file, required: true, input_html: { class: "form-control" } %>
+    </div>
+
+    <div class="text-center mt-4">
+      <%= f.submit "Créer le Foodtruck", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
