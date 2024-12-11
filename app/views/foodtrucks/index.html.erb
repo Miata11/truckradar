@@ -1,21 +1,17 @@
 <div class="container">
 
-  FORMULAIRE DE RECHERCHE :
   <div class="row justify-content-center">
     <div class="col-sm-8 my-3">
-      <%= form_with url: foodtrucks_path, method: :get,  local: true, class: "d-flex" do %>
-      <%= label_tag :query, "Rechercher un foodtruck :" %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Entrez un nom, une catégorie ou une adresse" %>
-
-      <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+      <%= form_with url: foodtrucks_path, method: :get, local: true, class: "d-flex" do %>
+        <%= label_tag :query, "Rechercher un foodtruck :" %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Entrez un nom, une catégorie ou une adresse" %>
+        <%= submit_tag "Rechercher", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
-  AFFICHAGE DES RESULTATS :
-
 
   <div style="width: 100%; height: 600px;"
     data-controller="map"

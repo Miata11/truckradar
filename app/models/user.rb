@@ -11,7 +11,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :favorites
-  has_many :foodtrucks
+  has_one :foodtruck
 
   # has_many :reviews,
 
