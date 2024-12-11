@@ -1,19 +1,21 @@
-<h2>Sign up</h2>
+<div class="container">
+<h2>Inscription</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { controller: "toggle" } }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
 
 <!-- Case à cocher : Êtes-vous un professionnel ? -->
- <!--   <%= f.input :role, as: :boolean, label: "Êtes-vous un professionnel ?",
+    <%= f.input :role, as: :boolean, label: "Êtes-vous un professionnel ?",
                 input_html: { data: { action: "change->toggle#toggleFields" } } %>
 
 <!-- Champs professionnels -->
     <div data-toggle-target="professionalFields" style="display: none;">
-      <%= f.input :siret, label: "N° de SIRET",
-                  input_html: { pattern: "\\d{14}", title: "Le SIRET doit contenir exactement 14 chiffres" } %>
-      <%= f.input :company_name, label: "Nom de société" %>
+      <%= f.input :siret, label: "N° de SIRET*",
+      hint: "Le SIRET doit contenir exactement 14 chiffres",
+      input_html: { pattern: "\\d{14}", title: "Le SIRET doit contenir exactement 14 chiffres" } %>
+      <%= f.input :company_name, label: "Nom de société*" %>
     </div>
 
  <!-- Champs personnels -->
@@ -42,4 +44,5 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<!--<%= render "devise/shared/links" %>-->
+</div>
