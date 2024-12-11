@@ -19,6 +19,8 @@ module Truckradar
 
     config.i18n.default_locale = :fr
 
+    config.time_zone = 'Europe/Paris'
+
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
