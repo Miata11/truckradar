@@ -31,4 +31,25 @@ class FoodtrucksController < ApplicationController
   def show
     @foodtruck = Foodtruck.find(params[:id])
   end
+
+  def new
+    @foodtruck = Foodtruck.new
+  end
+
+  def create
+    @foodtruck = Foodtruck.new(foodtruck_params)
+    @foodtruck.user = current_user
+    if @foodtruck.save
+      redirect_to foodtrucks_path, notice: "Votre FoodTruck a été créé avec succès"
+    else
+      render :new, alert: "Erreur lors de la création"
+    end
+  end
+
+  private
+
+  def foodtruck_params
+    params.require(:foodtruck).permit(:name, :company_name, :category, :description, :address_default, :phone_number, :photo)
+  end
+
 end
