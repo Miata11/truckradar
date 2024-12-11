@@ -1,0 +1,35 @@
+fr:
+  activerecord:
+    models:
+      user: "Utilisateur"
+    attributes:
+      user:
+        first_name: "Prénom"
+        last_name: "Nom"
+        password: "Mot de passe"
+        password_confirmation: "Confirmation du mot de passe"
+    errors:
+      models:
+        user:
+          attributes:
+            first_name:
+              blank: "Le prénom ne peut pas être vide"
+            last_name:
+              blank: "Le nom ne peut pas être vide"
+            password:
+              blank: "Le mot de passe ne peut pas être vide"
+            password_confirmation:
+              confirmation: "La confirmation du mot de passe ne correspond pas"
+            email:
+              taken: "Cet email est déjà utilisé"
+
+    devise:
+    registrations:
+      new:
+        password: "Mot de passe"
+        password_confirmation: "Confirmation du mot de passe"
+    shared:
+      links:
+        sign_in: "Se connecter"
+        sign_up: "S'inscrire"
+        forgot_password: "Mot de passe oublié ?"
