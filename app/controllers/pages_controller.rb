@@ -4,4 +4,7 @@ class PagesController < ApplicationController
   def dashboard
     @favorites = current_user.favorites.includes(:foodtruck)
   end
+
+  def home
+  end
 end

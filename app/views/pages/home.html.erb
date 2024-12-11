@@ -1,2 +1,12 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+<div class="container text-center my-5">
+  <h1 class="mb-4">Trouvez votre foodtruck préféré</h1>
+  <%= form_with url: foodtrucks_path, method: :get, local: true, class: "d-flex justify-content-center" do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control me-2",
+      placeholder: "Entrez un nom, une catégorie ou une adresse" %>
+    <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+  <% end %>
+</div>
