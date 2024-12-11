@@ -4,7 +4,7 @@
   <%= simple_form_for @foodtruck, html: { multipart: true } do |f| %>
     <div class="row mb-3">
       <div class="col-md-6">
-        <%= f.input :name, label: "Nom du Foodtruck*", required: true, input_html: { class: "form-control" } %>
+        <%= f.input :name, label: "Nom du Foodtruck", required: true, input_html: { class: "form-control" } %>
       </div>
       <div class="col-md-6">
         <%= f.input :company_name, label: "Nom de la société", input_html: { class: "form-control" } %>
@@ -13,7 +13,7 @@
 
     <div class="row mb-3">
       <div class="col-md-6">
-        <%= f.input :category, label: "Catégorie*", as: :select, collection: [
+        <%= f.input :category, label: "Catégorie", as: :select, collection: [
           "Asiatique", "Burger", "Mexicain", "Veggie", "Pizza", "Indien", "Français", "Coffeeshop"
         ], prompt: "Choisir une catégorie", required: true, input_html: { class: "form-control" } %>
       </div>
@@ -27,11 +27,11 @@
     </div>
 
     <div class="row mb-3">
-      <%= f.input :address_default, label: "Adresse par défaut*", required: true, input_html: { class: "form-control" } %>
+      <%= f.input :address_default, label: "Adresse par défaut", required: true, input_html: { class: "form-control" } %>
     </div>
 
     <div class="row mb-3">
-      <%= f.input :photo, label: "Photo*", as: :file, required: true, input_html: { class: "form-control" } %>
+      <%= f.input :photo, label: "Photo foodtruck ou logo", as: :file, required: true, input_html: { class: "form-control" } %>
     </div>
 
     <div class="text-center mt-4">
