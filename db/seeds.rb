@@ -62,7 +62,7 @@ foodtrucks = [
     description: "Une cuisine bistro de qualité, tout en fraîcheur, avec des recettes pratiques à manger, conçues pour être dégustées de façon nomade.",
     address_default: "Square Léonie Bonnet – Floirac",
     latitude: 44.83238,
-    longitude: 0.514021,
+    longitude: -0.514021,
     status: true,
     user: created_pro
   },
@@ -73,7 +73,7 @@ foodtrucks = [
     description: "La street food et les food trucks étaient notre quotidien à Los Angeles, nous avons voulu à notre retour en France, à Bordeaux, partager notre expérience, et surtout faire connaître aux bordelais les célèbres tacos californiens",
     address_default: "87 Rue Lagrange 33000 BORDEAUX",
     latitude: 44.8524179,
-    longitude: 0.581036,
+    longitude: -0.581036,
     status: true,
     user: created_pro
   },
