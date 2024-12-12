@@ -1,5 +1,5 @@
 class FoodtrucksController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index update_guest_location]
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     if params[:query].present?
@@ -8,27 +8,27 @@ class FoodtrucksController < ApplicationController
       @foodtrucks = Foodtruck.all
     end
 
+    # Markers pour les foodtrucks
     @markers = @foodtrucks.geocoded.map do |foodtruck|
       {
         lat: foodtruck.latitude,
         lng: foodtruck.longitude,
         info_window_html: render_to_string(partial: "popupmap", locals: { foodtruck: foodtruck }),
-        marker_html: render_to_string(partial: "foodtruck_marker")
+        marker_html: render_to_string(partial: "foodtruck_marker", locals: {
+          connected: foodtruck.user.role == "true" && foodtruck.real_time_tracking
+        })
       }
     end
 
-    # Ajout du marker pour l'utilisateur connecté ou invité
-    if user_signed_in? && current_user.latitude.present?
-      @markers << user_marker(current_user)
-    elsif session[:guest_latitude].present?
-      @markers << guest_marker
+    # Marker pour l'utilisateur connecté à son address_default
+    if current_user&.latitude.present? && !current_user.real_time_tracking
+      @markers << {
+        lat: current_user.latitude,
+        lng: current_user.longitude,
+        info_window_html: render_to_string(partial: "user_popup", locals: { user: current_user }),
+        marker_html: render_to_string(partial: "user_marker", locals: { user: current_user })
+      }
     end
-  end
-
-  def update_guest_location
-    session[:guest_latitude] = params[:latitude]
-    session[:guest_longitude] = params[:longitude]
-    render json: { success: true }
   end
 
   def update_location
@@ -38,26 +38,6 @@ class FoodtrucksController < ApplicationController
     else
       render json: { success: false }, status: :unprocessable_entity
     end
-  end
-
-  private
-
-  def user_marker(user)
-    {
-      lat: user.latitude,
-      lng: user.longitude,
-      info_window_html: render_to_string(partial: "user_popup", locals: { user: user }),
-      marker_html: render_to_string(partial: "user_marker")
-    }
-  end
-
-  def guest_marker
-    {
-      lat: session[:guest_latitude],
-      lng: session[:guest_longitude],
-      info_window_html: render_to_string(partial: "guest_popup"),
-      marker_html: render_to_string(partial: "guest_marker")
-    }
   end
 
   def new
@@ -76,8 +56,16 @@ class FoodtrucksController < ApplicationController
 
   private
 
+  def user_marker(user)
+    {
+      lat: user.latitude,
+      lng: user.longitude,
+      info_window_html: render_to_string(partial: "user_popup", locals: { user: user }),
+      marker_html: render_to_string(partial: "user_marker")
+    }
+  end
+
   def foodtruck_params
     params.require(:foodtruck).permit(:name, :company_name, :category, :description, :address_default, :phone_number, :photo)
   end
-
 end

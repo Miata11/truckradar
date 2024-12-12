@@ -1,1 +1,5 @@
-<%= image_tag "foodtruck_connected.png", height:30, width:40 %>
+<% if connected %>
+  <%= image_tag "foodtruck_connected.png", height: 30, width: 30, alt: "Connected Foodtruck" %>
+<% else %>
+  <%= image_tag "foodtruck_disconnected.png", height: 30, width: 30, alt: "Disconnected Foodtruck" %>
+<% end %>
