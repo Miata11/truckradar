@@ -1,85 +1,69 @@
-/* Style général du formulaire */
 .container {
-  background-color: #acdbdd; /* Fond vert d'eau clair */
+  background-color: #acdbdd;
   padding: 30px;
   border-radius: 10px;
 }
 
-/* Titre du formulaire */
 h1 {
-  color: #2c3e50; /* Texte noir pour le titre */
-  font-family: 'Arial', sans-serif;
-  font-weight: 400; /* Écriture fine */
-  font-size: 2rem;
+  color: #2c3e50;
+  font-weight: 400;
+  font-size: 1rem;
+  font-family: 'Dancing Script', cursive;
 }
 
-/* Style des champs de formulaire */
 .form-control {
-  border: 1px solid #242525; /* Bordure verte d'eau */
+  border: 1px solid #242525;
   border-radius: 5px;
   padding: 12px;
-  background-color: #acdbdd; /* Fond vert très clair */
-  color: #2c3e50; /* Texte noir */
+  background-color: #acdbdd;
+  color: #2c3e50;
   font-size: 1rem;
   font-family: 'Arial', sans-serif;
-  font-weight: 300; /* Texte plus fin */
+  font-weight: 300;
 }
 
-/* Ajouter un effet au focus des champs */
 .form-control:focus {
-  border-color: #81c7bc; /* Bordure verte plus foncée au focus */
+  border-color: #81c7bc;
   box-shadow: 0 0 5px rgba(81, 196, 132, 0.5);
 }
 
-/* Labels des champs */
 label {
   font-family: 'Arial', sans-serif;
-  font-weight: 400; /* Écriture fine pour les labels */
-  color: #2c3e50; /* Texte noir */
-  font-size: 1.1rem;
+  color: #2c3e50;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
-/* Espacement entre les lignes du formulaire */
 .row.mb-3 {
   margin-bottom: 20px;
 }
 
-/* Sélecteur de catégorie */
 .select2-container .select2-selection {
-  border: 1px solid #a5d6a7; /* Bordure verte d'eau */
+  border: 1px solid #a5d6a7;
   border-radius: 5px;
-  background-color: #029094; /* Fond vert très clair */
+  background-color: #029094;
 }
 
-/* Bouton de soumission */
 .btn-primary {
-  background-color: #029094; /* Vert d'eau plus foncé */
+  background-color: #029094;
   border: none;
   border-radius: 5px;
-  color: #ffffff; /* Texte blanc */
+  color: #ffffff;
   font-size: 1.2rem;
   font-weight: 500;
   padding: 12px 30px;
   transition: background-color 0.3s ease;
 }
 
-/* Effet au survol du bouton */
-.btn-primary:hover {
-  background-color: #398588; /* Vert plus intense au survol */
-}
-
-/* Ajout de style pour les colonnes */
 .col-md-6 {
   padding: 15px;
 }
 
-/* Style pour les fichiers input */
 input[type="file"] {
   padding: 6px;
   font-size: 1rem;
 }
 
-/* Marges et centrer le formulaire */
 .text-center {
   text-align: center;
 }
