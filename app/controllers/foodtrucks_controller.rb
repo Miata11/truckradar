@@ -15,7 +15,8 @@ class FoodtrucksController < ApplicationController
         lng: foodtruck.longitude,
         info_window_html: render_to_string(partial: "popupmap", locals: { foodtruck: foodtruck }),
         marker_html: render_to_string(partial: "foodtruck_marker", locals: {
-          connected: foodtruck.user.role == "true" && foodtruck.real_time_tracking
+          connected: foodtruck.user.role == "true" && foodtruck.real_time_tracking,
+          foodtruck: foodtruck
         })
       }
     end

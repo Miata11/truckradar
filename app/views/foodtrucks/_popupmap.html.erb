@@ -1,5 +1,6 @@
 <div class="popupmap">
   <h3><%= foodtruck.name %></h3>
   <p><%= foodtruck.category %></p>
+  <%= cl_image_tag foodtruck.photo.key, height: 30, width: 30, crop: :fill, alt: "Foodtruck" %>
   <p><i class="fa-solid fa-location-dot"></i> <%= foodtruck.address_default %></p>
 </div>
