@@ -1,0 +1,30 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <%= dish_form.hidden_field :id %>
+
+    <div class="mb-3">
+      <%= dish_form.label :title, "Titre du plat" %>
+      <%= dish_form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= dish_form.label :description, "Description du plat" %>
+      <%= dish_form.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= dish_form.label :price, "Prix" %>
+      <%= dish_form.number_field :price, step: 0.01, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= dish_form.label :photo, "Photo du plat" %>
+      <%= dish_form.file_field :photo, class: "form-control" %>
+    </div>
+
+    <div class="form-check">
+      <%= dish_form.check_box :_destroy, class: "form-check-input" %>
+      <%= dish_form.label :_destroy, "Supprimer ce plat", class: "form-check-label" %>
+    </div>
+  </div>
+</div>
