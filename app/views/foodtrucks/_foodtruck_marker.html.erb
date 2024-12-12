@@ -1,5 +1,15 @@
 <% if connected %>
+  <%# <% if foodtruck.photo.attached?%>
+      <%# <%= cl_image_tag footruck.photo.key, width: 30, height: 30, crop: :fill %>
+    <%# <% else %>
+      <%# <%= image_tag "foodtruck_connected.png", width: 30, height: 30, alt: "Image par défaut" %>
+    <%# <% end %>
   <%= image_tag "foodtruck_connected.png", height: 30, width: 30, alt: "Connected Foodtruck" %>
 <% else %>
+<%# <% if foodtruck.photo.attached?%>
+      <%# <%= cl_image_tag footruck.photo.key, width: 30, height: 30, crop: :fill %>
+    <%# <% else %>
+      <%# <%= image_tag "foodtruck_disconnected.png", width: 30, height: 30, alt: "Image par défaut" %>
+    <%# <% end %> 
   <%= image_tag "foodtruck_disconnected.png", height: 30, width: 30, alt: "Disconnected Foodtruck" %>
 <% end %>
