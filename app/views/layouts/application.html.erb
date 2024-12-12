@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/0a93ae5b0f.js" crossorigin="anonymous"></script>
   </head>
 
-  <body><%= render "shared/navbar" %>
+  <body data-user-role="<%= current_user&.role %>"><%= render "shared/navbar" %>
 <%= render "shared/flashes" %>
 
     <%= yield %>
