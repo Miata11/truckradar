@@ -1,5 +1,5 @@
 class FoodtrucksController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index update_guest_location]
+  skip_before_action :authenticate_user!, only: %i[index update_guest_location show]
 
   def index
     if params[:query].present?
