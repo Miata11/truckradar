@@ -1,5 +1,7 @@
 class FoodtrucksController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+
+  skip_before_action :authenticate_user!, only: %i[index show]
+
 
   def index
     if params[:query].present?
@@ -15,7 +17,8 @@ class FoodtrucksController < ApplicationController
         lng: foodtruck.longitude,
         info_window_html: render_to_string(partial: "popupmap", locals: { foodtruck: foodtruck }),
         marker_html: render_to_string(partial: "foodtruck_marker", locals: {
-          connected: foodtruck.user.role == "true" && foodtruck.real_time_tracking
+          connected: foodtruck.user.role == "true" && foodtruck.real_time_tracking,
+          foodtruck: foodtruck
         })
       }
     end
@@ -42,6 +45,7 @@ class FoodtrucksController < ApplicationController
 
   def show
     @foodtruck = Foodtruck.find(params[:id])
+    @dishes = @foodtruck.dishes
   end
 
   def new

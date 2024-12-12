@@ -1,15 +1,27 @@
-<% if connected %>
-  <%# <% if foodtruck.photo.attached?%>
-      <%# <%= cl_image_tag footruck.photo.key, width: 30, height: 30, crop: :fill %>
-    <%# <% else %>
-      <%# <%= image_tag "foodtruck_connected.png", width: 30, height: 30, alt: "Image par défaut" %>
-    <%# <% end %>
-  <%= image_tag "foodtruck_connected.png", height: 30, width: 30, alt: "Connected Foodtruck" %>
+<% if foodtruck.user == current_user %>
+  <% if connected %>
+    <div class="rounded-circle overflow-hidden border border-success" style="width: 30px; height: 30px;">
+      <% if foodtruck.photo.attached? %>
+        <%= cl_image_tag foodtruck.photo.key, class: "w-100 h-100 object-fit-cover", width: 30, height: 30, crop: :fill %>
+      <% else %>
+        <%= image_tag "foodtruck_connected.png", class: "w-100 h-100 object-fit-cover", width: 30, height: 30, alt: "Image par défaut" %>
+      <% end %>
+      <div class="position-absolute bottom-0 end-0 rounded-circle bg-success border border-white" style="width: 8px; height: 8px;"></div>
+    </div>
+  <% else %>
+    <div class="rounded-circle overflow-hidden border border-danger" style="width: 30px; height: 30px;">
+      <% if foodtruck.photo.attached? %>
+        <%= cl_image_tag foodtruck.photo.key, class: "w-100 h-100 object-fit-cover", width: 30, height: 30, crop: :fill %>
+      <% else %>
+        <%= image_tag "foodtruck_disconnected.png", class: "w-100 h-100 object-fit-cover", width: 30, height: 30, alt: "Image par défaut" %>
+      <% end %>
+      <div class="position-absolute bottom-0 end-0 rounded-circle bg-danger border border-white" style="width: 8px; height: 8px;"></div>
+    </div>
+  <% end %>
 <% else %>
-<%# <% if foodtruck.photo.attached?%>
-      <%# <%= cl_image_tag footruck.photo.key, width: 30, height: 30, crop: :fill %>
-    <%# <% else %>
-      <%# <%= image_tag "foodtruck_disconnected.png", width: 30, height: 30, alt: "Image par défaut" %>
-    <%# <% end %> 
-  <%= image_tag "foodtruck_disconnected.png", height: 30, width: 30, alt: "Disconnected Foodtruck" %>
+  <% if connected %>
+    <%= image_tag "foodtruck_connected.png", width: 30, height: 30, alt: "Image par défaut" %>
+  <% else %>
+    <%= image_tag "foodtruck_disconnected.png", width: 30, height: 30, alt: "Image par défaut" %>
+  <% end %>
 <% end %>
