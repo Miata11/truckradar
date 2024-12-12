@@ -11,11 +11,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :favorites
-  has_many :foodtrucks
+  has_one :foodtruck
 
   # has_many :reviews,
 
+
+  # validates :siret, format: { with: /\A\d{14}\z/, message: "Le SIRET doit contenir exactement 14 chiffres" }
+  # validates :company_name, presence: true, if: -> { role }
   validates :first_name, presence: true
   validates :last_name, presence: true
+
 
 end

@@ -1,24 +1,18 @@
 Rails.application.routes.draw do
+  # Routes pour la géolocalisation avec format JSON explicite
+  # patch '/users/update_location', to: 'users#update_location', defaults: { format: :json }
+  # patch '/guest/update_location', to: 'foodtrucks#update_guest_location', defaults: { format: :json }
+  # patch '/foodtrucks/:id/update_location', to: 'foodtrucks#update_location', defaults: { format: :json }
+
   devise_for :users
+
   root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 
   resources :foodtrucks do
-    # resources :reviews, only: [:create, :destroy]
     resources :dishes, only: [:new, :create]
     resources :favorites, only: [:new, :create, :destroy]
   end
 
-  # resources :favorites, only: [:index, :create, :destroy]
-
   get 'dashboard', to: 'pages#dashboard'
-
   resources :dishes
 end
