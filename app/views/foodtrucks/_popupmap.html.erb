@@ -1,5 +1,12 @@
 <div class="popupmap">
-  <h3><%= foodtruck.name %></h3>
-  <p><%= foodtruck.category %></p>
-  <p><i class="fa-solid fa-location-dot"></i> <%= foodtruck.address_default %></p>
+  <%= link_to foodtruck_path(foodtruck), class: "text-decoration-none d-block" do %>
+    <% if foodtruck.photo.attached? %>
+      <%= image_tag foodtruck.photo.service_url, alt: foodtruck.name, class: "img-fluid rounded mb-2" %>
+    <% else %>
+      <%= image_tag "default_foodtruck.jpg", alt: "Default image", class: "img-fluid rounded mb-2" %>
+    <% end %>
+    <h3><%= foodtruck.name %></h3>
+    <p><%= foodtruck.category %></p>
+    <p><i class="fa-solid fa-location-dot"></i> <%= foodtruck.address_default %></p>
+  <% end %>
 </div>

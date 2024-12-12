@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <h1>Plats disponibles pour <%= @foodtruck.name %></h1>
+
+  <% if @dishes.any? %>
+    <ul class="list-group">
+      <% @dishes.each do |dish| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong><%= dish.title %></strong>
+            <p class="mb-1"><%= dish.description %></p>
+            <span class="fw-bold"><%= number_to_currency(dish.price, unit: "€") %></span>
+          </div>
+          <%= link_to "Modifier", edit_foodtruck_dish_path(@foodtruck, dish), class: "btn btn-warning btn-sm" %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Aucun plat disponible.</p>
+  <% end %>
+</div>
