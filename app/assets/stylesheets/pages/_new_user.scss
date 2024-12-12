@@ -7,11 +7,19 @@
   background-position: center;
   text-align: center; /* Centre le texte dans le conteneur principal */
 
+
   p {
-    font-size: 1rem;
-    color: #000000;
+    font-size: 1.5rem;
+    color: black;
     margin-top: 2rem;
+    margin-bottom: 4px;
     text-align: center; /* Garde les paragraphes centrés */
+  }
+
+  .separator-new-profil {
+    width: 95%;
+    height: 1.5px; /* Épaisseur du trait */
+    background-color: #029094; /* Couleur du trait */
   }
 
   #image-de-fond {
@@ -36,16 +44,16 @@
     padding-left: 10%;
     padding-right: 10%;
     max-width: 500px;
-    text-align: center; /* Centre le texte dans ce sous-conteneur */
+    text-align: left; /* Centre le texte dans ce sous-conteneur */
 
     .form-group {
       margin-bottom: 1.5rem;
-      text-align: center; /* Centre les labels et les hints */
+      text-align: left; /* Centre les labels et les hints */
 
       label {
         font-weight: 600;
         color: #000000;
-        text-align: center; /* Assure que les labels sont centrés */
+        text-align: left; /* Assure que les labels sont centrés */
       }
 
       input {
@@ -55,7 +63,7 @@
         border: 1px solid #ccc;
         margin-top: 0.5rem;
         font-size: 1rem;
-        text-align: center; /* Centre le texte saisi dans les inputs */
+        text-align: left; /* Centre le texte saisi dans les inputs */
       }
 
       input:focus {
