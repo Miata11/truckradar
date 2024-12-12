@@ -1,78 +1,78 @@
-.container {
+.new_container {
   background-color: #acdbdd;
   padding: 30px;
-  border-radius: 10px;
-}
+  border-radius: 10px;  
 
-h1 {
-  color: #2c3e50;
-  font-weight: 400;
-  font-size: 1rem;
-  font-family: 'Dancing Script', cursive;
-}
+  h1 {
+    color: #2c3e50;
+    font-weight: 400;
+    font-size: 1rem;
+    font-family: 'Dancing Script', cursive;
+    }
 
-.form-control {
-  border: 1px solid #242525;
-  border-radius: 5px;
-  padding: 12px;
-  background-color: #acdbdd;
-  color: #2c3e50;
-  font-size: 1rem;
-  font-family: 'Arial', sans-serif;
-  font-weight: 300;
-}
+    .form-control {
+    border: 1px solid #242525;
+    border-radius: 5px;
+    padding: 12px;
+    background-color: #acdbdd;
+    color: #2c3e50;
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+    font-weight: 300;
+    }
 
-.form-control:focus {
-  border-color: #81c7bc;
-  box-shadow: 0 0 5px rgba(81, 196, 132, 0.5);
-}
+    .form-control:focus {
+    border-color: #81c7bc;
+    box-shadow: 0 0 5px rgba(81, 196, 132, 0.5);
+    }
 
-label {
-  font-family: 'Arial', sans-serif;
-  color: #2c3e50;
-  font-size: 1rem;
-  font-weight: 700;
-}
+    label {
+    font-family: 'Arial', sans-serif;
+    color: #2c3e50;
+    font-size: 1rem;
+    font-weight: 700;
+    }
 
-.row.mb-3 {
-  margin-bottom: 20px;
-}
+    .row.mb-3 {
+    margin-bottom: 20px;
+    }
 
-.select2-container .select2-selection {
-  border: 1px solid #a5d6a7;
-  border-radius: 5px;
-  background-color: #029094;
-}
+    .select2-container .select2-selection {
+    border: 1px solid #a5d6a7;
+    border-radius: 5px;
+    background-color: #029094;
+    }
 
-.btn-primary {
-  background-color: #029094;
-  border: none;
-  border-radius: 5px;
-  color: #ffffff;
-  font-size: 1.2rem;
-  font-weight: 500;
-  padding: 12px 30px;
-  transition: background-color 0.3s ease;
-}
+    .btn-primary {
+    background-color: #029094;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 12px 30px;
+    transition: background-color 0.3s ease;
+    }
 
-.col-md-6 {
-  padding: 15px;
-}
+    .col-md-6 {
+    padding: 15px;
+    }
 
-input[type="file"] {
-  padding: 6px;
-  font-size: 1rem;
-}
+    input[type="file"] {
+    padding: 6px;
+    font-size: 1rem;
+    }
 
-.text-center {
-  text-align: center;
-}
+    .text-center {
+    text-align: center;
+    }
 
-.mt-4 {
-  margin-top: 20px;
-}
+    .mt-4 {
+    margin-top: 20px;
+    }
 
-.my-5 {
-  margin-top: 50px;
-  margin-bottom: 50px;
+    .my-5 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    }
 }
