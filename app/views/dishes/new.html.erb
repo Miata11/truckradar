@@ -17,6 +17,11 @@
       <%= f.number_field :price, step: 0.01, class: "form-control", placeholder: "Ex: 5.00", required: true %>
     </div>
 
+    <div class="mb-3">
+      <%= f.label :photo, "Photo du plat", class: "form-label" %>
+      <%= f.file_field :photo, class: "form-control" %>
+    </div>
+
     <%= f.submit "Créer le plat", class: "btn btn-primary" %>
   <% end %>
 </div>
