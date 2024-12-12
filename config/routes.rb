@@ -10,11 +10,14 @@ Rails.application.routes.draw do
 
   resources :foodtrucks do
     resources :dishes, only: [:new, :create]
-    resources :favorites, only: [:new, :create, :destroy] do
-      get '/', to: 'favorites#index', on: :collection # Route optionnelle pour GET
+    resources :favorites, only: [:create, :destroy]
     end
-  end
+
+  resources :favorites, only: [:index]
+
+
+  resources :dishes
 
   get 'dashboard', to: 'pages#dashboard'
-  resources :dishes
+
 end
