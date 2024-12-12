@@ -1,6 +1,6 @@
 class FoodtrucksController < ApplicationController
-  
-  skip_before_action :authenticate_user!, only: %i[index update_guest_location show]
+
+  skip_before_action :authenticate_user!, only: %i[index show]
 
 
   def index
