@@ -355,7 +355,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   font-awesome-rails
-  font-awesome-sass
+  font-awesome-sass (~> 6.1)
   geocoder
   importmap-rails (~> 1.2.3)
   jbuilder
