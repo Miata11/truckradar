@@ -1,0 +1,86 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre horizontalement le contenu */
+  justify-content: center;
+  width: 80%;
+  padding: 5%;
+  background-size: cover;
+  background-position: center;
+  background-image: url('images/fond-centre.png');
+  text-align: center; /* Centre le texte dans le conteneur principal */
+  margin-bottom: 25%;
+
+  p {
+    font-size: 1rem;
+    color: #000000;
+    margin: 2rem;
+    text-align: center; /* Garde les paragraphes centrés */
+  }
+
+  .form-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre les éléments internes horizontalement */
+    padding-left: 10%;
+    padding-right: 10%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 130%;
+    max-width: 500px;
+    text-align: center; /* Centre le texte dans ce sous-conteneur */
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: center; /* Centre les labels et les hints */
+
+      label {
+        font-weight: 600;
+        color: #000000;
+        text-align: center; /* Assure que les labels sont centrés */
+      }
+
+      input {
+        width: 100%;
+        padding: 0.8rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        text-align: center; /* Centre le texte saisi dans les inputs */
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #029094;
+        box-shadow: 0 0 5px rgba(2, 144, 148, 0.5);
+      }
+
+      .hint {
+        font-size: 0.8rem;
+        color: #777;
+        text-align: center; /* Centre les textes d'indication */
+      }
+    }
+
+    .form-actions {
+      text-align: center; /* Centre les boutons */
+
+      button {
+        background-color: #029094;
+        color: white;
+        font-size: 1.1rem;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #027b7d;
+        }
+      }
+    }
+  }
+}
