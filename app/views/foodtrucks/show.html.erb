@@ -1,13 +1,26 @@
-
 <div class="container">
-<div class="row justify-content-center">
+
+  <div class="row justify-content-center">
+
     <div class="col-sm-8 my-3">
-Bouton pour ajouter aux favoris
-<% if current_user.favorites.exists?(foodtruck: @foodtruck) %>
-  <%= button_to "Retirer des favoris", foodtruck_favorite_path(@foodtruck, current_user.favorites.find_by(foodtruck: @foodtruck)), method: :delete, class: "btn btn-danger" %>
-<% else %>
-  <%= button_to "Ajouter aux favoris", foodtruck_favorites_path(@foodtruck), method: :post, class: "btn btn-primary" %>
-<% end %>
-</div>
-</div>
+    <h1 class="mb-4">Détails du Foodtruck</h1>
+      <div class="d-flex align-items-center justify-content-start gap-2">
+        <!-- Nom du foodtruck avec lien -->
+        <%= link_to @foodtruck.name, foodtruck_path(@foodtruck), class: "text-decoration-none fw-bold h4 mb-0 me-2" %>
+
+        <!-- Icône de cœur pour ajouter ou retirer des favoris -->
+        <% if current_user.favorites.exists?(foodtruck: @foodtruck) %>
+          <!-- Cœur plein rouge pour un favori -->
+          <%= button_to foodtruck_favorite_path(@foodtruck, current_user.favorites.find_by(foodtruck: @foodtruck)), method: :delete, class: "p-0 border-0 bg-transparent" do %>
+            <i class="fas fa-heart text-danger" style="font-size: 1.8rem;"></i>
+          <% end %>
+        <% else %>
+          <!-- Cœur vide pour un non-favori -->
+          <%= button_to foodtruck_favorites_path(@foodtruck), method: :post, class: "p-0 border-0 bg-transparent" do %>
+            <i class="far fa-heart text-muted" style="font-size: 1.8rem;"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -40,6 +40,10 @@ class FoodtrucksController < ApplicationController
     end
   end
 
+  def show
+    @foodtruck = Foodtruck.find(params[:id])
+  end
+
   private
 
   def user_marker(user)

@@ -6,18 +6,11 @@
   <% end %>
 
   <!-- Onglet Favoris -->
-  <% if @foodtruck.present? %>
-    <%= link_to foodtruck_favorites_path(foodtruck_id: @foodtruck.id), class: (current_page?(foodtruck_favorites_path(@foodtruck)) ? "active" : "") do %>
+    <%= link_to favorites_path, class: (current_page?(favorites_path) ? "active" : "") do %>
       <i class="fas fa-heart"></i>
       <span>Favoris</span>
     <% end %>
-  <% else %>
-    <!-- Placeholder ou gestion si pas de foodtruck -->
-    <a href="#" class="disabled">
-      <i class="fas fa-heart"></i>
-      <span>Favoris</span>
-    </a>
-  <% end %>
+
 
 <!-- Onglet Carte -->
 <%= link_to foodtrucks_path, class: (current_page?(foodtrucks_path) ? "active" : "") do %>
