@@ -10,9 +10,14 @@ Rails.application.routes.draw do
 
   resources :foodtrucks do
     resources :dishes, only: [:new, :create]
-    resources :favorites, only: [:new, :create, :destroy]
-  end
+    resources :favorites, only: [:create, :destroy]
+    end
+
+  resources :favorites, only: [:index]
+
+
+  resources :dishes
 
   get 'dashboard', to: 'pages#dashboard'
-  resources :dishes
+
 end

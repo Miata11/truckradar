@@ -1,5 +1,3 @@
-@import 'font-awesome';
-
 .home-container {
   height: 100vh;
   display: flex;
@@ -18,12 +16,14 @@
   }
 
   .home-content {
+    margin-top: 2rem;
     padding: 2rem;
     text-align: center;
     color: white;
 
     .home-logo {
-      margin-bottom: 2rem;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
 
       img {
         max-width: 150px;
@@ -75,7 +75,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 2.9em;
+      height: 3em;
 
       .btn-search {
         background-color: transparent;
@@ -97,7 +97,7 @@
   }
 
   .home-title {
-    margin-top: 2rem;
+    margin-top: 6rem;
 
     h1 {
       font-size: 2.5rem;
