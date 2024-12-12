@@ -1,5 +1,28 @@
 
-<div class="container">
+<div data-controller="toggle">
+  <% if current_user.favorites.exists?(foodtruck: @foodtruck) %>
+    <button
+      data-action="click->toggle#toggleFavorite"
+      data-favorite-url="<%= foodtruck_favorite_path(@foodtruck, current_user.favorites.find_by(foodtruck: @foodtruck)) %>"
+      data-favorite-method="delete"
+      class="btn btn-link text-danger">
+      <i class="fas fa-heart"></i>
+    </button>
+  <% else %>
+    <button
+      data-action="click->toggle#toggleFavorite"
+      data-favorite-url="<%= foodtruck_favorites_path(@foodtruck) %>"
+      data-favorite-method="post"
+      class="btn btn-link text-muted">
+      <i class="far fa-heart"></i>
+    </button>
+  <% end %>
+</div>
+
+
+
+
+<!--<div class="container">
 <div class="row justify-content-center">
     <div class="col-sm-8 my-3">
 Bouton pour ajouter aux favoris

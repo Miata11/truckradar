@@ -5,9 +5,9 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.new(user: current_user, foodtruck: @foodtruck)
 
     if @favorite.save
-      redirect_to foodtruck_path(@foodtruck), notice: "Ajouté aux favoris !"
+      render json: { url: foodtruck_favorite_path(@foodtruck, @favorite) }, status: :created
     else
-      redirect_to foodtruck_path(@foodtruck), alert: "Impossible d'ajouter aux favoris"
+      render json: { error: "Impossible d'ajouter aux favoris" }, status: :unprocessable_entity
     end
   end
 
@@ -17,4 +17,10 @@ class FavoritesController < ApplicationController
     redirect_to foodtruck_path(@favorite.foodtruck), notice: "Retiré des favoris"
   end
 
+end
+
+if @favorite.save
+  redirect_to foodtruck_path(@foodtruck), notice: "Ajouté aux favoris !"
+else
+  redirect_to foodtruck_path(@foodtruck), alert: "Impossible d'ajouter aux favoris"
 end
