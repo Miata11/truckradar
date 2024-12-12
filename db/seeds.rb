@@ -48,7 +48,7 @@ user_pro2 =  User.create!(
   longitude: -0.580036,
   role: "true")
 
-  user_pro3 = User.create!(
+user_pro3 = User.create!(
  first_name: "Sophie",
  last_name: "Dubois",
  email: "sophie.dubois@gmail.com",
@@ -113,8 +113,8 @@ user_pro7 = User.create!(
     longitude: -0.556544,
     status: true,
     user: user_pro1)
-  file = URI.open("https://quoifaireabordeaux.com/wp-content/uploads/2019/05/6PyX-0Qn-1.jpeg")
-  foodtruck1.photo.attach(io: file, filename: "sando_truck.jpeg", content_type: "image/jpeg")
+  file = URI.open("https://otuktuk.fr/wp-content/uploads/2017/10/o_tuk_tuk_fodd_truck_toulouse_slider.jpg")
+  foodtruck1.photo.attach(io: file, filename: "sando_truck.jpg", content_type: "image/jpg")
   foodtruck1.save
 
 
@@ -221,8 +221,8 @@ user_pro7 = User.create!(
    description: "à la fois tendre et délicatement parfumée, servie avec une garniture au choix : fromage, œuf, jambon ou légumes grillés.",
    price: 10.90
   )
-  file = URI.open("https://www.cuisineactuelle.fr/imgre/fit/~1~cac~2023~01~17~999fccbd-d5ad-4cc2-91ba-d5a06206b882.jpeg/650x325/quality/80/crop-from/center/galette-de-sarrasin-a-l-ancienne.jpeg")
-  dish3.photo.attach(io: file, filename: "galette_sarrasin.jpeg", content_type: "image/jpeg")
+  file = URI.open("https://www.cuisineactuelle.fr/imgre/fit/~1~cac~2023~01~17~999fccbd-d5ad-4cc2-91ba-d5a06206b882.jpeg/650x325/quality/80/crop-from/center/galette-de-sarrasin-a-l-ancienne.jpg")
+  dish3.photo.attach(io: file, filename: "galette_sarrasin.jpg", content_type: "image/jpg")
   dish3.save
 
   dish4 = Dish.new(
