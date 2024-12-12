@@ -1,0 +1,12 @@
+<div class="container">
+<h1>Vos Favoris</h1>
+
+<ul>
+  <% @favorites.each do |favorite| %>
+    <li>
+      <%= link_to favorite.foodtruck.name, foodtruck_path(favorite.foodtruck) %>
+      <%= button_to "Retirer des favoris", foodtruck_favorite_path(favorite.foodtruck, favorite), method: :delete, class: "btn btn-danger", remote: true %>
+    </li>
+  <% end %>
+</ul>
+</div>
