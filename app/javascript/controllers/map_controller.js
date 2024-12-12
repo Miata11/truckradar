@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import mapboxgl from 'mapbox-gl' // Don't forget this!
+import mapboxgl from 'mapbox-gl'
 
 export default class extends Controller {
   static values = {
@@ -17,16 +17,47 @@ export default class extends Controller {
 
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
+
+    // Style du marker de géolocalisation selon le rôle de l'utilisateur
+    const userRole = document.body.dataset.userRole
+    const style = document.createElement('style')
+    style.textContent = `
+      .mapboxgl-user-location-dot {
+        background-image: url('/assets/${this.#getLocationMarkerImage()}');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 0;
+        background-color: transparent;
+      }
+      .mapboxgl-user-location-dot::before,
+      .mapboxgl-user-location-dot::after {
+        display: none;
+      }
+    `
+    document.head.appendChild(style)
+
+    // Ajouter le contrôle de géolocalisation pour tous les utilisateurs
     this.map.addControl(
       new mapboxgl.GeolocateControl({
-          positionOptions: {
-              enableHighAccuracy: true
-          },
-          // When active the map will receive updates to the device's location as it changes.
-          trackUserLocation: true,
-          // Draw an arrow next to the location dot to indicate which direction the device is heading.
-          showUserHeading: true
-      }))
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true,
+        showUserHeading: true
+      })
+    )
+  }
+
+  #getLocationMarkerImage() {
+    const userRole = document.body.dataset.userRole
+    if (userRole === 'true') {
+      return 'foodtruck_connected.png'
+    } else {
+      return 'user_marker.png'
+    }
   }
 
   #addMarkersToMap() {
@@ -48,5 +79,4 @@ export default class extends Controller {
     this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
-
 }

@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   has_many :favorites
   has_one :foodtruck
+  has_one_attached :photo
 
   # has_many :reviews,
 

@@ -9,10 +9,15 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :foodtrucks do
-    resources :dishes, only: [:new, :create]
-    resources :favorites, only: [:new, :create, :destroy]
-  end
+    resources :dishes, only: [:index, :new, :create, :edit, :update]
+    resources :favorites, only: [:create, :destroy]
+    end
+
+  resources :favorites, only: [:index]
+
+
+  resources :dishes
 
   get 'dashboard', to: 'pages#dashboard'
-  resources :dishes
+
 end

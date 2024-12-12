@@ -1,13 +1,126 @@
-
 <div class="container">
-<div class="row justify-content-center">
+
+  <div class="row justify-content-center">
+
     <div class="col-sm-8 my-3">
-Bouton pour ajouter aux favoris
-<% if current_user.favorites.exists?(foodtruck: @foodtruck) %>
-  <%= button_to "Retirer des favoris", foodtruck_favorite_path(@foodtruck, current_user.favorites.find_by(foodtruck: @foodtruck)), method: :delete, class: "btn btn-danger" %>
-<% else %>
-  <%= button_to "Ajouter aux favoris", foodtruck_favorites_path(@foodtruck), method: :post, class: "btn btn-primary" %>
-<% end %>
+    <h1 class="mb-4">Détails du Foodtruck</h1>
+      <div class="d-flex align-items-center justify-content-start gap-2">
+        <!-- Nom du foodtruck avec lien -->
+        <%= @foodtruck.name %>
+
+        <!-- Icône de cœur pour ajouter ou retirer des favoris -->
+        <% if current_user.favorites.exists?(foodtruck: @foodtruck) %>
+          <!-- Cœur plein rouge pour un favori -->
+          <%= button_to foodtruck_favorite_path(@foodtruck, current_user.favorites.find_by(foodtruck: @foodtruck)), method: :delete, class: "p-0 border-0 bg-transparent" do %>
+            <i class="fas fa-heart text-danger" style="font-size: 1.8rem;"></i>
+          <% end %>
+        <% else %>
+          <!-- Cœur vide pour un non-favori -->
+          <%= button_to foodtruck_favorites_path(@foodtruck), method: :post, class: "p-0 border-0 bg-transparent" do %>
+            <i class="far fa-heart text-muted" style="font-size: 1.8rem;"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Photo du truck -->
+<div class="container mt-4">
+  <!-- Image du foodtruck -->
+  <div class="text-center">
+    <% if @foodtruck.photo.attached? %>
+      <%= image_tag @foodtruck.photo, alt: @foodtruck.name, class: "img-fluid rounded mb-3", style: "max-width: 400px;" %>
+    <% else %>
+      <%= image_tag "default_foodtruck.jpg", alt: "Default image", class: "img-fluid rounded mb-3", style: "max-width: 400px;" %>
+    <% end %>
+  </div>
+
+<!-- affichage des labels -->
+<div class="foodtruck-tags d-flex flex-wrap gap-2">
+  <% if @foodtruck.category.present? %>
+    <span class="badge bg-primary text-white">
+      <%= @foodtruck.category %>
+    </span>
+  <% else %>
+    <p>Aucune catégorie définie.</p>
+  <% end %>
 </div>
+
+<div class="container mt-4">
+  <!-- Onglets de navigation -->
+  <ul class="nav nav-tabs" id="foodtruckTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">
+        Info
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu" type="button" role="tab" aria-controls="menu" aria-selected="false">
+        Menu
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="avis-tab" data-bs-toggle="tab" data-bs-target="#avis" type="button" role="tab" aria-controls="avis" aria-selected="false">
+        Avis
+      </button>
+    </li>
+  </ul>
+
+  <!-- Contenu des onglets -->
+  <div class="tab-content mt-3" id="foodtruckTabsContent">
+    <!-- Onglet Info -->
+    <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+      <h3>Informations Générales</h3>
+      <p><i class="fa-solid fa-location-dot"></i> Adresse : <%= @foodtruck.address_default %></p>
+      <p><i class="fa-solid fa-clock"></i> Horaires : 12h - 18h</p>
+    </div>
+
+    <!-- Onglet Menu -->
+    <div class="tab-pane fade" id="menu" role="tabpanel" aria-labelledby="menu-tab">
+      <h3>Menu</h3>
+      <% if @dishes.any? %>
+        <ul class="list-group">
+          <% @dishes.each do |dish| %>
+            <li class="list-group-item">
+              <div class="d-flex align-items-center">
+                <!-- Affichage de la photo -->
+                <% if dish.photo.attached? %>
+                  <%= image_tag dish.photo.variant(resize_to_limit: [100, 100]), alt: dish.title, class: "img-thumbnail me-3", style: "width: 100px; height: 100px;" %>
+                <% else %>
+                  <%= image_tag "default_dish.jpg", alt: "Image par défaut", class: "img-thumbnail me-3", style: "width: 100px; height: 100px;" %>
+                <% end %>
+
+                <!-- Informations sur le plat -->
+                <div class="flex-grow-1">
+                  <strong><%= dish.title %></strong>
+                  <p class="mb-1"><%= dish.description %></p>
+                </div>
+
+                <!-- Prix -->
+                <span class="fw-bold"><%= number_to_currency(dish.price, unit: "€") %></span>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>Aucun plat disponible pour ce foodtruck.</p>
+      <% end %>
+    </div>
+
+    <!-- Onglet Avis -->
+    <div class="tab-pane fade" id="avis" role="tabpanel" aria-labelledby="avis-tab">
+      <h3>Avis des Clients</h3>
+      <% if @foodtruck.reviews.any? %>
+        <% @foodtruck.reviews.each do |review| %>
+          <div class="review">
+            <p><strong><%= review.user.name %> :</strong> <%= review.comment %></p>
+            <p>Note : <%= review.rating %>/5</p>
+          </div>
+        <% end %>
+      <% else %>
+        <p>Aucun avis pour ce foodtruck.</p>
+      <% end %>
+    </div>
+  </div>
 </div>

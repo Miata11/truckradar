@@ -17,4 +17,6 @@ export default class extends Controller {
       this.professionalFieldsTarget.style.display = isProfessional ? "block" : "none";
     }
   }
+
+
 }
