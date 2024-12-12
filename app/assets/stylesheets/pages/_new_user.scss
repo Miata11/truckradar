@@ -3,13 +3,23 @@
   flex-direction: column;
   align-items: center; /* Centre horizontalement le contenu */
   justify-content: center;
-  width: 80%;
   padding: 5%;
   background-size: cover;
   background-position: center;
-  background-image: url('images/fond-centre.png');
   text-align: center; /* Centre le texte dans le conteneur principal */
   margin-bottom: 25%;
+
+  #image-de-fond {
+    background-image: url(asset-path('fond-centre.png'));
+    background-size: cover; /* Assure que l'image couvre tout le conteneur */
+    background-position: center; /* Centre l'image */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+    width: 40vh; /* Occupe toute la largeur */
+    height: 4vh; /* Occupe toute la hauteur de la fenêtre */
+    position: relative;
+    top: 1px;
+  }
+
 
   p {
     font-size: 1rem;
@@ -19,14 +29,15 @@
   }
 
   .form-inputs {
+    margin-top: none;
+    padding-top: 5%;
+    min-width: 50vh;
+    background-color: #aed9eb;
     display: flex;
     flex-direction: column;
     align-items: center; /* Centre les éléments internes horizontalement */
     padding-left: 10%;
     padding-right: 10%;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 130%;
     max-width: 500px;
     text-align: center; /* Centre le texte dans ce sous-conteneur */
 
