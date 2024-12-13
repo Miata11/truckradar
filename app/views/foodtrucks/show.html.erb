@@ -36,7 +36,7 @@
   <!-- Image du foodtruck -->
   <div class="text-center">
     <% if @foodtruck.photo.attached? %>
-      <%= cl_image_tag @foodtruck.photo.key, alt: @foodtruck.name, class: "img-fluid rounded mb-3", width: 400, crop: :limit %>
+      <%= cl_image_tag @foodtruck.photo.key, alt: @foodtruck.name, class: "img-fluid rounded mb-3", width: 300, crop: :limit %>
     <% else %>
       <%= image_tag "default_foodtruck.jpg", alt: "Default image", class: "img-fluid rounded mb-3", style: "max-width: 400px;" %>
     <% end %>

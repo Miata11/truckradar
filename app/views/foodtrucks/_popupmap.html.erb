@@ -1,7 +1,7 @@
 <div class="popupmap">
   <%= link_to foodtruck_path(foodtruck), class: "text-decoration-none d-block" do %>
     <% if foodtruck.photo.attached? %>
-      <%= cl_image_tag foodtruck.photo.key, height: 30, width: 30, crop: :fill, alt: "Foodtruck", class: "img-fluid rounded mb-2" %>
+      <%= cl_image_tag foodtruck.photo.key, height: 100, width: 100, crop: :fill, alt: "Foodtruck", class: "img-fluid rounded mb-2" %>
     <% else %>
       <%= image_tag "default_foodtruck.jpg", alt: "Default image", class: "img-fluid rounded mb-2" %>
     <% end %>
