@@ -1,18 +1,55 @@
-<div class="container">
-<h1>Mon Tableau de Bord</h1>
+<div class="dashboard-container">
+  <div class="form-container-dashboard">
+    <div class="form-inputs-dashboard">
+      <p class="form-header">Bienvenue sur ton tableau de bord !</p>
+      <div class="separator-dashboard"></div>
 
-<h2>Mes favoris</h2>
-<% if @favorites.any? %>
-  <ul>
-    <% @favorites.each do |favorite| %>
-      <li>
-        <%= favorite.foodtruck.name %> - <%= favorite.foodtruck.category %>
-        <%= link_to "Voir", foodtruck_path(favorite.foodtruck), class: "btn btn-primary" %>
-        <%= button_to "Retirer", foodtruck_favorite_path(favorite.foodtruck, favorite), method: :delete, class: "btn btn-danger" %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>Vous n'avez aucun favori pour le moment.</p>
-<% end %>
+      <!-- Onglets -->
+      <div class="tabs-dashboard">
+        <button class="tab-link-dashboard active" onclick="showTab('profile')">Profil</button>
+        <button class="tab-link-dashboard" onclick="showTab('foodtruck')">Foodtruck</button>
+      </div>
+
+      <!-- Contenu des onglets -->
+      <div id="profile" class="tab-content-dashboard">
+        <p>Bienvenue dans votre profil !</p>
+        <div>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to sign out?" } %>
+        </div>
+      </div>
+
+        <div id="foodtruck" class="tab-content-dashboard" style="display: none;">
+          <p>Vous n'avez pas encore ajouté de foodtruck.</p>
+          <%= link_to "Ajouter un foodtruck", new_foodtruck_path, class: "btn-dashboard" %>
+        </div>
+
+    </div>
+  </div>
 </div>
+
+<script>
+  function showTab(tabName) {
+    // Masquer tous les onglets
+    const allTabs = document.querySelectorAll('.tab-content-dashboard');
+    allTabs.forEach(tab => {
+      tab.style.display = 'none';
+    });
+
+    // Supprimer l'état actif des onglets
+    const tabLinks = document.querySelectorAll('.tab-link-dashboard');
+    tabLinks.forEach(link => {
+      link.classList.remove('active');
+    });
+
+    // Afficher l'onglet sélectionné
+    document.getElementById(tabName).style.display = 'block';
+
+    // Activer le bouton correspondant
+    document.querySelector(`button[onclick="showTab('${tabName}')"]`).classList.add('active');
+  }
+
+  // Afficher l'onglet par défaut au chargement
+  document.addEventListener('DOMContentLoaded', () => {
+    showTab('profile');
+  });
+</script>
