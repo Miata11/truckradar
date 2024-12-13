@@ -35,4 +35,8 @@ class Foodtruck < ApplicationRecord
   using: {
     tsearch:{prefix:true}
   }
+
+  def is_owned_by?(test_user)
+    user == test_user
+  end
 end

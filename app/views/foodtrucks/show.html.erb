@@ -10,7 +10,7 @@
 
         <!-- Bouton modifier -->
 
-        <% if current_user == @foodtruck.user %>
+        <% if @foodtruck.is_owned_by?(current_user) %>
           <%= link_to "Modifier", edit_foodtruck_path(@foodtruck), class: "btn btn-primary my-3" %>
         <% end %>
 
