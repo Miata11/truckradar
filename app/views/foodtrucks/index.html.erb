@@ -1,21 +1,41 @@
-<div class="container">
+<div class="indexcontainer-fluid p-0 vh-100 position-relative w-100">
+  <div class="search-wrapper position-absolute w-100 p-3" style="z-index: 1000;">
+    <div class="row justify-content-center">
+      <%= form_with url: foodtrucks_path, method: :get, local: true, class: "d-flex justify-content-center" do %>
+        <div class="search-container">
+          <%= text_field_tag :query,
+              params[:query],
+              class: "search-input",
+              placeholder: "Ville, catégorie ou foodtruck...",
+              data: { target: "home.searchInput", action: "input->home#search" } %>
 
-  <div class="row justify-content-center">
-    <div class="col-sm-8 my-3">
-      <%= form_with url: foodtrucks_path, method: :get, local: true, class: "d-flex" do %>
-        <%= label_tag :query, "Rechercher un foodtruck :" %>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-          placeholder: "Entrez un nom, une catégorie ou une adresse" %>
-        <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+          <div class="search-button">
+            <%= button_tag type: 'submit', class: "btn-search" do %>
+              <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
 
-  <div style="width: 100%; height: 600px;"
+    <%# <div class="row justify-content-center">
+    <div class="col-sm-8 my-3">
+      <%= form_with url: foodtrucks_path, method: :get, local: true, class: "d-flex" do %>
+        <%# <%= label_tag :query, "Rechercher un foodtruck :" %>
+        <%# <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Entrez un nom, une catégorie ou une adresse" %>
+        <%# <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+      <%# <% end %>
+    <%# </div>
+  </div> %>
+
+  <div class="layer_map top-0 start-0 bottom-0 end-0"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    data-image-foodtruck="<%= cl_image_path(current_user.foodtruck.photo.key, class: "w-100 h-100 object-fit-cover", width: 30, height: 30, crop: :fill) if current_user.foodtruck.present?%>">
   </div>
 </div>
