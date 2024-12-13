@@ -1,0 +1,91 @@
+.log-in {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-image: url('https://www.evenement.com/wp-content/uploads/2024/02/food-truck-prive.png');
+
+  .form-container-log-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+
+    p {
+      font-size: 1.5rem;
+      color: rgb(255, 255, 255);
+      margin: 2rem;
+    }
+
+    .separator-new-profil {
+      width: 90%;
+      height: 1.5px;
+      background-color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .form-inputs-log-in {
+      background-color: #47565774; /* Transparence */
+      color: rgb(182, 182, 182);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 40vh;
+      max-width: 400px;
+
+      .form-group {
+        margin-bottom: 1.5rem;
+        text-align: left;
+
+        label {
+          font-weight: 600;
+          color: #ffffff;
+        }
+
+        input {
+          width: 100%;
+          padding: 0.8rem;
+          border-radius: 8px;
+          border: 1px solid #ccc;
+          font-size: 1rem;
+          margin-top: 0.5rem;
+        }
+
+        input:focus {
+          outline: none;
+          border-color: #029094;
+          box-shadow: 0 0 5px rgba(2, 144, 148, 0.5);
+        }
+      }
+
+      .form-actions,
+      .form-links-log-in {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem; /* Espace entre les boutons */
+        margin-top: 1rem;
+
+        .btn-log-in {
+          background-color: #029094;
+          color: white;
+          font-size: 1.1rem;
+          text-align: center;
+          padding: 1rem 2rem;
+          border-radius: 5px;
+          border: none;
+          width: 100%;
+          transition: all 0.3s;
+          text-decoration: none;
+
+          &:hover {
+            background-color: #027b7d;
+          }
+        }
+      }
+    }
+  }
+}

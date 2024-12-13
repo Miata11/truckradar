@@ -1,36 +1,46 @@
-<div class="form-container">
-  <p>Renseigne ton profil !</p>
+<div class="sign-up">
+  <div class="form-container-sign-up">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { controller: "toggle" } }) do |f| %>
+      <div class="form-inputs-sign-up">
+        <p>Renseigne ton profil !</p>
+        <div class="separator-sign-up"></div>
 
-  <div id="image-de-fond"></div>
+        <!-- Champs personnels -->
+        <div class="form-group-sign-up">
+          <%= f.input :first_name, label: "Prénom", required: true %>
+        </div>
+        <div class="form-group-sign-up">
+          <%= f.input :last_name, label: "Nom", required: true %>
+        </div>
+        <div class="form-group-sign-up">
+          <%= f.input :address_default, label: "Adresse", required: true %>
+        </div>
+        <div class="form-group-sign-up">
+          <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" } %>
+        </div>
+        <div class="form-group-sign-up">
+          <%= f.input :password, required: true, label: t('activerecord.attributes.user.password'), hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>
+        </div>
+        <div class="form-group-sign-up">
+          <%= f.input :password_confirmation, required: true, label: t('activerecord.attributes.user.password_confirmation'), input_html: { autocomplete: "new-password" } %>
+        </div>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { controller: "toggle" } }) do |f| %>
-    <%= f.error_notification %>
-    <div class="form-inputs">
-      <!-- Champs personnels -->
-      <div data-toggle-target="personalFields" class="form-group">
-        <%= f.input :first_name, label: "Prénom", required: true %>
-        <%= f.input :last_name, label: "Nom", required: true %>
-        <%= f.input :address_default, label: "Adresse", required: true %>
+        <!-- Case à cocher -->
+        <div class="pro-or-not">
+          <%= f.input :role, as: :boolean, label: "Êtes-vous un professionnel ?", input_html: { data: { action: "change->toggle#toggleFields" } } %>
+        </div>
+
+        <!-- Champs professionnels (initialement masqués) -->
+        <div data-toggle-target="professionalFields" class="form-group-sign-up" style="display: none;">
+          <%= f.input :siret, label: "N° de SIRET*", hint: "Le SIRET doit contenir exactement 14 chiffres", input_html: { pattern: "\\d{14}", title: "Le SIRET doit contenir exactement 14 chiffres" } %>
+          <%= f.input :company_name, label: "Nom de société*" %>
+        </div>
+
+        <!-- Bouton d'envoi -->
+        <div class="form-actions-sign-up">
+          <%= f.button :submit, "Créer mon compte", class: "btn-sign-up" %>
+        </div>
       </div>
-      <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" } %>
-      <%= f.input :password, required: true, label: t('activerecord.attributes.user.password'), hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation, required: true, label: t('activerecord.attributes.user.password_confirmation'), input_html: { autocomplete: "new-password" } %>
-      <!-- Case à cocher : Êtes-vous un professionnel ? -->
-      <%= f.input :role, as: :boolean, label: "Êtes-vous un professionnel ?",
-                input_html: { data: { action: "change->toggle#toggleFields" } } %>
-      <!-- Champs professionnels -->
-      <div data-toggle-target="professionalFields" class="form-group" style="display: none;">
-        <%= f.input :siret, label: "N° de SIRET*",
-          hint: "Le SIRET doit contenir exactement 14 chiffres",
-          input_html: { pattern: "\\d{14}", title: "Le SIRET doit contenir exactement 14 chiffres" } %>
-        <%= f.input :company_name, label: "Nom de société*" %>
-      </div>
-      <div class="form-actions">
-        <p><%= f.button :submit, "Créer mon compte" %></p>
-      </div>
-    </div>
-  <% end %>
-
-
-
+    <% end %>
+  </div>
 </div>
