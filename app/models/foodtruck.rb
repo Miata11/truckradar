@@ -16,7 +16,8 @@ class Foodtruck < ApplicationRecord
 
   belongs_to :user
 
-  has_many :dishes
+  has_many :dishes, dependent: :destroy
+  accepts_nested_attributes_for :dishes, allow_destroy: true
   has_many :reviews
   has_many :favorites
 
@@ -34,4 +35,8 @@ class Foodtruck < ApplicationRecord
   using: {
     tsearch:{prefix:true}
   }
+
+  def is_owned_by?(test_user)
+    user == test_user
+  end
 end

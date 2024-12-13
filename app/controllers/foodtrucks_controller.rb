@@ -62,6 +62,29 @@ class FoodtrucksController < ApplicationController
     end
   end
 
+  def edit
+    @foodtruck = Foodtruck.find(params[:id])
+    @foodtruck.dishes.build if @foodtruck.dishes.empty?
+  end
+
+  def update
+    @foodtruck = Foodtruck.find(params[:id])
+    # je recupère dans les params toutes les données des dishes
+    dishes = params[:foodtruck][:dishes_attributes]
+    # j'itère sur mes données dishes
+    dishes.each do |index, dishes_attributes|
+      # je vais cherche le dish qui doit etre update
+      dish = Dish.find(dishes_attributes[:id])
+      # je mets à jour le dish
+      dish.update(dishes_attributes.permit(:title, :price, :description, :photo))
+    end
+    if @foodtruck.update(foodtruck_params)
+      redirect_to @foodtruck, notice: 'Le foodtruck a été mis à jour avec succès.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def user_marker(user)

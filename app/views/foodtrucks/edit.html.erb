@@ -1,0 +1,104 @@
+<div class="container">
+  <h1>Modifier le Foodtruck</h1>
+
+    <%= form_with model: @foodtruck, local: true do |f| %>
+    <!-- Champs du foodtruck -->
+    <div class="mb-3">
+      <%= f.label :name, "Nom du Foodtruck" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :category, "Catégorie" %>
+      <%= f.text_field :category, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :address_default, "Adresse" %>
+      <%= f.text_field :address_default, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :description, "Description" %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :phone_number, "Numéro de téléphone" %>
+      <%= f.telephone_field :phone_number, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :photo, "Photo du Foodtruck" %>
+      <%= f.file_field :photo, class: "form-control" %>
+      <% if @foodtruck.photo.attached? %>
+        <%= image_tag @foodtruck.photo, class: "img-fluid mt-2", style: "max-width: 200px;" %>
+      <% end %>
+    </div>
+
+  <!-- Champs pour les plats associés -->
+  <h2>Plats</h2>
+    <%= f.fields_for :dishes do |dish_form| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <%= dish_form.hidden_field :id %>
+
+        <div class="mb-3">
+          <%= dish_form.label :title, "Titre du plat" %>
+          <%= dish_form.text_field :title, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= dish_form.label :description, "Description du plat" %>
+          <%= dish_form.text_area :description, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= dish_form.label :price, "Prix" %>
+          <%= dish_form.number_field :price, step: 0.01, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= dish_form.label :photo, "Photo du plat" %>
+          <%= dish_form.file_field :photo, class: "form-control" %>
+          <% if dish_form.object.photo.attached? %>
+            <%= image_tag dish_form.object.photo, class: "img-fluid mt-2", style: "max-width: 200px;" %>
+          <% end %>
+        </div>
+
+        <div class="form-check">
+          <%= dish_form.check_box :_destroy, class: "form-check-input" %>
+          <%= dish_form.label :_destroy, "Supprimer ce plat", class: "form-check-label" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Bouton pour ajouter un nouveau plat -->
+  <div class="mb-3">
+    <%= link_to "Ajouter un plat", "#", id: "add-dish", class: "btn btn-secondary" %>
+  </div>
+
+  <!-- Bouton de soumission -->
+  <%= f.submit "Enregistrer les modifications", class: "btn btn-primary" %>
+<% end %>
+
+<!-- Template pour un nouveau plat -->
+<%= form_fields = fields_for('foodtruck[dishes_attributes][]', Dish.new, child_index: 'new_dishes') do |dish_form| %>
+  <%= render partial: 'dish_fields', locals: { dish_form: dish_form } %>
+<% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const addDishButton = document.getElementById('add-dish');
+    const dishesContainer = document.querySelector('form');
+
+    addDishButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const newDishId = new Date().getTime();
+      const regexp = new RegExp('new_dishes', 'g');
+      const newDishFields = <%= form_fields.gsub(/\n/, '').gsub(/"/, '\"') %>.replace(regexp, newDishId);
+      dishesContainer.insertAdjacentHTML('beforeend', newDishFields);
+    });
+  });
+</script>
