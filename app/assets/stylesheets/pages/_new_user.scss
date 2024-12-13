@@ -1,102 +1,102 @@
-.form-container {
+.sign-up {
+  min-height: 100vh; /* Utilisation de min-height pour garantir un affichage complet */
   display: flex;
-  flex-direction: column;
-  align-items: center; /* Centre horizontalement le contenu */
   justify-content: center;
+  align-items: center;
   background-size: cover;
   background-position: center;
-  text-align: center; /* Centre le texte dans le conteneur principal */
+  background-image: url('https://www.evenement.com/wp-content/uploads/2024/02/food-truck-prive.png');
+  overflow-y: auto; /* Active le scroll si nécessaire */
+  color: white;
 
-
-  p {
-    font-size: 1.5rem;
-    color: black;
-    margin-top: 2rem;
-    margin-bottom: 4px;
-    text-align: center; /* Garde les paragraphes centrés */
-  }
-
-  .separator-new-profil {
-    width: 95%;
-    height: 1.5px; /* Épaisseur du trait */
-    background-color: #029094; /* Couleur du trait */
-  }
-
-  #image-de-fond {
-    background-image: url(asset-path('fond-centre.png'));
-    background-size: cover; /* Assure que l'image couvre tout le conteneur */
-    background-position: center; /* Centre l'image */
-    background-repeat: no-repeat; /* Empêche la répétition de l'image */
-    width: 20vh; /* Occupe toute la largeur */
-    height: 4vh; /* Occupe toute la hauteur de la fenêtre */
-    position: relative;
-    top: 8px;
-  }
-
-  .form-inputs {
-    margin-top: none;
-    padding-top: 2rem;
-    min-width: 50vh;
-    background-color: #a9d2d3;
+  .form-container-sign-up {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centre les éléments internes horizontalement */
-    padding-left: 10%;
-    padding-right: 10%;
-    max-width: 500px;
-    text-align: left; /* Centre le texte dans ce sous-conteneur */
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(71, 86, 87, 0.45); /* Transparence */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 450px;
+    margin: 1rem; /* Ajout de marges pour éviter les débordements sur petits écrans */
+    height: auto; /* Permet au formulaire de s'étendre en fonction de son contenu */
+    overflow-y: auto;
+    margin: 20px;
+    margin-bottom: 15vh;/* Ajout du défilement vertical si nécessaire */
+  }
 
-    .form-group {
-      margin-bottom: 1.5rem;
-      text-align: left; /* Centre les labels et les hints */
+  .form-inputs-sign-up {
+    font-size: 1.5rem;
+    width: 100%;
+    height: auto; /* S'ajuste automatiquement à la taille du contenu */
+    overflow-y: auto; /* Permet le défilement si le contenu dépasse */
+  }
 
-      label {
-        font-weight: 600;
-        color: #000000;
-        text-align: left; /* Assure que les labels sont centrés */
-      }
+  .separator-sign-up {
+    width: 100%;
+    height: 2px;
+    background-color: #029094;
+    margin-bottom: 1.5rem;
+  }
 
-      input {
-        width: 100%;
-        padding: 0.8rem;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        margin-top: 0.5rem;
-        font-size: 1rem;
-        text-align: left; /* Centre le texte saisi dans les inputs */
-      }
+  .form-group-sign-up {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
 
-      input:focus {
-        outline: none;
-        border-color: #029094;
-        box-shadow: 0 0 5px rgba(2, 144, 148, 0.5);
-      }
-
-      .hint {
-        font-size: 0.8rem;
-        color: #777;
-        text-align: center; /* Centre les textes d'indication */
-      }
+    label {
+      font-weight: bold;
+      color: #ffffff;
     }
 
-    .form-actions {
-      text-align: center; /* Centre les boutons */
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
 
-      button {
-        background-color: #029094;
-        color: white;
-        font-size: 1.1rem;
-        padding: 1rem 2rem;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 100%;
-        transition: background-color 0.3s;
+    input:focus {
+      outline: none;
+      border-color: #029094;
+      box-shadow: 0 0 5px rgba(2, 144, 148, 0.5);
+    }
 
-        &:hover {
-          background-color: #027b7d;
-        }
+    .hint {
+      font-size: 0.8rem;
+      color: #aaaaaa;
+    }
+  }
+
+  .form-text {
+    color: white;
+  }
+
+  .form-actions-sign-up {
+    text-align: center;
+
+    .btn-sign-up {
+      background-color: #029094;
+      color: white;
+      font-size: 1.1rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #027b7d;
       }
     }
+  }
+
+  .pro-or-not{
+    font-size: 1rem;
   }
 }
