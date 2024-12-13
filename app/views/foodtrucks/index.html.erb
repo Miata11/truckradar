@@ -19,6 +19,19 @@
     </div>
   </div>
 
+    <%# <div class="row justify-content-center">
+    <div class="col-sm-8 my-3">
+      <%= form_with url: foodtrucks_path, method: :get, local: true, class: "d-flex" do %>
+        <%# <%= label_tag :query, "Rechercher un foodtruck :" %>
+        <%# <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Entrez un nom, une catégorie ou une adresse" %>
+        <%# <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+      <%# <% end %>
+    <%# </div>
+  </div> %>
+
   <div class="position-absolute top-0 start-0 bottom-0 end-0"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
