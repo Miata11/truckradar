@@ -13,7 +13,7 @@ user1 =  User.create!(
   last_name: "Cagnat",
   email: "claire@gmail.com",
   password: "123456",
-  address_default: "15 rue des terres neuves",
+  address_default: "15 rue des terres neuves, Bordeaux",
   latitude: 44.841225,
   longitude: -0.580036,
   role: "false")
@@ -23,7 +23,7 @@ user1 =  User.create!(
   last_name: "El Ataoui",
   email: "soukaina@gmail.com",
   password: "123456",
-  address_default: "15 rue des terres neuves",
+  address_default: "15 rue des terres neuves, Bordeaux",
   latitude: 44.841225,
   longitude: -0.580036,
   role: "false")
@@ -33,7 +33,7 @@ user_pro1 =  User.create!(
   last_name: "El Poirier",
   email: "max@gmail.com",
   password: "123456",
-  address_default: "15 rue des terres neuves",
+  address_default: "15 rue des terres neuves, Bordeaux",
   latitude: 44.841225,
   longitude: -0.580036,
   role: "true")
@@ -43,7 +43,7 @@ user_pro2 =  User.create!(
   last_name: "Menant",
   email: "charline@gmail.com",
   password: "123456",
-  address_default: "15 rue des terres neuves",
+  address_default: "15 rue des terres neuves, Bordeaux",
   latitude: 44.841225,
   longitude: -0.580036,
   role: "true")
@@ -100,6 +100,39 @@ user_pro7 = User.create!(
  address_default: "12 place Gambetta, Bordeaux",
  latitude: 44.842789,
  longitude: -0.577456,
+ role: "true"
+)
+
+user_pro7 = User.create!(
+ first_name: "Isabella",
+ last_name: "Martinez",
+ email: "isabella.martinez@gmail.com",
+ password: "123456",
+ address_default: "23 avenue du Port, Le Teich",
+ latitude: 44.6375,
+ longitude: -1.0246,
+ role: "true"
+)
+
+user_pro8 = User.create!(
+ first_name: "Antoine",
+ last_name: "Dubois",
+ email: "antoine.dubois@gmail.com",
+ password: "123456",
+ address_default: "156 avenue de la Côte d'Argent, Le Teich",
+ latitude: 44.6404,
+ longitude: -1.0271,
+ role: "true"
+)
+
+user_pro9 = User.create!(
+ first_name: "Sophie",
+ last_name: "Laurent",
+ email: "sophie.laurent@gmail.com",
+ password: "123456",
+ address_default: "45 rue des Castaings, Biganos",
+ latitude: 44.6528,
+ longitude: -0.9687,
  role: "true"
 )
 
@@ -189,13 +222,41 @@ user_pro7 = User.create!(
    longitude: -0.5737263,
    status: false,
    user: user_pro6)
-  file = URI.open("https://www.frankielourdet.com/wp-content/uploads/2023/10/foodtruck-big.jpg")
+  file = URI.open("https://les-seminaires.eu/wp-content/uploads/2023/07/food-truck-entreprise.jpg")
   foodtruck6.photo.attach(io: file, filename: "seasons_foodtruck.jpg", content_type: "image/jpg")
   foodtruck6.save
 
+  foodtruck8 = Foodtruck.create!(
+    name: "Saveurs des Landes",
+    phone_number: "06 12 34 56 78",
+    category: "cuisine landaise",
+    description: "Un voyage gustatif au cœur des Landes avec nos spécialités régionales revisitées en version street-food.",
+    address_default: "156 avenue de la Côte d'Argent, Le Teich",
+    latitude: 44.6404,
+    longitude: -1.0271,
+    status: true,
+    user: user_pro8)
+    file = URI.open("https://les-seminaires.eu/wp-content/uploads/2023/07/food-truck-entreprise.jpg")
+    foodtruck8.photo.attach(io: file, filename: "saveurs_landes.jpg", content_type: "image/jpg")
+    foodtruck8.save
+
+foodtruck9 = Foodtruck.create!(
+ name: "Le Bistrot Roulant",
+ phone_number: "06 98 76 54 32",
+ category: "cuisine traditionnelle",
+ description: "Une cuisine traditionnelle française revisitée en format street food. Nos plats sont préparés avec des produits locaux et de saison.",
+ address_default: "45 rue des Castaings, Biganos",
+ latitude: 44.6528,
+ longitude: -0.9687,
+ status: false,
+ user: user_pro9)
+file = URI.open("https://static.wixstatic.com/media/b45c09_d3b790add4cc4097afd338d22fe0f774~mv2.jpg/v1/fill/w_510,h_638,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_20240911_101704.jpg")
+foodtruck9.photo.attach(io: file, filename: "bistrot_roulant.jpg", content_type: "image/jpg")
+foodtruck9.save
+
   # Dishes pour Sando Truck
   dish1 = Dish.new(
-   foodtruck: foodtruck1,
+   foodtruck: foodtruck9,
    title: "Veggie Sando",
    description: "Pain de mie toasté, aubergine panée, chou blanc à la vinaigrette maison, sauce tonkatsu",
    price: 12.50
@@ -216,7 +277,7 @@ user_pro7 = User.create!(
 
   # Dishes pour Le Van Foodtruck
   dish3 = Dish.new(
-   foodtruck: foodtruck2,
+   foodtruck: foodtruck8,
    title: "Galette de Sarrasin",
    description: "à la fois tendre et délicatement parfumée, servie avec une garniture au choix : fromage, œuf, jambon ou légumes grillés.",
    price: 10.90
@@ -226,7 +287,7 @@ user_pro7 = User.create!(
   dish3.save
 
   dish4 = Dish.new(
-   foodtruck: foodtruck2,
+   foodtruck: foodtruck8,
    title: "Crêpe sucrée",
    description: "Une crêpe sucrée délicatement sucrée, que vous pourrez savourer nature ou accompagnée de garnitures gourmandes comme chocolat, caramel, fruits frais ou crème chantilly.",
    price: 6.50
