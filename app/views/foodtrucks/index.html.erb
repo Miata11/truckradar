@@ -1,21 +1,93 @@
-<div class="container">
+<div class="indexcontainer-fluid p-0 vh-100 position-relative w-100">
+  <div class="search-wrapper position-absolute w-100 p-3" style="z-index: 1000;">
+    <div class="row justify-content-center">
+      <%= form_with url: foodtrucks_path, method: :get, local: true, class: "d-flex justify-content-center" do %>
+        <div class="search-container">
+          <%= text_field_tag :query,
+              params[:query],
+              class: "search-input",
+              placeholder: "Ville, catégorie ou foodtruck...",
+              data: { target: "home.searchInput", action: "input->home#search" } %>
 
-  <div class="row justify-content-center">
-    <div class="col-sm-8 my-3">
-      <%= form_with url: foodtrucks_path, method: :get, local: true, class: "d-flex" do %>
-        <%= label_tag :query, "Rechercher un foodtruck :" %>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-          placeholder: "Entrez un nom, une catégorie ou une adresse" %>
-        <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+          <div class="search-button">
+            <%= button_tag type: 'submit', class: "btn-search" do %>
+              <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
 
-  <div style="width: 100%; height: 600px;"
+  <div class="position-absolute top-0 start-0 bottom-0 end-0"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
+
+<style>
+.search-wrapper {
+  top: 20px;
+}
+
+.search-container {
+  display: inline-flex;
+  background-color: white;
+  max-width: 500px;
+  border-radius: 20px 50px 20px 50px;
+  width: 80%;
+  position: relative;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.8rem;
+  font-family: 'Vibur', cursive;
+  color: #9b9b9b;
+  border: none;
+  border-radius: 20px 50px 20px 50px;
+  background-color: inherit;
+  outline: none;
+  width: 100%;
+}
+
+.search-input:focus {
+  box-shadow: none;
+}
+
+.search-input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.search-button {
+  background-color: #029094;
+  position: absolute;
+  right: 0; /* Au lieu de left: 130px */
+  bottom: 0;
+  border-radius: 20px 50px 20px 50px;
+  width: 25%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Au lieu de 3em */
+}
+
+.btn-search {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-icon {
+  font-size: 1.5rem;
+  color: white;
+}
+</style>
