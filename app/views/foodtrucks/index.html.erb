@@ -32,75 +32,10 @@
     <%# </div>
   </div> %>
 
-  <div class="position-absolute top-0 start-0 bottom-0 end-0"
+  <div class="layer_map top-0 start-0 bottom-0 end-0"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    data-image-foodtruck="<%= cl_image_path(current_user.foodtruck.photo.key, class: "w-100 h-100 object-fit-cover", width: 30, height: 30, crop: :fill) if current_user.foodtruck.present?%>">
   </div>
 </div>
-
-<style>
-.search-wrapper {
-  top: 20px;
-}
-
-.search-container {
-  display: inline-flex;
-  background-color: white;
-  max-width: 500px;
-  border-radius: 20px 50px 20px 50px;
-  width: 80%;
-  position: relative;
-}
-
-.search-input {
-  flex: 1;
-  padding: 0.8rem 1.5rem;
-  font-size: 0.8rem;
-  font-family: 'Vibur', cursive;
-  color: #9b9b9b;
-  border: none;
-  border-radius: 20px 50px 20px 50px;
-  background-color: inherit;
-  outline: none;
-  width: 100%;
-}
-
-.search-input:focus {
-  box-shadow: none;
-}
-
-.search-input::placeholder {
-  color: #aaa;
-  font-style: italic;
-}
-
-.search-button {
-  background-color: #029094;
-  position: absolute;
-  right: 0; /* Au lieu de left: 130px */
-  bottom: 0;
-  border-radius: 20px 50px 20px 50px;
-  width: 25%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%; /* Au lieu de 3em */
-}
-
-.btn-search {
-  background-color: transparent;
-  color: white;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-icon {
-  font-size: 1.5rem;
-  color: white;
-}
-</style>
