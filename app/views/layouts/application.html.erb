@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <script src="https://kit.fontawesome.com/0a93ae5b0f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://ga.jspm.io/npm:star-rating.js@4.3.0/dist/star-rating.css">
   </head>
 
   <body data-user-role="<%= current_user&.role %>"><%= render "shared/navbar" %>

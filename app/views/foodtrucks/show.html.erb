@@ -117,16 +117,25 @@
     <!-- Onglet Avis -->
     <div class="tab-pane fade" id="avis" role="tabpanel" aria-labelledby="avis-tab">
       <h3>Avis des Clients</h3>
+
+      <!-- Bouton Ajouter mon avis -->
+        <div class="add-review-button">
+          <%= link_to "Ajouter mon avis", new_foodtruck_review_path(@foodtruck), class: "btn btn-primary" %>
+        </div>
+
       <% if @foodtruck.reviews.any? %>
         <% @foodtruck.reviews.each do |review| %>
           <div class="review">
             <p><strong><%= review.user.name %> :</strong> <%= review.comment %></p>
-            <p>Note : <%= review.rating %>/5</p>
+            <p>Note : <%= render_stars(review.rating) %></p>
           </div>
         <% end %>
       <% else %>
         <p>Aucun avis pour ce foodtruck.</p>
       <% end %>
+
+
+      </div>
     </div>
   </div>
 </div>

@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_one :foodtruck
   has_one_attached :photo
 
-  # has_many :reviews,
+  has_many :reviews, dependent: :destroy
 
 
   # validates :siret, format: { with: /\A\d{14}\z/, message: "Le SIRET doit contenir exactement 14 chiffres" }
@@ -22,5 +22,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
+  def name
+    "#{first_name} #{last_name}"
+  end
 
 end
