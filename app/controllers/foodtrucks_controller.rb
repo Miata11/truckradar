@@ -58,6 +58,7 @@ class FoodtrucksController < ApplicationController
     if @foodtruck.save
       redirect_to foodtrucks_path, notice: "Votre FoodTruck a été créé avec succès"
     else
+      Rails.logger.info "FOODTRUCK ERRORS: #{@foodtruck.errors.full_messages}"
       render :new, alert: "Erreur lors de la création"
     end
   end
@@ -97,6 +98,6 @@ class FoodtrucksController < ApplicationController
   end
 
   def foodtruck_params
-    params.require(:foodtruck).permit(:name, :company_name, :category, :description, :address_default, :phone_number, :photo)
+    params.require(:foodtruck).permit(:name, :company_name, :description, :address_default, :phone_number, :photo, categories: [])
   end
 end

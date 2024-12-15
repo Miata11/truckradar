@@ -24,7 +24,7 @@ class Foodtruck < ApplicationRecord
   has_one_attached :photo
 
   validates :name, presence: true
-  validates :category, presence: true
+  validates :categories, presence: true
   validates :address_default, presence: true
 
 
