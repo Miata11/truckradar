@@ -73,12 +73,12 @@ class FoodtrucksController < ApplicationController
     # je recupère dans les params toutes les données des dishes
     dishes = params[:foodtruck][:dishes_attributes]
     # j'itère sur mes données dishes
-    dishes.each do |index, dishes_attributes|
-      # je vais cherche le dish qui doit etre update
-      dish = Dish.find(dishes_attributes[:id])
-      # je mets à jour le dish
-      dish.update(dishes_attributes.permit(:title, :price, :description, :photo))
-    end
+    # dishes.each do |index, dishes_attributes|
+    #   # je vais cherche le dish qui doit etre update
+    #   dish = Dish.find(dishes_attributes[:id])
+    #   # je mets à jour le dish
+    #   dish.update(dishes_attributes.permit(:title, :price, :description, :photo))
+    # end
     if @foodtruck.update(foodtruck_params)
       redirect_to @foodtruck, notice: 'Le foodtruck a été mis à jour avec succès.'
     else
