@@ -29,9 +29,9 @@ class Foodtruck < ApplicationRecord
 
 
   include PgSearch::Model
-  # multisearchable against: [:name, :category, :address_default]
+  # multisearchable against: [:name, :categories, :address_default]
   pg_search_scope :search_by_foodtrucks,
-  against: [:name, :category, :address_default],
+  against: [:name, :categories, :address_default],
   using: {
     tsearch:{prefix:true}
   }
