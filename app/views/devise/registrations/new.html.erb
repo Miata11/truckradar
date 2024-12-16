@@ -31,8 +31,8 @@
         </div>
 
         <!-- Champs professionnels (initialement masqués) -->
-        <div data-toggle-target="professionalFields" class="form-group-sign-up" style="display: none;">
-          <%= f.input :siret, label: "N° de SIRET*", hint: "Le SIRET doit contenir exactement 14 chiffres", input_html: { pattern: "\\d{14}", title: "Le SIRET doit contenir exactement 14 chiffres" } %>
+        <div data-toggle-target="professionalFields" class="form-group-sign-up">
+          <%= f.input :siret, label: "N° de SIRET*", hint: "Le SIRET doit contenir 14 chiffres", input_html: { pattern: "\\d{14}", title: "Le SIRET doit contenir exactement 14 chiffres" } %>
           <%= f.input :company_name, label: "Nom de société*" %>
         </div>
 

@@ -22,9 +22,6 @@
       <%= dish_form.file_field :photo, class: "form-control" %>
     </div>
 
-    <div class="form-check">
-      <%= dish_form.check_box :_destroy, class: "form-check-input" %>
-      <%= dish_form.label :_destroy, "Supprimer ce plat", class: "form-check-label" %>
-    </div>
+    <%= button_to "Ajouter ce plat", foodtruck_dishes_path(foodtruck) %>
   </div>
 </div>

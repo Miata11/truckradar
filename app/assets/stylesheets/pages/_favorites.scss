@@ -1,0 +1,125 @@
+.body-favorite {
+  margin: 0; /* Supprime les marges par défaut */
+  padding: 0; /* Supprime les marges par défaut */
+  height: 100vh; /* Assure que le fond couvre toute la hauteur de la fenêtre */
+  background: linear-gradient(65deg, #e7feff2c, #f6fffe); /* Fond dégradé sur toute la page */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre horizontalement le contenu */
+  justify-content: flex-start; /* Commence en haut de la page */
+  padding-top: 5%;
+}
+
+.favorites-container {
+  width: 100%; /* Prend toute la largeur disponible */
+  max-width: 1200px; /* Limite la largeur du conteneur */
+  padding: 1rem; /* Ajoute du padding */
+
+  /* Titre centré et coloré */
+  .favorites-title {
+    font-size: 2rem; /* Taille du titre */
+    color: #029094; /* Couleur du titre */
+    font-weight: bold; /* Gras */
+    text-align: center; /* Centré horizontalement */
+    margin-bottom: 2rem; /* Espace en dessous du titre */
+  }
+
+  .favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 cartes par ligne */
+    gap: 0.5rem;
+    width: 100%; /* Prend toute la largeur du conteneur */
+    justify-items: center; /* Centre les cartes horizontalement */
+  }
+
+  .fav-card {
+    position: relative;
+    font-size: small;
+    width: 180px; /* Largeur fixe pour chaque carte */
+    height: 180px; /* Hauteur fixe pour garder un carré */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    display: flex;
+    flex-direction: column; /* Permet de placer les informations sous l'image */
+
+    .fav-card-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .fav-image {
+      width: 100%;
+      height: 70%; /* L'image occupe 70% de la hauteur de la carte */
+      .fav-background-image {
+        object-fit: cover; /* L'image couvre entièrement l'espace sans déformation */
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .fav-rating {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background-color: #029094;
+      color: white;
+      border-radius: 8px;
+      padding: 2px 6px;
+      font-size: 0.7rem; /* Taille encore plus petite */
+      font-weight: bold;
+    }
+
+    .fav-details {
+      position: absolute; /* Fixe le bloc d'informations en bas de la carte */
+      bottom: 0;
+      width: 100%;
+      height: 30%; /* Occupe 30% de la hauteur de la carte */
+      padding: 0.5rem;
+      background-color: white;
+      display: flex;
+      flex-direction: column; /* Organise le texte en colonne */
+      justify-content: center; /* Centre le texte verticalement */
+      overflow: hidden; /* Cache les débordements de texte */
+
+      .fav-name,
+      .fav-location {
+        font-size: 0.8rem; /* Taille plus petite */
+        font-weight: bold;
+        margin: 0;
+        white-space: nowrap; /* Empêche le texte de se diviser sur plusieurs lignes */
+        overflow: hidden; /* Cache le texte qui dépasse */
+        text-overflow: ellipsis; /* Affiche des points de suspension si le texte est trop long */
+      }
+
+      .fav-location {
+        color: gray;
+        font-weight: normal;
+      }
+    }
+
+    .fav-heart {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+
+      .fav-heart-button {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+
+        i {
+          font-size: 1.5rem;
+          color: red;
+        }
+      }
+    }
+  }
+
+  .no-favorites {
+    text-align: center;
+    font-size: 1rem;
+    color: #777;
+  }
+}

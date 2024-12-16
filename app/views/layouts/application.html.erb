@@ -9,6 +9,10 @@
     <%= javascript_importmap_tags %>
     <script src="https://kit.fontawesome.com/0a93ae5b0f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://ga.jspm.io/npm:star-rating.js@4.3.0/dist/star-rating.css">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <%= render 'shared/ios_pwa_links' %>
   </head>
 
   <body data-user-role="<%= current_user&.role %>"><%= render "shared/navbar" %>

@@ -1,46 +1,70 @@
+<div class="foodtruck-form-container">
+  <div class="foodtruck-form-container-inside">
 
-<div class="new_container my-5">
-  <h1 class="text-center">Ton nouveau FoodTruck !</h1>
-  <%= simple_form_for @foodtruck, html: { multipart: true } do |f| %>
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <%= f.input :name, label: "Nom du Foodtruck", required: true, input_html: { class: "form-control" } %>
+    <h1 class="form-title text-center">Ton nouveau FoodTruck !</h1>
+    <%= simple_form_for @foodtruck, html: { multipart: true } do |f| %>
+      <div class="form-group">
+        <div class="col-md-6">
+          <%= f.input :name, label: "Nom du Foodtruck", required: true, input_html: { class: "input-field" } %>
+        </div>
       </div>
-    </div>
 
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <%= f.input :category, label: "Catégorie", as: :select, collection: [
-          "Asiatique", "Burger", "Mexicain", "Veggie", "Pizza", "Indien", "Français", "Coffeeshop"
-        ], prompt: "Choisir une catégorie", required: true, input_html: { class: "form-control" } %>
+      <div class="form-group">
+        <div class="col-md-6">
+          <label class="form-label">Catégories :</label>
+          <div class="category-selector d-flex flex-wrap gap-2">
+            <% ["Asiatique", "Burger", "Tacos", "Veggie", "Pizza", "Indien", "Français", "Coffee"].each do |category| %>
+              <div>
+                <input type="checkbox" name="foodtruck[categories][]" id="<%= category.downcase %>" value="<%= category %>"
+                      class="btn-check" <%= 'checked' if @foodtruck.categories&.include?(category) %>>
+                <label class="btn btn-outline-primary category-label" for="<%= category.downcase %>">
+                  <%= category %>
+                </label>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <div class="col-md-6">
-        <%= f.input :address_default, label: "Où es-tu le plus souvent ?", input_html: { class: "form-control" } %>
+
+      <div class="form-group">
+        <%= f.input :description, label: "Description", as: :text, input_html: { class: "textarea-field",s: 5 } %>
       </div>
-    </div>
 
-    <div class="row mb-3">
-      <%= f.input :description, label: "Description", as: :text, input_html: { class: "form-control", rows: 5 } %>
-    </div>
+      <div class="form-group">
+        <div class="col-md-6">
+          <%= f.input :address_default, label: "Adresse principale", input_html: { class: "input-field" } %>
+        </div>
+      </div>
 
-    <div class="col-md-6">
-      <%= f.input :phone_number, label: "Numéro de téléphone", input_html: { class: "form-control" } %>
-    </div>
+      <div class="form-group">
+        <div class="col-md-6">
+          <%= f.input :phone_number, label: "Numéro de téléphone", input_html: { class: "input-field" } %>
+        </div>
+      </div>
 
-    <div class="col-md-6">
-      <%= f.input :company_name, label: "Instagram", input_html: { class: "form-control" } %>
-    </div>
+      <div class="form-group">
+        <div class="col-md-6">
+          <%= f.input :company_name, label: "Instagram", input_html: { class: "input-field" } %>
+        </div>
+      </div>
 
-    <div class="col-md-6">
-      <%= f.input :company_name, label: "Facebook", input_html: { class: "form-control" } %>
-    </div>
+      <div class="form-group">
+        <div class="col-md-6">
+          <%= f.input :company_name, label: "Facebook", input_html: { class: "input-field" } %>
+        </div>
+      </div>
 
-    <div class="row mb-3">
-      <%= f.input :photo, label: "Photo foodtruck ou logo", as: :file, required: true, input_html: { class: "form-control" } %>
-    </div>
+      <div class="form-group">
+        <label for="photo">Photo foodtruck ou logo</label>
+        <div class="custom-file">
+          <input type="file" id="photo" class="custom-file-input">
+          <label class="custom-file-label" for="photo"></label>
+        </div>
+      </div>
 
-    <div class="text-center mt-4">
-      <%= f.submit "Sauvegarde", class: "btn btn-primary" %>
-    </div>
-  <% end %>
+      <div class="form-actions text-center mt-4">
+        <%= f.submit "Sauvegarde", class: "btn btn-primary submit-button" %>
+      </div>
+    <% end %>
+  </div>
 </div>
