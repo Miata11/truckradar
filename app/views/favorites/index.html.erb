@@ -1,25 +1,46 @@
-<div class="container">
-  <h1>Vos Favoris</h1>
+
+<div class="favorites-container">
+  <h1 class="favorites-title">Mes Favoris</h1>
 
   <% if @favorites.any? %>
-    <div class="row justify-content-center">
+    <div class="favorites-grid">
       <% @favorites.each do |favorite| %>
-        <div class="col-md-6 col-lg-4 mb-3">
-          <div class="card shadow-sm">
-            <div class="card-body d-flex justify-content-between align-items-center">
-              <!-- Nom du foodtruck avec lien -->
-              <%= link_to favorite.foodtruck.name, foodtruck_path(favorite.foodtruck), class: "text-decoration-none fw-bold" %>
-
-              <!-- Icône du cœur rouge pour supprimer le favori -->
-              <%= button_to foodtruck_favorite_path(favorite.foodtruck, current_user.favorites.find_by(foodtruck: favorite.foodtruck)), method: :delete, class: "p-0 border-0 bg-transparent" do %>
-                <i class="fas fa-heart text-danger" style="font-size: 1.5rem;"></i>
+        <div class="fav-card">
+          <!-- Lien vers le foodtruck -->
+          <%= link_to foodtruck_path(favorite.foodtruck), class: "fav-card-link" do %>
+            <!-- Image du foodtruck -->
+            <div class="fav-image">
+              <% if favorite.foodtruck.photo.attached? %>
+                <%= cl_image_tag favorite.foodtruck.photo.key,
+                      class: "fav-background-image",
+                      width: 300,
+                      height: 300,
+                      crop: :fill,
+                      gravity: :auto %>
+              <% else %>
+                <%= image_tag "foodtruck_disconnected.png",
+                      class: "fav-background-image",
+                      alt: "Image par défaut" %>
               <% end %>
             </div>
+            <!-- Nom et localisation -->
+            <div class="fav-details">
+              <h3 class="fav-name"><%= favorite.foodtruck.name %></h3>
+              <p class="fav-location"><%= favorite.foodtruck.address_default %></p>
+            </div>
+          <% end %>
+          <!-- Bouton pour retirer des favoris -->
+          <div class="fav-heart">
+            <%= button_to foodtruck_favorite_path(favorite.foodtruck, current_user.favorites.find_by(foodtruck: favorite.foodtruck)),
+                  method: :delete,
+                  class: "fav-heart-button" do %>
+              <i class="fas fa-heart"></i>
+            <% end %>
           </div>
         </div>
       <% end %>
     </div>
   <% else %>
-    <p>Vous n'avez encore aucun favori.</p>
+    <p class="no-favorites">Vous n'avez encore aucun favori.</p>
   <% end %>
 </div>

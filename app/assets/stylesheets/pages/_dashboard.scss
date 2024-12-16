@@ -1,0 +1,106 @@
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  min-height: 100vh;
+  min-height: 100vh; /* Utilisation de min-height pour garantir un affichage complet */
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-image: url('https://www.evenement.com/wp-content/uploads/2024/02/food-truck-prive.png');
+  overflow-y: auto; /* Active le scroll si nécessaire */
+  color: white;
+
+  .form-container-dashboard {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 500px;
+    width: 100%;
+
+    .form-header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #029094;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .separator-dashboard {
+      height: 2px;
+      background-color: #e0e0e0;
+      margin: 1rem 0;
+    }
+
+    .tabs-dashboard {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+
+      .tab-link-dashboard {
+        flex: 1;
+        padding: 0.8rem;
+        text-align: center;
+        font-size: 1rem;
+        font-weight: bold;
+        background: #f0f0f0;
+        color: #666;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+
+        &.active {
+          background: #029094;
+          color: white;
+          border-radius: 5px;
+        }
+
+        &:hover {
+          background: #029094;
+          color: white;
+        }
+
+        &:not(:last-child) {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+    .tab-content-dashboard {
+      display: none;
+
+      p {
+        font-size: 1rem;
+        color: #444;
+        margin-bottom: 1rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: #029094;
+        font-weight: bold;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .btn-dashboard {
+        display: inline-block;
+        background: #029094;
+        color: white;
+        padding: 0.8rem 1.2rem;
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+        font-size: 1rem;
+        transition: background 0.3s;
+
+        &:hover {
+          background: #026c6d;
+        }
+      }
+    }
+  }
+}
