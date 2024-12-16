@@ -107,12 +107,22 @@
 
                 <!-- Prix -->
                 <span class="fw-bold"><%= number_to_currency(dish.price, unit: "€") %></span>
+
+                <% if @foodtruck.is_owned_by?(current_user) %>
+                  <%= link_to dish_path(dish), data:{turbo_method: :delete} do %>
+                  <i class="fa-solid fa-trash"></i>
+                  <% end %>
+                <% end %>
               </div>
             </li>
+
           <% end %>
         </ul>
       <% else %>
         <p>Aucun plat disponible pour ce foodtruck.</p>
+      <% end %>
+      <% if @foodtruck.is_owned_by?(current_user) %>
+      <%= link_to "Ajouter un plat", new_foodtruck_dish_path(@foodtruck) %>
       <% end %>
     </div>
 

@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container edit_container">
   <h1>Modifier le Foodtruck</h1>
 
-    <%= form_with model: @foodtruck, local: true do |f| %>
+    <%= form_with model: @foodtruck, data:{turbo_method: :patch}, local: true do |f| %>
     <!-- Champs du foodtruck -->
     <div class="mb-3">
       <%= f.label :name, "Nom du Foodtruck" %>
@@ -46,7 +46,8 @@
       <% end %>
     </div>
 
-  <!-- Champs pour les plats associés -->
+
+  <!-- Champs pour les plats associés
   <h2>Plats</h2>
     <%= f.fields_for :dishes do |dish_form| %>
     <div class="card mb-3">
@@ -77,17 +78,16 @@
         </div>
 
         <div class="form-check">
-          <%= dish_form.check_box :_destroy, class: "form-check-input" %>
-          <%= dish_form.label :_destroy, "Supprimer ce plat", class: "form-check-label" %>
+          <%= link_to "Supprimer ce plat", dish_path(dish_form.object.id), data:{turbo_method: :delete} %>
         </div>
+
       </div>
     </div>
   <% end %>
 
-
-<!-- Template pour un nouveau plat -->
+ Template pour un nouveau plat
 <%= form_fields = fields_for('foodtruck[dishes_attributes][]', Dish.new, child_index: 'new_dishes') do |dish_form| %>
-  <%= render partial: 'dish_fields', locals: { dish_form: dish_form } %>
+  <%= render partial: 'dish_fields', locals: { dish_form: dish_form, foodtruck:@foodtruck } %>
 <% end %>
 
 <script>
@@ -103,12 +103,12 @@
       dishesContainer.insertAdjacentHTML('beforeend', newDishFields);
     });
   });
-</script>
+</script>-->
 
-  <!-- Bouton pour ajouter un nouveau plat -->
+  <!--Bouton pour ajouter un nouveau plat
   <div class="mb-3">
     <%= link_to "Ajouter un plat", "#", id: "add-dish", class: "btn btn-secondary" %>
-  </div>
+  </div> -->
 
 
  <!-- Bouton de soumission -->
