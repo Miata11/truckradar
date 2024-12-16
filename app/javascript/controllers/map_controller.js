@@ -43,15 +43,24 @@ export default class extends Controller {
     document.head.appendChild(style)
 
     // Ajouter le contrôle de géolocalisation pour tous les utilisateurs
-    this.map.addControl(
-      new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        trackUserLocation: true,
-        showUserHeading: true
-      })
-    )
+    const geolocate = new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true,
+      showUserHeading: true
+    });
+
+      this.map.addControl(geolocate);
+      geolocate.on('geolocate', (e) => {
+        const longitude = e.coords.longitude;
+        const latitude = e.coords.latitude;
+        const position = [longitude, latitude];
+        console.log('User location:', position);
+
+        // Supprimer le marqueur de l'utilisateur connecté
+        this.#removeCurrentUserMarker();
+      });
   }
 
   #getLocationMarkerImage() {
@@ -69,13 +78,25 @@ export default class extends Controller {
 
       const customMarker = document.createElement("div")
       customMarker.innerHTML = marker.marker_html
-
-      new mapboxgl.Marker(customMarker)
-        .setLngLat([ marker.lng, marker.lat ])
+      const isCurrentUser = marker.is_current_user || false;
+      const mapMarker = new mapboxgl.Marker(customMarker)
+        .setLngLat([marker.lng, marker.lat])
         .setPopup(popup)
-        .addTo(this.map)
+        .addTo(this.map);
+      if (isCurrentUser) {
+        this.currentUserMarker = mapMarker;
+      }
     })
   }
+
+  #removeCurrentUserMarker() {
+    console.log(this.currentUserMarker)
+    console.log("hey")
+    if(this.currentUserMarker) {
+      this.currentUserMarker.remove();
+    }
+  }
+
 
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
