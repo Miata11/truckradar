@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Laisse ton avis pour <%= @foodtruck.name %></h1>
+    <div class="row">
+      <div class="col-xs-4">
+        <%= simple_form_for [@foodtruck, @review] do |f| %>
+          <div>
+              <%= f.input :comment, label: "Ton avis" %>
+          </div>
+          <div>
+              <%= f.input :rating, collection: (1..5).to_a, label: "Note", input_html: {class: "rating", data: {controller: "star-rating"}}  %>
+            </div>
+              <%= f.submit "Envoyer mon avis", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+</div>

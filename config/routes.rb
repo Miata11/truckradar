@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :foodtrucks do
     resources :dishes, only: [:index, :new, :create, :edit, :update]
     resources :favorites, only: [:create, :destroy]
+    resources :reviews, only: [:new, :create]
     end
 
   resources :favorites, only: [:index]
