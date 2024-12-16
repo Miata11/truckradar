@@ -33,6 +33,50 @@
         </div>
       </div>
 
+        <div id="foodtruck" class="tab-content-dashboard" style="display: none;">
+          <h3>Mon Foodtruck</h3>
+
+          <% if current_user.foodtruck.present? %>
+            <div class="foodtruck-details">
+
+              <% if current_user.foodtruck.photo.present? %>
+                <%= cl_image_tag current_user.foodtruck.photo.key, alt: "Photo de #{current_user.foodtruck.name}", class: "foodtruck-photo", width: 150, height: 150, crop: :fill %>
+              <% else %>
+                <p>Aucune photo disponible pour ce foodtruck.</p>
+              <% end %>
+
+
+              <p><strong><%= link_to current_user.foodtruck.name, foodtruck_path(current_user.foodtruck) %></strong></p>
+
+              <% if current_user.foodtruck.description.present? %>
+                <p><strong>Description :</strong> <%= current_user.foodtruck.description %></p>
+              <% else %>
+                <p>Pas de description disponible.</p>
+              <% end %>
+
+              <p><strong>Adresse :</strong> <%= current_user.foodtruck.address_default %></p>
+
+              <% if current_user.foodtruck.phone_number.present? %>
+                <p><strong>Téléphone :</strong> <%= current_user.foodtruck.phone_number %></p>
+              <% else %>
+                <p>Pas de numéro de téléphone disponible.</p>
+              <% end %>
+
+              <% if current_user.foodtruck.categories.any? %>
+                <p><strong>Catégories :</strong> <%= current_user.foodtruck.categories.join(', ') %></p>
+              <% else %>
+                <p>Aucune catégorie définie.</p>
+              <% end %>
+
+               <!-- Bouton Modifier -->
+              <%= link_to "Modifier ce foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn-dashboard" %>
+                    </div>
+          <% else %>
+            <p>Vous n'avez pas encore ajouté de foodtruck.</p>
+            <%= link_to "Ajouter un foodtruck", new_foodtruck_path, class: "btn-dashboard" %>
+          <% end %>
+        </div>
+
 
 <script>
   function showTab(tabName) {
