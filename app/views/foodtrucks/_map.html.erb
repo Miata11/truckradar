@@ -1,0 +1,8 @@
+<div id= "reload"></div>
+
+<div id="map" class="layer_map top-0 start-0 bottom-0 end-0"
+  data-controller="map"
+  data-map-markers-value="<%= markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+  data-image-foodtruck="<%= current_user&.foodtruck&.photo&.key.present? ? cl_image_path(current_user.foodtruck.photo.key, class: 'w-100 h-100 object-fit-cover', width: 30, height: 30, crop: :fill) : '' %>">
+</div>

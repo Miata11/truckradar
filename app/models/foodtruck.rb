@@ -2,12 +2,13 @@ class Foodtruck < ApplicationRecord
   geocoded_by :address_default
   reverse_geocoded_by :latitude, :longitude
 
+
   after_validation :geocode, if: ->(obj) {
     obj.latitude.blank? && obj.longitude.blank? &&
     obj.address_default.present? &&
     obj.will_save_change_to_address_default?
   }
-
+  after_save_commit :broadcast_map, if: -> { saved_change_to_status? }
   # Commenté par Eva et Claire sinon "undefined method "address=
   # after_validation :reverse_geocode, if: ->(obj) {
   #   obj.latitude.present? && obj.longitude.present? &&
@@ -39,4 +40,11 @@ class Foodtruck < ApplicationRecord
   def is_owned_by?(test_user)
     user == test_user
   end
+
+  def broadcast_map
+    broadcast_replace_to "display_map",
+                        partial: "foodtrucks/reload",
+                        target: "reload"
+  end
+
 end

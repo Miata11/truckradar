@@ -19,7 +19,8 @@ class FoodtrucksController < ApplicationController
         marker_html: render_to_string(partial: "foodtruck_marker", locals: {
           connected: foodtruck.user.role == "true" && foodtruck.real_time_tracking,
           foodtruck: foodtruck
-        })
+        }),
+        is_current_user: foodtruck.user == current_user
       }
     end
 
@@ -29,7 +30,8 @@ class FoodtrucksController < ApplicationController
         lat: current_user.latitude,
         lng: current_user.longitude,
         info_window_html: render_to_string(partial: "user_popup", locals: { user: current_user }),
-        marker_html: render_to_string(partial: "user_marker", locals: { user: current_user })
+        marker_html: render_to_string(partial: "user_marker", locals: { user: current_user }),
+        is_current_user: user_signed_in?
       }
     end
   end
@@ -88,14 +90,14 @@ class FoodtrucksController < ApplicationController
 
   private
 
-  def user_marker(user)
-    {
-      lat: user.latitude,
-      lng: user.longitude,
-      info_window_html: render_to_string(partial: "user_popup", locals: { user: user }),
-      marker_html: render_to_string(partial: "user_marker")
-    }
-  end
+  # def user_marker(user)
+  #   {
+  #     lat: user.latitude,
+  #     lng: user.longitude,
+  #     info_window_html: render_to_string(partial: "user_popup", locals: { user: user }),
+  #     marker_html: render_to_string(partial: "user_marker"),
+  #   }
+  # end
 
   def foodtruck_params
     params.require(:foodtruck).permit(:name, :company_name, :description, :address_default, :phone_number, :photo, categories: [])
