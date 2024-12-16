@@ -1,28 +1,61 @@
-/* Alignement des étoiles */
-.gl-star-rating {
-  display: flex; /* Aligne les étoiles horizontalement */
-  gap: 0.3rem; /* Espacement entre les étoiles */
-}
+/* Styles spécifiques à la section avis */
+.review-container {
+  text-align: center;
+  padding: 2rem;
 
-/* Neutralise les images de fond injectées */
-.gl-star-rating--stars span {
-  background: none !important; /* Supprime complètement les images */
-  color: #e0e0e0 !important; /* Gris clair pour les étoiles vides */
-  fill: #e0e0e0 !important; /* Support des SVG */
-}
+  .review-title {
+    font-size: 2rem;
+    color: #029094;
+    margin-bottom: 1.5rem;
+  }
 
-/* Couleur turquoise pour les étoiles actives */
-.gl-star-rating--stars span.is-active,
-.gl-star-rating--stars span.gl-selected,
-.gl-star-rating--stars span.is-selected {
-  background: none !important; /* Neutralise les images */
-  color: #029094 !important; /* Couleur turquoise */
-  fill: #029094 !important; /* Support des SVG */
-}
+  .review-form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
 
-/* Neutralisation des pseudo-éléments */
-.gl-star-rating--stars span::before,
-.gl-star-rating--stars span::after {
-  background: none !important; /* Supprime les fonds */
-  color: inherit !important; /* Hérite de la couleur parent */
+    .review-comment {
+      margin-bottom: 1rem;
+
+      .review-comment-input {
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 0.5rem;
+      }
+    }
+
+    .review-rating {
+      margin-bottom: 1rem;
+
+      .review-rating-stars {
+        display: flex; /* Aligne les étoiles horizontalement */
+        gap: 0.3rem; /* Espacement entre les étoiles */
+      }
+
+      .gl-star-rating--stars span.is-active,
+      .gl-star-rating--stars span.gl-selected,
+      .gl-star-rating--stars span.is-selected {
+        color: #029094 !important; /* Couleur turquoise pour les étoiles sélectionnées */
+        fill: #029094 !important; /* Support des SVG */
+      }
+    }
+
+    .review-submit {
+      text-align: right;
+
+      .review-submit-button {
+        background-color: #029094;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #026f72;
+        }
+      }
+    }
+  }
 }
