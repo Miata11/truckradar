@@ -5,7 +5,7 @@ class User < ApplicationRecord
     obj.address_default.present? &&
     obj.will_save_change_to_address_default?
   }
-  # Include default devise modules. Others available are:
+  after_save_commit :broadcast_map, if: -> { saved_change_to_real_time_tracking? && role }
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -26,4 +26,11 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  private
+
+  def broadcast_map
+    broadcast_replace_to "display_map",
+                        partial: "foodtrucks/reload",
+                        target: "reload"
+  end
 end
