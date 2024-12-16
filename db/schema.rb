@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_16_092826) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_15_141047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,7 +64,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_16_092826) do
   create_table "foodtrucks", force: :cascade do |t|
     t.string "name"
     t.string "phone_number"
-    t.string "category"
     t.text "description"
     t.string "address_default"
     t.decimal "latitude"
@@ -75,6 +74,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_16_092826) do
     t.datetime "updated_at", null: false
     t.string "company_name"
     t.string "photo"
+    t.string "categories", default: [], array: true
     t.index ["user_id"], name: "index_foodtrucks_on_user_id"
   end
 

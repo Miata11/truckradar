@@ -60,6 +60,7 @@ class FoodtrucksController < ApplicationController
     if @foodtruck.save
       redirect_to foodtrucks_path, notice: "Votre FoodTruck a été créé avec succès"
     else
+      Rails.logger.info "FOODTRUCK ERRORS: #{@foodtruck.errors.full_messages}"
       render :new, alert: "Erreur lors de la création"
     end
   end
@@ -74,12 +75,12 @@ class FoodtrucksController < ApplicationController
     # je recupère dans les params toutes les données des dishes
     dishes = params[:foodtruck][:dishes_attributes]
     # j'itère sur mes données dishes
-    dishes.each do |index, dishes_attributes|
-      # je vais cherche le dish qui doit etre update
-      dish = Dish.find(dishes_attributes[:id])
-      # je mets à jour le dish
-      dish.update(dishes_attributes.permit(:title, :price, :description, :photo))
-    end
+    # dishes.each do |index, dishes_attributes|
+    #   # je vais cherche le dish qui doit etre update
+    #   dish = Dish.find(dishes_attributes[:id])
+    #   # je mets à jour le dish
+    #   dish.update(dishes_attributes.permit(:title, :price, :description, :photo))
+    # end
     if @foodtruck.update(foodtruck_params)
       redirect_to @foodtruck, notice: 'Le foodtruck a été mis à jour avec succès.'
     else
@@ -99,6 +100,6 @@ class FoodtrucksController < ApplicationController
   # end
 
   def foodtruck_params
-    params.require(:foodtruck).permit(:name, :company_name, :category, :description, :address_default, :phone_number, :photo)
+    params.require(:foodtruck).permit(:name, :company_name, :description, :address_default, :phone_number, :photo, categories: [])
   end
 end

@@ -6,7 +6,7 @@
       <%= image_tag "default_foodtruck.jpg", alt: "Default image", class: "img-fluid rounded mb-2" %>
     <% end %>
     <h3><%= foodtruck.name %></h3>
-    <p><%= foodtruck.category %></p>
+    <p><% foodtruck.categories.each do |category| %><%= category %> <% end %></p>
     <p><i class="fa-solid fa-location-dot"></i> <%= foodtruck.address_default %></p>
   <% end %>
 </div>
