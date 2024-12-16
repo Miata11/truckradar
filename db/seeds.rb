@@ -139,7 +139,7 @@ user_pro9 = User.create!(
   foodtruck1 = Foodtruck.create!(
     name: "Sando Truck",
     phone_number: "07 66 28 54 36",
-    category: "asiatique",
+    categories: ["asiatique"],
     description: "Une culture japonaise avant tout...Les sando, mais c'est quoi ? Inspiré de la culture japonaise, ce sandwich japonais XXL aux tranches de pain de mie et à la garniture généreuse est une recette de street-food emblématique de Japon",
     address_default: "Gare de Bordeaux",
     latitude: 44.823462,
@@ -155,7 +155,7 @@ user_pro9 = User.create!(
   foodtruck2 = Foodtruck.create!(
    name: "Le Van Foodtruck",
    phone_number: "07 69 63 28 30",
-   category: "crêperie",
+   categories: ["crêperie"],
    description: "Fondatrice du food-truck, Lolita souhaite moderniser la façon de servir les galettes et les crêpes mais aussi la façon de les cuisiner, en proposant des produits dérivés comme des samoussas à la galette de sarrasin ou des chips de sarrasin.",
    address_default: "Esplanade . Arrêt Tram Montaigne Montesquieu - Pessac",
    latitude: 44.81011,
@@ -170,7 +170,7 @@ user_pro9 = User.create!(
   foodtruck3 = Foodtruck.create!(
    name: "Truck de chef",
    phone_number: "06 61 77 68 08",
-   category: "fr",
+   categories: ["fr"],
    description: "Une cuisine bistro de qualité, tout en fraîcheur, avec des recettes pratiques à manger, conçues pour être dégustées de façon nomade.",
    address_default: "Square Léonie Bonnet – Floirac",
    latitude: 44.83238,
@@ -185,7 +185,7 @@ user_pro9 = User.create!(
   foodtruck4 = Foodtruck.create!(
    name: "El taco del diablo",
    phone_number: "09 80 80 04 92",
-   category: "mexicain/californien",
+   categories: ["mexicain" "californien"],
    description: "La street food et les food trucks étaient notre quotidien à Los Angeles, nous avons voulu à notre retour en France, à Bordeaux, partager notre expérience, et surtout faire connaître aux bordelais les célèbres tacos californiens",
    address_default: "87 Rue Lagrange 33000 BORDEAUX",
    latitude: 44.8524179,
@@ -200,7 +200,7 @@ user_pro9 = User.create!(
   foodtruck5 = Foodtruck.create!(
    name: "Yedi Tepe",
    phone_number: "08 90 21 01 68",
-   category: "cuisine turque",
+   categories: ["cuisine turque"],
    description: "Embarquez pour un voyage de saveurs avec Yepi Tepe, votre food truck spécialisé dans la cuisine turque authentique !",
    address_default: "6 Rue des Comètes - 33185 Le Haillan",
    latitude: 44.8593025,
@@ -215,7 +215,7 @@ user_pro9 = User.create!(
   foodtruck6 = Foodtruck.create!(
    name: "Seasons food truck",
    phone_number: "06 31 86 58 03",
-   category: "cuisine de saison",
+   categories: ["cuisine de saison"],
    description: "Les maîtres mots : le respect des saisons, la sélection des bons produits via les producteurs locaux et l'inspiration brunch de la carte",
    address_default: "place Paul Doumer (Chartrons)",
    latitude: 44.8521802,
@@ -229,7 +229,7 @@ user_pro9 = User.create!(
   foodtruck8 = Foodtruck.create!(
     name: "Saveurs des Landes",
     phone_number: "06 12 34 56 78",
-    category: "cuisine landaise",
+    categories: ["cuisine landaise"],
     description: "Un voyage gustatif au cœur des Landes avec nos spécialités régionales revisitées en version street-food.",
     address_default: "156 avenue de la Côte d'Argent, Le Teich",
     latitude: 44.6404,
@@ -243,7 +243,7 @@ user_pro9 = User.create!(
 foodtruck9 = Foodtruck.create!(
  name: "Le Bistrot Roulant",
  phone_number: "06 98 76 54 32",
- category: "cuisine traditionnelle",
+ categories: ["cuisine traditionnelle"],
  description: "Une cuisine traditionnelle française revisitée en format street food. Nos plats sont préparés avec des produits locaux et de saison.",
  address_default: "45 rue des Castaings, Biganos",
  latitude: 44.6528,

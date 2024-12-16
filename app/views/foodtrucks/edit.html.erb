@@ -9,8 +9,18 @@
     </div>
 
     <div class="mb-3">
-      <%= f.label :category, "Catégorie" %>
-      <%= f.text_field :category, class: "form-control" %>
+      <%= f.label :categories, "Catégories" %>
+      <div class="d-flex flex-wrap gap-2">
+        <% ["Asiatique", "Burger", "Mexicain", "Veggie", "Pizza", "Indien", "Français", "Coffeeshop"].each do |category| %>
+          <div>
+            <input type="checkbox" name="foodtruck[categories][]" id="<%= category.downcase %>" value="<%= category %>"
+                  class="btn-check" <%= 'checked' if @foodtruck.categories&.include?(category) %>>
+            <label class="btn btn-outline-primary" for="<%= category.downcase %>">
+              <%= category %>
+            </label>
+          </div>
+        <% end %>
+      </div>
     </div>
 
     <div class="mb-3">
@@ -74,14 +84,6 @@
     </div>
   <% end %>
 
-  <!-- Bouton pour ajouter un nouveau plat -->
-  <div class="mb-3">
-    <%= link_to "Ajouter un plat", "#", id: "add-dish", class: "btn btn-secondary" %>
-  </div>
-
-  <!-- Bouton de soumission -->
-  <%= f.submit "Enregistrer les modifications", class: "btn btn-primary" %>
-<% end %>
 
 <!-- Template pour un nouveau plat -->
 <%= form_fields = fields_for('foodtruck[dishes_attributes][]', Dish.new, child_index: 'new_dishes') do |dish_form| %>
@@ -102,3 +104,13 @@
     });
   });
 </script>
+
+  <!-- Bouton pour ajouter un nouveau plat -->
+  <div class="mb-3">
+    <%= link_to "Ajouter un plat", "#", id: "add-dish", class: "btn btn-secondary" %>
+  </div>
+
+
+ <!-- Bouton de soumission -->
+  <%= f.submit "Enregistrer les modifications", class: "btn btn-primary" %>
+<% end %>

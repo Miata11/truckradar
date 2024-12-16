@@ -44,10 +44,12 @@
 
 <!-- affichage des labels -->
 <div class="foodtruck-tags d-flex flex-wrap gap-2">
-  <% if @foodtruck.category.present? %>
-    <span class="badge bg-primary text-white">
-      <%= @foodtruck.category %>
-    </span>
+  <% if @foodtruck.categories.any? %>
+    <% @foodtruck.categories.each do |category| %>
+      <span class="badge bg-primary text-white">
+        <%= category %>
+      </span>
+    <% end %>
   <% else %>
     <p>Aucune catégorie définie.</p>
   <% end %>
