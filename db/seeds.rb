@@ -248,7 +248,7 @@ foodtruck9 = Foodtruck.create!(
  address_default: "45 rue des Castaings, Biganos",
  latitude: 44.6528,
  longitude: -0.9687,
- status: true,
+ status: false,
  user: user_pro9)
 file = URI.open("https://static.wixstatic.com/media/b45c09_d3b790add4cc4097afd338d22fe0f774~mv2.jpg/v1/fill/w_510,h_638,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_20240911_101704.jpg")
 foodtruck9.photo.attach(io: file, filename: "bistrot_roulant.jpg", content_type: "image/jpg")

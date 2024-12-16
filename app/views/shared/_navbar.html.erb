@@ -19,7 +19,7 @@
 <% end %>
 
   <!-- Onglet Profil -->
-  <%= link_to edit_user_registration_path, class: (current_page?(edit_user_registration_path) ? "active" : "") do %>
+  <%= link_to dashboard_path, class: (current_page?(dashboard_path) ? "active" : "") do %>
     <i class="fas fa-user"></i>
     <span>Profil</span>
   <% end %>

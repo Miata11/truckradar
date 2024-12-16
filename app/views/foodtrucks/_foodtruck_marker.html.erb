@@ -1,5 +1,5 @@
 <% if foodtruck.user == current_user %>
-  <% if connected %>
+  <% if foodtruck.status == true %>
     <div class="rounded-circle overflow-hidden border border-success" style="width: 30px; height: 30px;">
       <% if foodtruck.photo.attached? %>
         <%= cl_image_tag foodtruck.photo.key, class: "w-100 h-100 object-fit-cover", width: 30, height: 30, crop: :fill %>
@@ -19,7 +19,7 @@
     </div>
   <% end %>
 <% else %>
-  <% if connected %>
+  <% if foodtruck.status == true %>
     <%= image_tag "foodtruck_connected.png", width: 30, height: 30, alt: "Image par défaut" %>
   <% else %>
     <%= image_tag "foodtruck_disconnected.png", width: 30, height: 30, alt: "Image par défaut" %>
