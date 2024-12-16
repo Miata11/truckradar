@@ -29,7 +29,7 @@
           <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn-dashboard" %>
         </div>
         <div>
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { turbo_confirm: "Are you sure you want to sign out?" }, class: "btn-dashboard" %>
+          <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to sign out?" }, class: "btn-dashboard" %>
         </div>
       </div>
 

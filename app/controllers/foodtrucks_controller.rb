@@ -31,7 +31,7 @@ class FoodtrucksController < ApplicationController
         lng: current_user.longitude,
         info_window_html: render_to_string(partial: "user_popup", locals: { user: current_user }),
         marker_html: render_to_string(partial: "user_marker", locals: { user: current_user }),
-        is_current_user: user_signed_in?
+        # is_current_user: current_user.present? == true
       }
     end
   end
