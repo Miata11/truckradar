@@ -136,123 +136,150 @@ user_pro9 = User.create!(
  role: "true"
 )
 
-  foodtruck1 = Foodtruck.create!(
-    name: "Sando Truck",
-    phone_number: "07 66 28 54 36",
-    categories: ["asiatique"],
-    description: "Une culture japonaise avant tout...Les sando, mais c'est quoi ? Inspiré de la culture japonaise, ce sandwich japonais XXL aux tranches de pain de mie et à la garniture généreuse est une recette de street-food emblématique de Japon",
-    address_default: "Gare de Bordeaux",
-    latitude: 44.823462,
-    longitude: -0.556544,
-    status: true,
-    user: user_pro1)
-  file = URI.open("https://otuktuk.fr/wp-content/uploads/2017/10/o_tuk_tuk_fodd_truck_toulouse_slider.jpg")
-  foodtruck1.photo.attach(io: file, filename: "sando_truck.jpg", content_type: "image/jpg")
-  foodtruck1.save
+  # Foodtruck 1
+foodtruck1 = Foodtruck.create!(
+  name: "Sando Truck",
+  phone_number: "07 66 28 54 36",
+  categories: ["asiatique"],
+  description: "Une culture japonaise avant tout... Les sando, mais c'est quoi ? Inspiré de la culture japonaise, ce sandwich japonais XXL aux tranches de pain de mie et à la garniture généreuse est une recette de street-food emblématique du Japon.",
+  address_default: "Gare de Bordeaux",
+  latitude: 44.823462,
+  longitude: -0.556544,
+  status: true,
+  horaires: "12:00 à 15:00",
+  jours: "lundi, jeudi",
+  user: user_pro1
+)
+file = URI.open("https://otuktuk.fr/wp-content/uploads/2017/10/o_tuk_tuk_fodd_truck_toulouse_slider.jpg")
+foodtruck1.photo.attach(io: file, filename: "sando_truck.jpg", content_type: "image/jpg")
+foodtruck1.save
 
+# Foodtruck 2
+foodtruck2 = Foodtruck.create!(
+  name: "Le Van Foodtruck",
+  phone_number: "07 69 63 28 30",
+  categories: ["crêperie"],
+  description: "Fondatrice du food-truck, Lolita souhaite moderniser la façon de servir les galettes et les crêpes mais aussi la façon de les cuisiner.",
+  address_default: "Esplanade . Arrêt Tram Montaigne Montesquieu - Pessac",
+  latitude: 44.81011,
+  longitude: -0.64129,
+  status: true,
+  horaires: "19:00 à 22:30",
+  jours: "mardi, vendredi",
+  user: user_pro2
+)
+file = URI.open("https://static.wixstatic.com/media/b45c09_d3b790add4cc4097afd338d22fe0f774~mv2.jpg/v1/fill/w_510,h_638,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_20240911_101704.jpg")
+foodtruck2.photo.attach(io: file, filename: "van_foodtruck.jpg", content_type: "image/jpg")
+foodtruck2.save
 
-  # Le Van Foodtruck
-  foodtruck2 = Foodtruck.create!(
-   name: "Le Van Foodtruck",
-   phone_number: "07 69 63 28 30",
-   categories: ["crêperie"],
-   description: "Fondatrice du food-truck, Lolita souhaite moderniser la façon de servir les galettes et les crêpes mais aussi la façon de les cuisiner, en proposant des produits dérivés comme des samoussas à la galette de sarrasin ou des chips de sarrasin.",
-   address_default: "Esplanade . Arrêt Tram Montaigne Montesquieu - Pessac",
-   latitude: 44.81011,
-   longitude: -0.64129,
-   status: true,
-   user: user_pro2)
-  file = URI.open("https://static.wixstatic.com/media/b45c09_d3b790add4cc4097afd338d22fe0f774~mv2.jpg/v1/fill/w_510,h_638,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_20240911_101704.jpg")
-  foodtruck2.photo.attach(io: file, filename: "van_foodtruck.jpg", content_type: "image/jpg")
-  foodtruck2.save
+# Foodtruck 3
+foodtruck3 = Foodtruck.create!(
+  name: "Truck de chef",
+  phone_number: "06 61 77 68 08",
+  categories: ["fr"],
+  description: "Une cuisine bistro de qualité, tout en fraîcheur, avec des recettes pratiques à manger.",
+  address_default: "Square Léonie Bonnet – Floirac",
+  latitude: 44.83238,
+  longitude: -0.514021,
+  status: true,
+  horaires: "12:00 à 15:00",
+  jours: "mercredi",
+  user: user_pro3
+)
+file = URI.open("https://otuktuk.fr/wp-content/uploads/2017/10/o_tuk_tuk_fodd_truck_toulouse_slider.jpg")
+foodtruck3.photo.attach(io: file, filename: "truck_chef.jpg", content_type: "image/jpg")
+foodtruck3.save
 
-  # Truck de chef
-  foodtruck3 = Foodtruck.create!(
-   name: "Truck de chef",
-   phone_number: "06 61 77 68 08",
-   categories: ["fr"],
-   description: "Une cuisine bistro de qualité, tout en fraîcheur, avec des recettes pratiques à manger, conçues pour être dégustées de façon nomade.",
-   address_default: "Square Léonie Bonnet – Floirac",
-   latitude: 44.83238,
-   longitude: -0.514021,
-   status: true,
-   user: user_pro3)
-  file = URI.open("https://otuktuk.fr/wp-content/uploads/2017/10/o_tuk_tuk_fodd_truck_toulouse_slider.jpg")
-  foodtruck3.photo.attach(io: file, filename: "truck_chef.jpg", content_type: "image/jpg")
-  foodtruck3.save
+# Foodtruck 4
+foodtruck4 = Foodtruck.create!(
+  name: "El taco del diablo",
+  phone_number: "09 80 80 04 92",
+  categories: ["mexicain", "californien"],
+  description: "La street food de Los Angeles revisitée à Bordeaux pour vous faire découvrir les tacos californiens.",
+  address_default: "87 Rue Lagrange 33000 BORDEAUX",
+  latitude: 44.8524179,
+  longitude: -0.581036,
+  status: true,
+  horaires: "19:00 à 22:30",
+  jours: "jeudi, samedi",
+  user: user_pro4
+)
+file = URI.open("https://static.wixstatic.com/media/369974_4b44793445374aee8e776c139cb8eedb~mv2.jpg/v1/crop/x_0,y_27,w_960,h_585/fill/w_434,h_270,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/369974_4b44793445374aee8e776c139cb8eedb~mv2.jpg")
+foodtruck4.photo.attach(io: file, filename: "taco_diablo.jpg", content_type: "image/jpg")
+foodtruck4.save
 
-  # El taco del diablo
-  foodtruck4 = Foodtruck.create!(
-   name: "El taco del diablo",
-   phone_number: "09 80 80 04 92",
-   categories: ["mexicain" "californien"],
-   description: "La street food et les food trucks étaient notre quotidien à Los Angeles, nous avons voulu à notre retour en France, à Bordeaux, partager notre expérience, et surtout faire connaître aux bordelais les célèbres tacos californiens",
-   address_default: "87 Rue Lagrange 33000 BORDEAUX",
-   latitude: 44.8524179,
-   longitude: -0.581036,
-   status: true,
-   user: user_pro4)
-  file = URI.open("https://static.wixstatic.com/media/369974_4b44793445374aee8e776c139cb8eedb~mv2.jpg/v1/crop/x_0,y_27,w_960,h_585/fill/w_434,h_270,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/369974_4b44793445374aee8e776c139cb8eedb~mv2.jpg")
-  foodtruck4.photo.attach(io: file, filename: "taco_diablo.jpg", content_type: "image/jpg")
-  foodtruck4.save
+# Foodtruck 5
+foodtruck5 = Foodtruck.create!(
+  name: "Yedi Tepe",
+  phone_number: "08 90 21 01 68",
+  categories: ["cuisine turque"],
+  description: "Embarquez pour un voyage de saveurs avec Yepi Tepe, votre food truck spécialisé dans la cuisine turque authentique !",
+  address_default: "6 Rue des Comètes - 33185 Le Haillan",
+  latitude: 44.8593025,
+  longitude: -0.669148,
+  status: false,
+  horaires: "12:00 à 15:00",
+  jours: "lundi, vendredi",
+  user: user_pro5
+)
+file = URI.open("https://les-seminaires.eu/wp-content/uploads/2023/07/food-truck-entreprise.jpg")
+foodtruck5.photo.attach(io: file, filename: "yedi_tepe.jpg", content_type: "image/jpg")
+foodtruck5.save
 
-  # Yedi Tepe
-  foodtruck5 = Foodtruck.create!(
-   name: "Yedi Tepe",
-   phone_number: "08 90 21 01 68",
-   categories: ["cuisine turque"],
-   description: "Embarquez pour un voyage de saveurs avec Yepi Tepe, votre food truck spécialisé dans la cuisine turque authentique !",
-   address_default: "6 Rue des Comètes - 33185 Le Haillan",
-   latitude: 44.8593025,
-   longitude: -0.669148,
-   status: false,
-   user: user_pro5)
-  file = URI.open("https://les-seminaires.eu/wp-content/uploads/2023/07/food-truck-entreprise.jpg")
-  foodtruck5.photo.attach(io: file, filename: "yedi_tepe.jpg", content_type: "image/jpg")
-  foodtruck5.save
+# Foodtruck 6
+foodtruck6 = Foodtruck.create!(
+  name: "Seasons food truck",
+  phone_number: "06 31 86 58 03",
+  categories: ["cuisine de saison"],
+  description: "Respect des saisons et des produits locaux pour une cuisine fraîche et savoureuse.",
+  address_default: "place Paul Doumer (Chartrons)",
+  latitude: 44.8521802,
+  longitude: -0.5737263,
+  status: false,
+  horaires: "19:00 à 22:30",
+  jours: "mardi, dimanche",
+  user: user_pro6
+)
+file = URI.open("https://les-seminaires.eu/wp-content/uploads/2023/07/food-truck-entreprise.jpg")
+foodtruck6.photo.attach(io: file, filename: "seasons_foodtruck.jpg", content_type: "image/jpg")
+foodtruck6.save
 
-  # Seasons food truck
-  foodtruck6 = Foodtruck.create!(
-   name: "Seasons food truck",
-   phone_number: "06 31 86 58 03",
-   categories: ["cuisine de saison"],
-   description: "Les maîtres mots : le respect des saisons, la sélection des bons produits via les producteurs locaux et l'inspiration brunch de la carte",
-   address_default: "place Paul Doumer (Chartrons)",
-   latitude: 44.8521802,
-   longitude: -0.5737263,
-   status: false,
-   user: user_pro6)
-  file = URI.open("https://les-seminaires.eu/wp-content/uploads/2023/07/food-truck-entreprise.jpg")
-  foodtruck6.photo.attach(io: file, filename: "seasons_foodtruck.jpg", content_type: "image/jpg")
-  foodtruck6.save
+# Foodtruck 8
+foodtruck8 = Foodtruck.create!(
+  name: "Saveurs des Landes",
+  phone_number: "06 12 34 56 78",
+  categories: ["cuisine landaise"],
+  description: "Un voyage gustatif au cœur des Landes avec nos spécialités régionales revisitées.",
+  address_default: "156 avenue de la Côte d'Argent, Le Teich",
+  latitude: 44.6404,
+  longitude: -1.0271,
+  status: true,
+  horaires: "12:00 à 15:00",
+  jours: "mercredi, samedi",
+  user: user_pro8
+)
+file = URI.open("https://les-seminaires.eu/wp-content/uploads/2023/07/food-truck-entreprise.jpg")
+foodtruck8.photo.attach(io: file, filename: "saveurs_landes.jpg", content_type: "image/jpg")
+foodtruck8.save
 
-  foodtruck8 = Foodtruck.create!(
-    name: "Saveurs des Landes",
-    phone_number: "06 12 34 56 78",
-    categories: ["cuisine landaise"],
-    description: "Un voyage gustatif au cœur des Landes avec nos spécialités régionales revisitées en version street-food.",
-    address_default: "156 avenue de la Côte d'Argent, Le Teich",
-    latitude: 44.6404,
-    longitude: -1.0271,
-    status: true,
-    user: user_pro8)
-    file = URI.open("https://les-seminaires.eu/wp-content/uploads/2023/07/food-truck-entreprise.jpg")
-    foodtruck8.photo.attach(io: file, filename: "saveurs_landes.jpg", content_type: "image/jpg")
-    foodtruck8.save
-
+# Foodtruck 9
 foodtruck9 = Foodtruck.create!(
- name: "Le Bistrot Roulant",
- phone_number: "06 98 76 54 32",
- categories: ["cuisine traditionnelle"],
- description: "Une cuisine traditionnelle française revisitée en format street food. Nos plats sont préparés avec des produits locaux et de saison.",
- address_default: "45 rue des Castaings, Biganos",
- latitude: 44.6528,
- longitude: -0.9687,
- status: false,
- user: user_pro9)
+  name: "Le Bistrot Roulant",
+  phone_number: "06 98 76 54 32",
+  categories: ["cuisine traditionnelle"],
+  description: "Cuisine traditionnelle française revisitée en street food avec des produits locaux.",
+  address_default: "45 rue des Castaings, Biganos",
+  latitude: 44.6528,
+  longitude: -0.9687,
+  status: false,
+  horaires: "19:00 à 22:30",
+  jours: "vendredi, dimanche",
+  user: user_pro9
+)
 file = URI.open("https://static.wixstatic.com/media/b45c09_d3b790add4cc4097afd338d22fe0f774~mv2.jpg/v1/fill/w_510,h_638,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_20240911_101704.jpg")
 foodtruck9.photo.attach(io: file, filename: "bistrot_roulant.jpg", content_type: "image/jpg")
 foodtruck9.save
+
 
   # Dishes pour Sando Truck
   dish1 = Dish.new(
