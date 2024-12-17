@@ -1,106 +1,82 @@
 <div class="dashboard-container">
   <div class="form-container-dashboard">
     <div class="form-inputs-dashboard">
-      <p class="form-header">Bienvenue sur ton tableau de bord !</p>
+      <p class="form-header">Salut <%= "#{current_user.first_name} #{current_user.last_name}" %> !</p>
       <div class="separator-dashboard"></div>
 
       <!-- Onglets -->
       <div class="tabs-dashboard">
-        <button class="tab-link-dashboard active" onclick="showTab('profile')">Profil</button>
-        <button class="tab-link-dashboard" onclick="showTab('foodtruck')">Foodtruck</button>
+        <div class="tab-link-dashboard active" data-tab-target="profil" aria-selected="true">Profil</div>
+        <div class="tab-link-dashboard" data-tab-target="foodtruck" aria-selected="false">Foodtruck</div>
       </div>
 
       <!-- Contenu des onglets -->
-      <div id="profile" class="tab-content-dashboard">
-        <h3>Bienvenue dans votre profil, <%= "#{current_user.first_name} #{current_user.last_name}" %> !</h3>
-
+      <div id="profil" class="tab-content-dashboard">
         <div>
           <p><strong>Prénom :</strong> <%= current_user.first_name %></p>
           <p><strong>Nom :</strong> <%= current_user.last_name %></p>
           <p><strong>Email :</strong> <%= current_user.email %></p>
           <p><strong>Adresse par défaut :</strong> <%= current_user.address_default || "Non spécifiée" %></p>
-
-          <% if current_user.company_name.present? %>
-            <p><strong>Nom de la société :</strong> <%= current_user.company_name %></p>
-          <% end %>
+          <p><strong>Nom de la société :</strong> <%= current_user.company_name.presence || "Non spécifié" %></p>
         </div>
 
-        <div>
-          <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn-dashboard" %>
-        </div>
-        <div>
-          <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to sign out?" }, class: "btn-dashboard" %>
+        <div class="profile-actions">
+          <%= link_to "Modifier", edit_user_registration_path, class: "btn-dashboard btn-flex" %>
+          <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter ?" }, class: "btn-dashboard btn-flex" %>
         </div>
       </div>
 
-        <div id="foodtruck" class="tab-content-dashboard" style="display: none;">
-          <h3>Mon Foodtruck</h3>
-
-          <% if current_user.foodtruck.present? %>
-            <div class="foodtruck-details">
-
-              <% if current_user.foodtruck.photo.present? %>
-                <%= cl_image_tag current_user.foodtruck.photo.key, alt: "Photo de #{current_user.foodtruck.name}", class: "foodtruck-photo", width: 150, height: 150, crop: :fill %>
-              <% else %>
-                <p>Aucune photo disponible pour ce foodtruck.</p>
-              <% end %>
-
-
-              <p><strong><%= link_to current_user.foodtruck.name, foodtruck_path(current_user.foodtruck) %></strong></p>
-
-              <% if current_user.foodtruck.description.present? %>
-                <p><strong>Description :</strong> <%= current_user.foodtruck.description %></p>
-              <% else %>
-                <p>Pas de description disponible.</p>
-              <% end %>
-
-              <p><strong>Adresse :</strong> <%= current_user.foodtruck.address_default %></p>
-
-              <% if current_user.foodtruck.phone_number.present? %>
-                <p><strong>Téléphone :</strong> <%= current_user.foodtruck.phone_number %></p>
-              <% else %>
-                <p>Pas de numéro de téléphone disponible.</p>
-              <% end %>
-
-              <% if current_user.foodtruck.categories.any? %>
-                <p><strong>Catégories :</strong> <%= current_user.foodtruck.categories.join(', ') %></p>
-              <% else %>
-                <p>Aucune catégorie définie.</p>
-              <% end %>
-
-               <!-- Bouton Modifier -->
-              <%= link_to "Modifier ce foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn-dashboard" %>
-                    </div>
-          <% else %>
-            <p>Vous n'avez pas encore ajouté de foodtruck.</p>
-            <%= link_to "Ajouter un foodtruck", new_foodtruck_path, class: "btn-dashboard" %>
-          <% end %>
-        </div>
-
+      <div id="foodtruck" class="tab-content-dashboard" style="display: none;">
+        <% if current_user.foodtruck.present? %>
+          <div class="foodtruck-details">
+            <% if current_user.foodtruck.photo.present? %>
+              <%= cl_image_tag current_user.foodtruck.photo.key, alt: "Photo de #{current_user.foodtruck.name}", class: "foodtruck-photo", width: 150, height: 150, crop: :fill %>
+            <% else %>
+              <p>Aucune photo disponible pour ce foodtruck.</p>
+            <% end %>
+            <p><strong>Nom :</strong> <%= link_to current_user.foodtruck.name, foodtruck_path(current_user.foodtruck) %></p>
+            <p><strong>Description :</strong> <%= current_user.foodtruck.description.presence || "Pas de description disponible." %></p>
+            <p><strong>Adresse :</strong> <%= current_user.foodtruck.address_default || "Non spécifiée" %></p>
+            <p><strong>Téléphone :</strong> <%= current_user.foodtruck.phone_number.presence || "Pas de numéro de téléphone disponible." %></p>
+            <p><strong>Catégories :</strong> <%= current_user.foodtruck.categories.any? ? current_user.foodtruck.categories.join(', ') : "Aucune catégorie définie." %></p>
+            <%= link_to "Modifier ce foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn-dashboard" %>
+          </div>
+        <% else %>
+          <p>Vous n'avez pas encore ajouté de foodtruck.</p>
+          <%= link_to "Ajouter un foodtruck", new_foodtruck_path, class: "btn-dashboard" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-  function showTab(tabName) {
-    // Masquer tous les onglets
-    const allTabs = document.querySelectorAll('.tab-content-dashboard');
-    allTabs.forEach(tab => {
-      tab.style.display = 'none';
-    });
-
-    // Supprimer l'état actif des onglets
-    const tabLinks = document.querySelectorAll('.tab-link-dashboard');
-    tabLinks.forEach(link => {
-      link.classList.remove('active');
-    });
-
-    // Afficher l'onglet sélectionné
-    document.getElementById(tabName).style.display = 'block';
-
-    // Activer le bouton correspondant
-    document.querySelector(`button[onclick="showTab('${tabName}')"]`).classList.add('active');
-  }
-
-  // Afficher l'onglet par défaut au chargement
   document.addEventListener('DOMContentLoaded', () => {
-    showTab('profile');
+    // Gestion des onglets
+    const tabLinks = document.querySelectorAll('.tab-link-dashboard');
+    const tabContents = document.querySelectorAll('.tab-content-dashboard');
+
+    tabLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const target = link.getAttribute('data-tab-target');
+
+        // Désactiver tous les onglets
+        tabLinks.forEach(tab => {
+          tab.classList.remove('active');
+          tab.setAttribute('aria-selected', 'false');
+        });
+        tabContents.forEach(content => {
+          content.style.display = 'none';
+        });
+
+        // Activer l'onglet sélectionné
+        link.classList.add('active');
+        link.setAttribute('aria-selected', 'true');
+        document.getElementById(target).style.display = 'block';
+      });
+    });
+
+    // Afficher l'onglet par défaut
+    document.querySelector('.tab-link-dashboard.active').click();
   });
 </script>
