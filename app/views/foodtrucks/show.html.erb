@@ -1,153 +1,110 @@
-<div class="container">
-
-  <div class="row justify-content-center">
-
-    <div class="col-sm-8 my-3">
-    <h1 class="mb-4">Détails du Foodtruck</h1>
-      <div class="d-flex align-items-center justify-content-start gap-2">
-        <!-- Nom du foodtruck avec lien -->
-        <%= @foodtruck.name %>
-
-        <!-- Bouton modifier -->
-
-        <% if @foodtruck.is_owned_by?(current_user) %>
-          <%= link_to "Modifier", edit_foodtruck_path(@foodtruck), class: "btn btn-primary my-3" %>
-        <% end %>
-
-        <!-- Icône de cœur pour ajouter ou retirer des favoris -->
-        <% if current_user.favorites.exists?(foodtruck: @foodtruck) %>
-          <!-- Cœur plein rouge pour un favori -->
-          <%= button_to foodtruck_favorite_path(@foodtruck, current_user.favorites.find_by(foodtruck: @foodtruck)), method: :delete, class: "p-0 border-0 bg-transparent" do %>
-            <i class="fas fa-heart text-danger" style="font-size: 1.8rem;"></i>
-          <% end %>
+<div class="foodtruck-page">
+  <div class="foodtruck-container">
+    <div class="">
+      <!-- Image du Foodtruck -->
+      <div class="foodtruck-photo-container">
+        <% if @foodtruck.photo.attached? %>
+          <%= cl_image_tag @foodtruck.photo.key, alt: @foodtruck.name, class: "card-img-top foodtruck-photo" %>
         <% else %>
-          <!-- Cœur vide pour un non-favori -->
-          <%= button_to foodtruck_favorites_path(@foodtruck), method: :post, class: "p-0 border-0 bg-transparent" do %>
-            <i class="far fa-heart text-muted" style="font-size: 1.8rem;"></i>
-          <% end %>
+          <%= image_tag "default_foodtruck.jpg", alt: "Default image", class: "card-img-top foodtruck-photo" %>
         <% end %>
+        <!-- Cœur en haut à droite -->
+        <div class="foodtruck-heart">
+          <%= button_to (current_user.favorites.exists?(foodtruck: @foodtruck) ? foodtruck_favorite_path(@foodtruck, current_user.favorites.find_by(foodtruck: @foodtruck)) : foodtruck_favorites_path(@foodtruck)),
+                        method: (current_user.favorites.exists?(foodtruck: @foodtruck) ? :delete : :post),
+                        class: "p-0 border-0 bg-transparent" do %>
+            <i class="fas fa-heart <%= current_user.favorites.exists?(foodtruck: @foodtruck) ? 'text-danger' : 'text-muted' %> fs-4"></i>
+          <% end %>
+        </div>
+      </div>
+      <!-- Nom du Foodtruck -->
+      <div class="foodtruck-name">
+        <h3 class="card-title"><%= @foodtruck.name.presence || "Nom non disponible" %></h3>
+      </div>
+      <!-- Contenu de la Card -->
+      <div class="card-body">
+        <!-- Tags -->
+        <div class="mb-3">
+          <% @foodtruck.categories.each do |category| %>
+            <span class="badge"><%= category %></span>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Photo du truck -->
-<div class="container mt-4">
-  <!-- Image du foodtruck -->
-  <div class="text-center">
-    <% if @foodtruck.photo.attached? %>
-      <%= cl_image_tag @foodtruck.photo.key, alt: @foodtruck.name, class: "img-fluid rounded mb-3", width: 300, crop: :limit %>
-    <% else %>
-      <%= image_tag "default_foodtruck.jpg", alt: "Default image", class: "img-fluid rounded mb-3", style: "max-width: 400px;" %>
-    <% end %>
-  </div>
+  <!-- Onglets -->
+  <div class="tabs-container">
 
-<!-- affichage des labels -->
-<div class="foodtruck-tags d-flex flex-wrap gap-2">
-  <% if @foodtruck.categories.any? %>
-    <% @foodtruck.categories.each do |category| %>
-      <span class="badge bg-primary text-white">
-        <%= category %>
-      </span>
-    <% end %>
-  <% else %>
-    <p>Aucune catégorie définie.</p>
-  <% end %>
-</div>
-
-<div class="container mt-4">
-  <!-- Onglets de navigation -->
-  <ul class="nav nav-tabs" id="foodtruckTabs" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">
-        Info
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu" type="button" role="tab" aria-controls="menu" aria-selected="false">
-        Menu
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="avis-tab" data-bs-toggle="tab" data-bs-target="#avis" type="button" role="tab" aria-controls="avis" aria-selected="false">
-        Avis
-      </button>
-    </li>
-  </ul>
-
-  <!-- Contenu des onglets -->
-  <div class="tab-content mt-3" id="foodtruckTabsContent">
-    <!-- Onglet Info -->
-    <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
-      <h3>Informations Générales</h3>
-      <p><i class="fa-solid fa-location-dot"></i> Adresse : <%= @foodtruck.address_default %></p>
-      <p><i class="fa-solid fa-clock"></i> Horaires : 12h - 18h</p>
+    <div class="tabs-dashboard">
+      <div class="tab-link-dashboard active" data-tab-target="info" aria-selected="true">Info</div>
+      <div class="tab-link-dashboard" data-tab-target="menu" aria-selected="false">Menu</div>
+      <div class="tab-link-dashboard" data-tab-target="avis" aria-selected="false">Avis</div>
     </div>
 
-    <!-- Onglet Menu -->
-    <div class="tab-pane fade" id="menu" role="tabpanel" aria-labelledby="menu-tab">
+    <!-- Contenu des Onglets -->
+    <div id="info" class="tab-content-dashboard">
+      <h3>Informations</h3>
+      <p>Adresse : <%= @foodtruck.address_default %></p>
+    </div>
+
+    <div id="menu" class="tab-content-dashboard" style="display: none;">
       <h3>Menu</h3>
-      <% if @dishes.any? %>
-        <ul class="list-group">
-          <% @dishes.each do |dish| %>
+      <% if @foodtruck.dishes.any? %>
+        <ul class="list-group foodtruck-menu">
+          <% @foodtruck.dishes.each do |dish| %>
             <li class="list-group-item">
-              <div class="d-flex align-items-center">
-                <!-- Affichage de la photo -->
-                <% if dish.photo.attached? %>
-                  <%= cl_image_tag dish.photo.key, alt: dish.title, class: "img-thumbnail", width: 100, height: 100, crop: :fit %>
-                <% else %>
-                  <%= image_tag "default_dish.jpg", alt: "Image par défaut", class: "img-thumbnail me-3", style: "width: 100px; height: 100px;" %>
-                <% end %>
-
-                <!-- Informations sur le plat -->
-                <div class="flex-grow-1">
-                  <strong><%= dish.title %></strong>
-                  <p class="mb-1"><%= dish.description %></p>
-                </div>
-
-                <!-- Prix -->
-                <span class="fw-bold"><%= number_to_currency(dish.price, unit: "€") %></span>
-
-                <% if @foodtruck.is_owned_by?(current_user) %>
-                  <%= link_to dish_path(dish), data:{turbo_method: :delete} do %>
-                  <i class="fa-solid fa-trash"></i>
-                  <% end %>
-                <% end %>
+              <%= cl_image_tag dish.photo.attached? ? dish.photo.key : 'default_dish.jpg', class: "img-thumbnail", alt: dish.title %>
+              <div>
+                <strong><%= dish.title %></strong>
+                <p><%= dish.description %></p>
               </div>
+              <span class="fw-bold"><%= number_to_currency(dish.price, unit: "€") %></span>
             </li>
-
           <% end %>
         </ul>
       <% else %>
-        <p>Aucun plat disponible pour ce foodtruck.</p>
+        <p>Aucun plat disponible.</p>
       <% end %>
       <% if @foodtruck.is_owned_by?(current_user) %>
-      <%= link_to "Ajouter un plat", new_foodtruck_dish_path(@foodtruck) %>
+        <%= link_to "Ajouter un plat", new_foodtruck_dish_path(@foodtruck), class: "btn btn-success mt-3" %>
       <% end %>
     </div>
 
-    <!-- Onglet Avis -->
-    <div class="tab-pane fade" id="avis" role="tabpanel" aria-labelledby="avis-tab">
-      <h3>Avis des Clients</h3>
-
-      <!-- Bouton Ajouter mon avis -->
-        <div class="add-review-button">
-          <%= link_to "Ajouter mon avis", new_foodtruck_review_path(@foodtruck), class: "btn btn-primary" %>
+    <div id="avis" class="tab-content-dashboard" style="display: none;">
+      <h3>Avis</h3>
+      <%= link_to "Ajouter un avis", new_foodtruck_review_path(@foodtruck), class: "btn btn-primary mb-2" %>
+      <% @foodtruck.reviews.each do |review| %>
+        <div class="review mb-2">
+          <p><strong><%= review.user.name %> :</strong> <%= review.comment %></p>
+          <p>Note : <%= render_stars(review.rating) %></p>
         </div>
-
-      <% if @foodtruck.reviews.any? %>
-        <% @foodtruck.reviews.each do |review| %>
-          <div class="review">
-            <p><strong><%= review.user.name %> :</strong> <%= review.comment %></p>
-            <p>Note : <%= render_stars(review.rating) %></p>
-          </div>
-        <% end %>
-      <% else %>
-        <p>Aucun avis pour ce foodtruck.</p>
       <% end %>
-
-
-      </div>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabLinks = document.querySelectorAll('.tab-link-dashboard');
+    const tabContents = document.querySelectorAll('.tab-content-dashboard');
+
+    tabLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const target = link.getAttribute('data-tab-target');
+
+        tabLinks.forEach(tab => {
+          tab.classList.remove('active');
+          tab.setAttribute('aria-selected', 'false');
+        });
+        tabContents.forEach(content => content.style.display = 'none');
+
+        link.classList.add('active');
+        link.setAttribute('aria-selected', 'true');
+        document.getElementById(target).style.display = 'block';
+      });
+    });
+
+    document.querySelector('.tab-link-dashboard.active').click();
+  });
+</script>
