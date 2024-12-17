@@ -1,12 +1,27 @@
-<div class="popupmap">
-  <%= link_to foodtruck_path(foodtruck), class: "text-decoration-none d-block" do %>
-    <% if foodtruck.photo.attached? %>
-      <%= cl_image_tag foodtruck.photo.key, height: 100, width: 100, crop: :fill, alt: "Foodtruck", class: "img-fluid rounded mb-2" %>
-    <% else %>
-      <%= image_tag "default_foodtruck.jpg", alt: "Default image", class: "img-fluid rounded mb-2" %>
-    <% end %>
-    <h3><%= foodtruck.name %></h3>
-    <p><% foodtruck.categories.each do |category| %><%= category %> <% end %></p>
-    <p><i class="fa-solid fa-location-dot"></i> <%= foodtruck.address_default %></p>
+<div class="fav-card" style="width: 100px; height: 120px; box-shadow: none;">
+  <%= link_to foodtruck_path(foodtruck), class: "fav-card-link" do %>
+    <div class="fav-image">
+      <% if foodtruck.photo.attached? %>
+        <%= cl_image_tag foodtruck.photo.key,
+              class: "fav-background-image",
+              width: 100,
+              height: 60,
+              crop: :fill,
+              gravity: :auto %>
+      <% else %>
+        <%= image_tag "foodtruck_disconnected.png",
+              class: "fav-background-image",
+              alt: "Image par défaut" %>
+      <% end %>
+    </div>
+
+    <div class="fav-details">
+      <h3 class="fav-name"><%= foodtruck.name %></h3>
+      <div class="fav-categories">
+        <% foodtruck.categories.each do |category| %>
+          <span class="category-tag"><%= category %></span>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 </div>
