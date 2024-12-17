@@ -93,13 +93,13 @@ class FoodtrucksController < ApplicationController
    def available_status
     @foodtruck = current_user.foodtruck
     @foodtruck.update(status: true)
-    redirect_to dashboard_path, notice: "Votre présence est activée."
+    redirect_to dashboard_path(anchor: 'foodtruck'), notice: "Votre présence est activée."
   end
 
   def unavailable_status
     @foodtruck = current_user.foodtruck
     @foodtruck.update(status: false)
-    redirect_to dashboard_path, notice: "Votre présence est désactivée."
+    redirect_to dashboard_path(anchor: 'foodtruck'), notice: "Votre présence est désactivée."
   end
 
   private
