@@ -51,10 +51,17 @@
             <p><strong>Adresse :</strong> <%= current_user.foodtruck.address_default || "Non spécifiée" %></p>
             <p><strong>Téléphone :</strong> <%= current_user.foodtruck.phone_number.presence || "Pas de numéro de téléphone disponible." %></p>
             <p><strong>Catégories :</strong> <%= current_user.foodtruck.categories.any? ? current_user.foodtruck.categories.join(', ') : "Aucune catégorie définie." %></p>
+          </div>
 
-            <div class="profile-actions mt-3">
-              <%= link_to "Modifier ce foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn btn-custom btn-flex" %>
-            </div>
+          <!-- Boutons d'activation/désactivation et Modifier -->
+          <div class="presence-actions">
+          <%= link_to "Modifier ce foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn btn-custom" %>
+            <% if current_user.foodtruck.status %>
+              <%= button_to "Désactiver ma présence", unavailable_status_foodtruck_path(current_user.foodtruck), method: :patch, class: "btn btn-deactivate" %>
+            <% else %>
+              <%= button_to "Activer ma présence", available_status_foodtruck_path(current_user.foodtruck), method: :patch, class: "btn btn-activate" %>
+            <% end %>
+
           </div>
         <% else %>
           <p>Vous n'avez pas encore ajouté de foodtruck.</p>

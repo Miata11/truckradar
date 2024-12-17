@@ -91,19 +91,23 @@
     }
 
     .profile-actions {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-top: 1.5rem;
+      display: flex; /* Active Flexbox */
+      flex-direction: column; /* Place les boutons l'un sous l'autre */
+      justify-content: center; /* Centre les boutons verticalement */
+      align-items: center; /* Centre les boutons horizontalement */
+      gap: 1rem; /* Espacement entre les boutons */
+      margin-top: 1.5rem; /* Espacement par rapport au contenu précédent */
     }
 
     .btn-flex {
-      flex: 1;
-      text-align: center;
-      border-radius: 10px;
-      border: 1px solid #029094;  /* Bordure fine */
-      margin-top: 1em;  /* Marge au-dessus */
-      padding: 0.5rem;
+      width: 100%; /* Prend toute la largeur */
+      max-width: 250px; /* Limite la largeur maximale */
+      text-align: center; /* Centre le texte */
+      padding: 0.5rem; /* Espacement interne */
+      font-weight: bold;
+      border-radius: 10px; /* Coins arrondis */
+      text-transform: uppercase; /* Texte en majuscules */
+      transition: background 0.3s, color 0.3s;
     }
 
     .btn-custom {
@@ -127,6 +131,52 @@
         text-decoration: none;
       }
     }
+    /* Bouton d'activation spécifique */
+      .btn-activate {
+        @extend .btn-custom;
+        background-color: #dc3546c9; /* Vert pour activer */
+
+        &:hover {
+          background-color: #c82333ad; /* Vert plus foncé au survol */
+        }
+      }
+
+      /* Bouton de désactivation spécifique */
+      .btn-deactivate {
+        @extend .btn-custom;
+        background-color: #dc3546c0; /* Rouge pour désactiver */
+
+        &:hover {
+          background-color: #c82333b3; /* Rouge plus foncé au survol */
+        }
+      }
+
+      /* Alignement des boutons */
+      .presence-actions {
+        display: flex; /* Active Flexbox */
+        flex-direction: column; /* Met les éléments en colonne */
+        justify-content: center; /* Centre les boutons verticalement */
+        align-items: center; /* Centre horizontalement */
+        gap: 1rem; /* Espacement vertical entre les boutons */
+        margin-top: 1.5rem; /* Espacement par rapport au contenu précédent */
+      }
+
+      .btn-custom,
+      .btn-activate,
+      .btn-deactivate {
+        display: inline-flex; /* Flexbox pour ajuster contenu */
+        justify-content: center; /* Centre le contenu horizontalement */
+        align-items: center; /* Centre verticalement */
+        width: 250px; /* Largeur fixe pour TOUS les boutons */
+        height: 50px; /* Hauteur fixe pour TOUS les boutons */
+        text-align: center; /* Centre le texte */
+        padding: 0; /* Enlève tout padding supplémentaire */
+        font-weight: bold;
+        font-size: 1rem; /* Taille de texte identique */
+        border-radius: 10px; /* Coins arrondis */
+        text-transform: uppercase;
+        transition: background 0.3s, color 0.3s, border 0.3s;
+      }
 
 
   }
