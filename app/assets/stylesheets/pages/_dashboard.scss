@@ -105,5 +105,29 @@
       margin-top: 1em;  /* Marge au-dessus */
       padding: 0.5rem;
     }
+
+    .btn-custom {
+      display: inline-flex; /* Utilise flexbox */
+      align-items: center; /* Centre verticalement */
+      justify-content: center; /* Centre horizontalement */
+      background-color: #029094; /* Couleur principale */
+      color: #FFFFFF; /* Texte blanc */
+      border: none; /* Pas de bordure */
+      border-radius: 8px; /* Coins arrondis */
+      padding: 0.5rem 1rem; /* Espacement interne */
+      font-weight: bold;
+      text-transform: uppercase; /* Texte en majuscules */
+      text-align: center; /* Assure l'alignement horizontal */
+      line-height: 1.2; /* Ajuste la hauteur de ligne */
+      transition: background 0.3s, color 0.3s;
+
+      &:hover {
+        background-color: #026d6e; /* Teinte plus foncée au survol */
+        color: #FFFFFF;
+        text-decoration: none;
+      }
+    }
+
+
   }
 }
