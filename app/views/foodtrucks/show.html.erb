@@ -47,12 +47,10 @@
 
     <!-- Contenu des Onglets -->
     <div id="info" class="tab-content-dashboard <%= params[:tab] == "menu" ? '' : 'active'%>" data-tabs-target="tabContent">
-      <h3>Informations</h3>
       <p>Adresse : <%= @foodtruck.address_default %></p>
     </div>
 
     <div id="menu" class="tab-content-dashboard <%= params[:tab] == "menu" ? 'active' : ''%>" data-tabs-target="tabContent" style="display: none;">
-      <h3>Menu</h3>
       <% if @foodtruck.dishes.any? %>
         <ul class="list-group foodtruck-menu">
           <% @foodtruck.dishes.each do |dish| %>
@@ -66,9 +64,9 @@
 
               <!-- Si l'utilisateur est propriétaire du foodtruck, permettre la suppression -->
               <% if @foodtruck.is_owned_by?(current_user) %>
-                <%= link_to "Supprimer", dish_path(dish),
-                class: "btn btn-danger btn-sm mt-2",
-                data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer ce plat ?" } %>
+                <%= link_to dish_path(dish), class: "btn btn-danger btn-sm mt-2", data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer ce plat ?" } do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
               <% end %>
             </li>
           <% end %>
@@ -82,7 +80,6 @@
     </div>
 
     <div id="avis" class="tab-content-dashboard" data-tabs-target="tabContent" style="display: none;">
-      <h3>Avis</h3>
       <%= link_to "Ajouter un avis", new_foodtruck_review_path(@foodtruck), class: "btn btn-primary mb-2" %>
       <% @foodtruck.reviews.each do |review| %>
         <div class="review mb-2">
@@ -91,5 +88,6 @@
         </div>
       <% end %>
     </div>
+
   </div>
 </div>

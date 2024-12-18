@@ -82,7 +82,7 @@
   .tabs-container {
     width: 90%;
   }
-  
+
   .tab-content-dashboard {
     display: none;
 
@@ -103,6 +103,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: relative; /* Nécessaire pour positionner l'icône en bas à droite */
 
         img {
           width: 60px;
@@ -112,6 +113,18 @@
 
         .fw-bold {
           font-size: 1.1rem;
+        }
+
+        /* Positionner l'icône poubelle */
+        .btn-danger {
+          position: absolute;
+          bottom: 0px;
+          right: 10px;
+          padding: 5px;
+          background: transparent;
+          border: none;
+          font-size: 1.2rem;
+          color: #029094;
         }
       }
     }
