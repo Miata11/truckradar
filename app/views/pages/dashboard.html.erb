@@ -1,82 +1,73 @@
-<div class="dashboard-container">
+<div class="dashboard-container" data-controller="acti-tab">
   <div class="form-container-dashboard">
-    <div class="form-inputs-dashboard">
-      <p class="form-header">Salut <%= "#{current_user.first_name} #{current_user.last_name}" %> !</p>
-      <div class="separator-dashboard"></div>
+    <!-- En-tête utilisateur -->
+    <p class="form-header">Salut <%= "#{current_user.first_name} #{current_user.last_name}" %> !</p>
+    <div class="separator-dashboard"></div>
 
-      <!-- Onglets -->
-      <div class="tabs-dashboard">
-        <div class="tab-link-dashboard active" data-tab-target="profil" aria-selected="true">Profil</div>
-        <div class="tab-link-dashboard" data-tab-target="foodtruck" aria-selected="false">Foodtruck</div>
+    <!-- Onglets Bootstrap -->
+    <ul class="nav nav-tabs tabs-dashboard" id="dashboardTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab-link-dashboard active" id="profil-tab" data-acti-tab-target="profil" data-bs-toggle="tab" data-bs-target="#profil" type="button" role="tab" aria-controls="profil" aria-selected="true">
+          Profil
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link tab-link-dashboard" id="foodtruck-tab" data-acti-tab-target="foodtruck" data-bs-toggle="tab" data-bs-target="#foodtruck" type="button" role="tab" aria-controls="foodtruck" aria-selected="false">
+          Foodtruck
+        </button>
+      </li>
+    </ul>
+
+    <!-- Contenu des onglets -->
+    <div class="tab-content mt-3" id="dashboardTabsContent">
+      <!-- Onglet Profil -->
+      <div class="tab-pane fade show active" id="profil" role="tabpanel" aria-labelledby="profil-tab">
+        <p><strong>Prénom :</strong> <%= current_user.first_name %></p>
+        <p><strong>Nom :</strong> <%= current_user.last_name %></p>
+        <p><strong>Email :</strong> <%= current_user.email %></p>
+        <p><strong>Adresse par défaut :</strong> <%= current_user.address_default || "Non spécifiée" %></p>
+        <p><strong>Nom de la société :</strong> <%= current_user.company_name.presence || "Non spécifié" %></p>
+
+        <div class="profile-actions mt-3">
+          <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn btn-custom btn-flex" %>
+          <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter ?" }, class: "btn btn-custom btn-flex" %>
+        </div>
       </div>
 
-      <!-- Contenu des onglets -->
-      <div id="profil" class="tab-content-dashboard">
-        <div>
-          <p><strong>Prénom :</strong> <%= current_user.first_name %></p>
-          <p><strong>Nom :</strong> <%= current_user.last_name %></p>
-          <p><strong>Email :</strong> <%= current_user.email %></p>
-          <p><strong>Adresse par défaut :</strong> <%= current_user.address_default || "Non spécifiée" %></p>
-          <p><strong>Nom de la société :</strong> <%= current_user.company_name.presence || "Non spécifié" %></p>
-        </div>
-
-        <div class="profile-actions">
-          <%= link_to "Modifier", edit_user_registration_path, class: "btn-dashboard btn-flex" %>
-          <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter ?" }, class: "btn-dashboard btn-flex" %>
-        </div>
-      </div>
-
-      <div id="foodtruck" class="tab-content-dashboard" style="display: none;">
+      <!-- Onglet Foodtruck -->
+      <div class="tab-pane fade" id="foodtruck" role="tabpanel" aria-labelledby="foodtruck-tab">
         <% if current_user.foodtruck.present? %>
           <div class="foodtruck-details">
+            <!-- Photo -->
             <% if current_user.foodtruck.photo.present? %>
-              <%= cl_image_tag current_user.foodtruck.photo.key, alt: "Photo de #{current_user.foodtruck.name}", class: "foodtruck-photo", width: 150, height: 150, crop: :fill %>
+              <%= cl_image_tag current_user.foodtruck.photo.key, alt: "Photo de #{current_user.foodtruck.name}", class: "img-fluid rounded mb-3", width: 150, crop: :fill %>
             <% else %>
               <p>Aucune photo disponible pour ce foodtruck.</p>
             <% end %>
-            <p><strong>Nom :</strong> <%= link_to current_user.foodtruck.name, foodtruck_path(current_user.foodtruck) %></p>
+
+            <!-- Détails du Foodtruck -->
+            <p><strong>Nom :</strong> <%= current_user.foodtruck.name %></p>
             <p><strong>Description :</strong> <%= current_user.foodtruck.description.presence || "Pas de description disponible." %></p>
             <p><strong>Adresse :</strong> <%= current_user.foodtruck.address_default || "Non spécifiée" %></p>
             <p><strong>Téléphone :</strong> <%= current_user.foodtruck.phone_number.presence || "Pas de numéro de téléphone disponible." %></p>
             <p><strong>Catégories :</strong> <%= current_user.foodtruck.categories.any? ? current_user.foodtruck.categories.join(', ') : "Aucune catégorie définie." %></p>
-            <%= link_to "Modifier ce foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn-dashboard" %>
+          </div>
+
+          <!-- Boutons d'activation/désactivation et Modifier -->
+          <div class="presence-actions">
+          <%= link_to "Modifier mon foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn btn-custom" %>
+            <% if current_user.foodtruck.status %>
+              <%= button_to "Désactiver ma présence", unavailable_status_foodtruck_path(current_user.foodtruck, anchor: 'foodtruck'), method: :patch, class: "btn btn-deactivate", data:{action:"click->acti-tab#toggle",turbo:false} %>
+            <% else %>
+              <%= button_to "Activer ma présence", available_status_foodtruck_path(current_user.foodtruck, anchor: 'foodtruck'), method: :patch, class: "btn btn-activate", data:{action:"click->acti-tab#toggle",turbo:false} %>
+            <% end %>
+
           </div>
         <% else %>
           <p>Vous n'avez pas encore ajouté de foodtruck.</p>
-          <%= link_to "Ajouter un foodtruck", new_foodtruck_path, class: "btn-dashboard" %>
+          <%= link_to "Ajouter un foodtruck", new_foodtruck_path, class: "btn btn-success" %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Gestion des onglets
-    const tabLinks = document.querySelectorAll('.tab-link-dashboard');
-    const tabContents = document.querySelectorAll('.tab-content-dashboard');
-
-    tabLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        const target = link.getAttribute('data-tab-target');
-
-        // Désactiver tous les onglets
-        tabLinks.forEach(tab => {
-          tab.classList.remove('active');
-          tab.setAttribute('aria-selected', 'false');
-        });
-        tabContents.forEach(content => {
-          content.style.display = 'none';
-        });
-
-        // Activer l'onglet sélectionné
-        link.classList.add('active');
-        link.setAttribute('aria-selected', 'true');
-        document.getElementById(target).style.display = 'block';
-      });
-    });
-
-    // Afficher l'onglet par défaut
-    document.querySelector('.tab-link-dashboard.active').click();
-  });
-</script>

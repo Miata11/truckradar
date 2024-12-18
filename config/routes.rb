@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :foodtrucks do
+    member do
+      patch :available_status
+      patch :unavailable_status
+    end
     resources :dishes, only: [:index, :new, :create, :edit, :update]
     resources :favorites, only: [:create, :destroy]
     resources :reviews, only: [:new, :create]

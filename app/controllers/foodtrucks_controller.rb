@@ -2,6 +2,7 @@ class FoodtrucksController < ApplicationController
 
   skip_before_action :authenticate_user!, only: %i[index show]
 
+  before_action :set_foodtruck, only: [:available_status, :unavailable_status]
 
   def index
     if params[:query].present?
@@ -88,6 +89,19 @@ class FoodtrucksController < ApplicationController
     end
   end
 
+   # methodes pour bouton activer ou desactiver ma présence
+   def available_status
+    @foodtruck = current_user.foodtruck
+    @foodtruck.update(status: true)
+    redirect_to dashboard_path(anchor: 'foodtruck'), notice: "Votre présence est activée."
+  end
+
+  def unavailable_status
+    @foodtruck = current_user.foodtruck
+    @foodtruck.update(status: false)
+    redirect_to dashboard_path(anchor: 'foodtruck'), notice: "Votre présence est désactivée."
+  end
+
   private
 
   # def user_marker(user)
@@ -101,5 +115,9 @@ class FoodtrucksController < ApplicationController
 
   def foodtruck_params
     params.require(:foodtruck).permit(:name, :company_name, :description, :address_default, :phone_number, :photo, categories: [])
+  end
+
+  def set_foodtruck
+    @foodtruck = current_user.foodtruck
   end
 end
