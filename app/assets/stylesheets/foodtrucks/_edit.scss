@@ -16,46 +16,47 @@
     flex-direction: column;
     align-items: center;
     text-align: left;
-    padding: 1rem;
-    background-color: rgba(71, 86, 87, 0.45); /* Transparence */
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.859);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 450px;
+    max-width: 600px;
     margin: 0; /* Ajout de marges pour éviter les débordements sur petits écrans */
     height: auto; /* Permet au formulaire de s'étendre en fonction de son contenu */
-    overflow-y: auto;
+    // overflow-y: auto;
     margin: 20px;
     margin-bottom: 15vh;/* Ajout du défilement vertical si nécessaire */
 
     .edit-form-title {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #fff;
-      text-align: left;
+      font-size: 1.5rem;
+      font-weight: bolder;
+      color: #029094;
+      margin-bottom: 1rem;
+      text-align: center;
     }
 
-    .edit-form-container {
-      border-radius: 10px;
-      margin: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: rgba(255, 255, 255, 0.257);
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      //width: 90%;
-      max-width: 450px;
-      padding: 1.5rem;
-    }
+    // .edit-form-container {
+    //   border-radius: 10px;
+    //   margin: 1rem;
+    //   display: flex;
+    //   flex-direction: column;
+    //   align-items: center;
+    //   background-color: rgba(255, 255, 255, 0.257);
+    //   border-radius: 10px;
+    //   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    //   //width: 90%;
+    //   max-width: 450px;
+    //   padding: 1.5rem;
+    // }
 
     .edit-form-group {
       width: 100%;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
 
       label {
-        font-weight: bold;
-        color: #dcdcdc;
+        font-weight: normal;
+        color: #029094;
         margin-bottom: 0.5rem;
       }
 
@@ -63,8 +64,8 @@
         width: 100%;
         border-radius: 8px;
         border: 1px solid #ccc;
-        font-size: 1rem;
-        margin-top: 0.5rem;
+        font-size: 0.75rem;
+        margin-top: 0.2rem;
 
         &:focus {
           border-color: #029094;
@@ -82,10 +83,11 @@
       .edit-category-label {
         border-radius: 5px;
         font-size: smaller;
-        border: 1px solid #fcfcfc;
-        color: #ffffff;
+        border: 1px solid #029094;
+        color: #444;
         cursor: pointer;
         transition: background-color 0.3s, color 0.3s;
+        padding: 0.2rem;
       }
     }
 
