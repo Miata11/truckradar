@@ -50,7 +50,7 @@
         color: #029094;  /* Couleur du texte */
         border: none;  /* Pas de bordure */
         cursor: pointer;
-        transition: background 0.3s, color 0.3s, border-bottom 0.3s;
+        //transition: background 0.3s, color 0.3s, border-bottom 0.3s;
         border-bottom: 2px solid transparent; /* Lignes sous les onglets */
 
         &.active {
@@ -107,7 +107,7 @@
       font-weight: bold;
       border-radius: 10px; /* Coins arrondis */
       text-transform: uppercase; /* Texte en majuscules */
-      transition: background 0.3s, color 0.3s;
+      // transition: background 0.3s, color 0.3s;
     }
 
     .btn-custom {
@@ -123,8 +123,8 @@
       text-transform: uppercase; /* Texte en majuscules */
       text-align: center; /* Assure l'alignement horizontal */
       line-height: 1; /* Ajuste la hauteur de ligne */
-      transition: background 0.3s, color 0.3s;
-      padding: 0.5rem
+      // transition: background 0.3s, color 0.3s;
+      padding: 0.5rem;
 
       &:hover {
         background-color: #026d6e; /* Teinte plus foncée au survol */
@@ -180,7 +180,7 @@
         font-size: 1rem; /* Taille de texte identique */
         border-radius: 10px; /* Coins arrondis */
         text-transform: uppercase;
-        transition: background 0.3s, color 0.3s, border 0.3s;
+        // transition: background 0.3s, color 0.3s, border 0.3s;
       }
 
 
