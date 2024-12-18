@@ -4,6 +4,7 @@
   align-content: center;
   align-items: center;
   height: calc(100vh - 12vh);
+  min-height: 120vh;
 
   .foodtruck-container {
     margin-top: 1rem !important;
@@ -19,7 +20,7 @@
 
     .foodtruck-heart {
       position: relative;
-      top: -180px;
+      top: 60px;
       right: -350px;
       width: 0;
       height: 0;
@@ -78,6 +79,10 @@
     }
   }
 
+  .tabs-container {
+    width: 90%;
+  }
+  
   .tab-content-dashboard {
     display: none;
 
