@@ -13,7 +13,15 @@
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
     <%= render 'shared/ios_pwa_links' %>
+    <%= favicon_link_tag 'favicon.ico' %>
 
+
+      <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Truckradar">
+    <meta property="og:description" content="La meilleure boussole pour trouver des food trucks près de chez vous.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.truckradar.com">
+    <meta property="og:image" content="https://www.truckradar.com/assets/images/1200x630.png">
   </head>
 
   <body data-user-role="<%= current_user&.role %>"><%= render "shared/navbar" %>
