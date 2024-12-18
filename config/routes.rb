@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: "pages#home"
+  get '/faq', to: 'pages#faq'
 
   resources :foodtrucks do
     resources :dishes, only: [:index, :new, :create, :edit, :update]
