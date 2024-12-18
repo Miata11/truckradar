@@ -24,21 +24,26 @@ export default class extends Controller {
     const style = document.createElement('style')
     style.textContent = `
      .mapboxgl-user-location-dot {
-        background-image: url('${this.#getLocationMarkerImage()}'); /* Chemin de l'image personnalisée */
-        background-size: cover; /* Ajuste l'image pour qu'elle couvre tout l'espace */
+        background-image: url('${this.#getLocationMarkerImage()}');
+        background-color: transparent !important;  /* Fond transparent */
+        background-size: 100%;  /* Image un peu plus grande */
         background-repeat: no-repeat;
         background-position: center;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%; /* Cercle parfait */
-        background-color: #00ff00; /* Vert pour indiquer la géolocalisation */
-        border: 2px solid #ffffff; /* Ajoute une bordure blanche */
-      }
+        width: 45px !important;
+        height: 45px !important;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border-radius: 50%;
+        border: 3px solid #14f18a;  /* Bordure verte plus épaisse */
+        mask-image: radial-gradient(circle at center, black 85%, transparent 85%);
+        -webkit-mask-image: radial-gradient(circle at center, black 85%, transparent 85%);
+    }
 
-      .mapboxgl-user-location-dot::before,
-      .mapboxgl-user-location-dot::after {
-        display: none; /* Désactiver les animations par défaut de la géolocalisation */
-      }
+    .mapboxgl-user-location-dot::before,
+    .mapboxgl-user-location-dot::after {
+        display: none;
+    }
     `
     document.head.appendChild(style)
 
