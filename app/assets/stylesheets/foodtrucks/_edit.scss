@@ -22,40 +22,22 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 600px;
-    margin: 0; /* Ajout de marges pour éviter les débordements sur petits écrans */
-    height: auto; /* Permet au formulaire de s'étendre en fonction de son contenu */
-    // overflow-y: auto;
-    margin: 20px;
-    margin-bottom: 15vh;/* Ajout du défilement vertical si nécessaire */
+    margin: 20px 0 15vh;
 
     .edit-form-title {
-      font-size: 1.5rem;
-      font-weight: bolder;
+      font-size: 1.8rem;
+      font-weight: bold;
       color: #029094;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       text-align: center;
     }
 
-    // .edit-form-container {
-    //   border-radius: 10px;
-    //   margin: 1rem;
-    //   display: flex;
-    //   flex-direction: column;
-    //   align-items: center;
-    //   background-color: rgba(255, 255, 255, 0.257);
-    //   border-radius: 10px;
-    //   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    //   //width: 90%;
-    //   max-width: 450px;
-    //   padding: 1.5rem;
-    // }
-
     .edit-form-group {
       width: 100%;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
 
       label {
-        font-weight: normal;
+        font-weight: bold;
         color: #029094;
         margin-bottom: 0.5rem;
       }
@@ -64,8 +46,9 @@
         width: 100%;
         border-radius: 8px;
         border: 1px solid #ccc;
-        font-size: 0.75rem;
-        margin-top: 0.2rem;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
 
         &:focus {
           border-color: #029094;
@@ -73,32 +56,39 @@
           outline: none;
         }
       }
+
+      .edit-textarea-field {
+        min-height: 100px;
+      }
     }
 
     .edit-category-selector {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.75rem;
 
       .edit-category-label {
         border-radius: 5px;
-        font-size: smaller;
+        font-size: 0.85rem;
         border: 1px solid #029094;
         color: #444;
+        background-color: transparent;
         cursor: pointer;
         transition: background-color 0.3s, color 0.3s;
-        padding: 0.2rem;
+        padding: 0.4rem 0.6rem;
       }
     }
 
     .edit-form-actions {
       width: 100%;
+      margin-top: 1.5rem;
 
       .edit-submit-button {
         background-color: #029094;
         color: white;
         font-size: 1.1rem;
-        padding: 1rem;
+        font-weight: bold;
+        padding: 0.8rem 1.2rem;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -113,19 +103,16 @@
   }
 }
 
-/* Rend les checkboxes invisibles mais fonctionnelles */
 .edit-btn-check {
   position: absolute;
   opacity: 0;
   z-index: -1;
 }
 
-/* Styles pour le label associé lorsque la checkbox est cochée ou active */
-.edit-btn-check:checked + .edit-category-label, /* Checkbox cochée */
-.edit-category-label:active,                   /* Label cliqué */
-.edit-category-label.edit-active {             /* Classe ajoutée manuellement */
-  //color: white;
+.edit-btn-check:checked + .edit-category-label,
+.edit-category-label:active,
+.edit-category-label.edit-active {
   background-color: #029094;
-  //border-color: #029094;
-  border: none !important;
+  color: white;
+  border: none;
 }
