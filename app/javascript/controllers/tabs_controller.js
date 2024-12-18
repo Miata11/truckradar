@@ -1,32 +1,43 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const tabLinks = document.querySelectorAll('.tab-link-dashboard');
-  const tabContents = document.querySelectorAll('.tab-content-dashboard');
+import { Controller } from "@hotwired/stimulus";
 
-  tabLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      const target = link.getAttribute('data-tab-target');
+export default class extends Controller {
+  static targets = ["tabLink", "tabContent"];
 
-      // Retirer la classe active et cacher tous les contenus
-      tabLinks.forEach(tab => {
-        tab.classList.remove('active');
-        tab.setAttribute('aria-selected', 'false');
-      });
-
-      tabContents.forEach(content => {
-        content.style.display = 'none';
-      });
-
-      // Activer le lien et afficher le contenu correspondant
-      link.classList.add('active');
-      link.setAttribute('aria-selected', 'true');
-      document.getElementById(target).style.display = 'block';
-    });
-  });
-
-  // Initialisation avec l'onglet actif par défaut
-  const activeTab = document.querySelector('.tab-link-dashboard.active');
-  if (activeTab) {
-    const target = activeTab.getAttribute('data-tab-target');
-    document.getElementById(target).style.display = 'block';
+  connect() {
+    // Afficher l'onglet actif par défaut lors du chargement
+    const activeTab = this.tabLinkTargets.find(link => link.classList.contains("active"));
+    if (activeTab) {
+      this.showTab(activeTab);
+    }
   }
-});
+
+  change(event) {
+    event.preventDefault();
+    const targetTab = event.currentTarget;
+
+    // Afficher le contenu associé à l'onglet sélectionné
+    this.showTab(targetTab);
+  }
+
+  showTab(targetTab) {
+    const targetId = targetTab.dataset.tabTarget;
+
+    // Réinitialiser tous les onglets
+    this.tabLinkTargets.forEach(link => {
+      link.classList.remove("active");
+      link.setAttribute("aria-selected", "false");
+    });
+
+    this.tabContentTargets.forEach(content => {
+      content.style.display = "none";
+    });
+
+    // Activer l'onglet cliqué et afficher le contenu correspondant
+    targetTab.classList.add("active");
+    targetTab.setAttribute("aria-selected", "true");
+    const targetContent = this.tabContentTargets.find(content => content.id === targetId);
+    if (targetContent) {
+      targetContent.style.display = "block";
+    }
+  }
+}
