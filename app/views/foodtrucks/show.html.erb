@@ -4,12 +4,13 @@
       <!-- Image du Foodtruck -->
       <div class="foodtruck-photo-container">
         <% if @foodtruck.photo.attached? %>
-          <%= cl_image_tag @foodtruck.photo.key, alt: @foodtruck.name, class: "card-img-top foodtruck-photo",
-              width: 100,
-              height: 200,
-              gravity: :auto %>
+          <%= cl_image_tag @foodtruck.photo.key, alt: @foodtruck.name,
+          class: "card-img-top foodtruck-photo fav-background-image",
+          width: 100,
+          height: 240,
+          gravity: :auto %>
         <% else %>
-          <%= image_tag "default_foodtruck.jpg", alt: "Default image", class: "card-img-top foodtruck-photo" %>
+          <%= image_tag "default_foodtruck.jpg", alt: "Image par défaut", class: "card-img-top foodtruck-photo" %>
         <% end %>
         <!-- Cœur en haut à droite -->
         <div class="foodtruck-heart">
@@ -39,19 +40,17 @@
   <!-- Onglets -->
   <div class="tabs-container" data-controller="tabs">
     <div class="tabs-dashboard">
-      <div class="tab-link-dashboard active" data-action="click->tabs#change" data-tab-target="info" data-tabs-target="tabLink" aria-selected="true">Info</div>
-      <div class="tab-link-dashboard" data-action="click->tabs#change" data-tab-target="menu" data-tabs-target="tabLink" aria-selected="false">Menu</div>
+      <div class="tab-link-dashboard <%= params[:tab] == "menu" ? '' : 'active'%>" data-action="click->tabs#change" data-tab-target="info" data-tabs-target="tabLink" aria-selected="true">Info</div>
+      <div class="tab-link-dashboard <%= params[:tab] == "menu" ? 'active' : ''%>" data-action="click->tabs#change" data-tab-target="menu" data-tabs-target="tabLink" aria-selected="false">Menu</div>
       <div class="tab-link-dashboard" data-action="click->tabs#change" data-tab-target="avis" data-tabs-target="tabLink" aria-selected="false">Avis</div>
     </div>
 
     <!-- Contenu des Onglets -->
-    <div id="info" class="tab-content-dashboard" data-tabs-target="tabContent">
-      <h3>Informations</h3>
+    <div id="info" class="tab-content-dashboard <%= params[:tab] == "menu" ? '' : 'active'%>" data-tabs-target="tabContent">
       <p>Adresse : <%= @foodtruck.address_default %></p>
     </div>
 
-    <div id="menu" class="tab-content-dashboard" data-tabs-target="tabContent" style="display: none;">
-      <h3>Menu</h3>
+    <div id="menu" class="tab-content-dashboard <%= params[:tab] == "menu" ? 'active' : ''%>" data-tabs-target="tabContent" style="display: none;">
       <% if @foodtruck.dishes.any? %>
         <ul class="list-group foodtruck-menu">
           <% @foodtruck.dishes.each do |dish| %>
@@ -62,6 +61,13 @@
                 <p><%= dish.description %></p>
               </div>
               <span class="fw-bold"><%= number_to_currency(dish.price, unit: "€") %></span>
+
+              <!-- Si l'utilisateur est propriétaire du foodtruck, permettre la suppression -->
+              <% if @foodtruck.is_owned_by?(current_user) %>
+                <%= link_to dish_path(dish), class: "btn btn-danger btn-sm mt-2", data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer ce plat ?" } do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              <% end %>
             </li>
           <% end %>
         </ul>
@@ -74,7 +80,6 @@
     </div>
 
     <div id="avis" class="tab-content-dashboard" data-tabs-target="tabContent" style="display: none;">
-      <h3>Avis</h3>
       <%= link_to "Ajouter un avis", new_foodtruck_review_path(@foodtruck), class: "btn btn-primary mb-2" %>
       <% @foodtruck.reviews.each do |review| %>
         <div class="review mb-2">
@@ -83,5 +88,6 @@
         </div>
       <% end %>
     </div>
+
   </div>
 </div>

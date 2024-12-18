@@ -13,18 +13,16 @@ class DishesController < ApplicationController
   def create
     @dish = @foodtruck.dishes.new(dish_params)
     if @dish.save
-      redirect_to foodtruck_path(@foodtruck), notice: "Le plat a été ajouté avec succès."
+      redirect_to foodtruck_path(@foodtruck, tab: "menu" ), notice: "Le plat a été ajouté avec succès."
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-
-
   def destroy
     dish = Dish.find(params[:id])
     if dish.delete
-      redirect_to foodtruck_path(dish.foodtruck), notice: "Le plat a été supprimé avec succès."
+      redirect_to foodtruck_path(dish.foodtruck, tab: "menu"), notice: "Le plat a été supprimé avec succès."
     else
       render foodtruck_path(dish.foodtruck), status: :unprocessable_entity
     end
