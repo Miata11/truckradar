@@ -1,4 +1,4 @@
-<div class="dashboard-container">
+<div class="dashboard-container" data-controller="acti-tab">
   <div class="form-container-dashboard">
     <!-- En-tête utilisateur -->
     <p class="form-header">Salut <%= "#{current_user.first_name} #{current_user.last_name}" %> !</p>
@@ -7,12 +7,12 @@
     <!-- Onglets Bootstrap -->
     <ul class="nav nav-tabs tabs-dashboard" id="dashboardTabs" role="tablist">
       <li class="nav-item" role="presentation">
-        <button class="nav-link tab-link-dashboard active" id="profil-tab" data-bs-toggle="tab" data-bs-target="#profil" type="button" role="tab" aria-controls="profil" aria-selected="true">
+        <button class="nav-link tab-link-dashboard active" id="profil-tab" data-acti-tab-target="profil" data-bs-toggle="tab" data-bs-target="#profil" type="button" role="tab" aria-controls="profil" aria-selected="true">
           Profil
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link tab-link-dashboard" id="foodtruck-tab" data-bs-toggle="tab" data-bs-target="#foodtruck" type="button" role="tab" aria-controls="foodtruck" aria-selected="false">
+        <button class="nav-link tab-link-dashboard" id="foodtruck-tab" data-acti-tab-target="foodtruck" data-bs-toggle="tab" data-bs-target="#foodtruck" type="button" role="tab" aria-controls="foodtruck" aria-selected="false">
           Foodtruck
         </button>
       </li>
@@ -57,9 +57,9 @@
           <div class="presence-actions">
           <%= link_to "Modifier ce foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn btn-custom" %>
             <% if current_user.foodtruck.status %>
-              <%= button_to "Désactiver ma présence", unavailable_status_foodtruck_path(current_user.foodtruck, anchor: 'foodtruck'), method: :patch, class: "btn btn-deactivate" %>
+              <%= button_to "Désactiver ma présence", unavailable_status_foodtruck_path(current_user.foodtruck, anchor: 'foodtruck'), method: :patch, class: "btn btn-deactivate", data:{action:"click->acti-tab#toggle",turbo:false} %>
             <% else %>
-              <%= button_to "Activer ma présence", available_status_foodtruck_path(current_user.foodtruck, anchor: 'foodtruck'), method: :patch, class: "btn btn-activate" %>
+              <%= button_to "Activer ma présence", available_status_foodtruck_path(current_user.foodtruck, anchor: 'foodtruck'), method: :patch, class: "btn btn-activate", data:{action:"click->acti-tab#toggle",turbo:false} %>
             <% end %>
 
           </div>
