@@ -29,7 +29,7 @@
         <p><strong>Nom de la société :</strong> <%= current_user.company_name.presence || "Non spécifié" %></p>
 
         <div class="profile-actions mt-3">
-          <%= link_to "Modifier", edit_user_registration_path, class: "btn btn-custom btn-flex" %>
+          <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn btn-custom btn-flex" %>
           <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter ?" }, class: "btn btn-custom btn-flex" %>
         </div>
       </div>
@@ -55,7 +55,7 @@
 
           <!-- Boutons d'activation/désactivation et Modifier -->
           <div class="presence-actions">
-          <%= link_to "Modifier ce foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn btn-custom" %>
+          <%= link_to "Modifier mon foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn btn-custom" %>
             <% if current_user.foodtruck.status %>
               <%= button_to "Désactiver ma présence", unavailable_status_foodtruck_path(current_user.foodtruck, anchor: 'foodtruck'), method: :patch, class: "btn btn-deactivate", data:{action:"click->acti-tab#toggle",turbo:false} %>
             <% else %>

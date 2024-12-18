@@ -114,16 +114,17 @@
       display: inline-flex; /* Utilise flexbox */
       align-items: center; /* Centre verticalement */
       justify-content: center; /* Centre horizontalement */
-      background-color: #029094; /* Couleur principale */
-      color: #FFFFFF; /* Texte blanc */
-      border: none; /* Pas de bordure */
-      border-radius: 8px; /* Coins arrondis */
+
+      color: #029094;
+      border: 1px solid #029094;  /* Bordure fine */
+      border-radius: 10px; /* Coins arrondis */
       padding: 0.5rem 1rem; /* Espacement interne */
-      font-weight: bold;
+      font-weight: normal;
       text-transform: uppercase; /* Texte en majuscules */
       text-align: center; /* Assure l'alignement horizontal */
-      line-height: 1.2; /* Ajuste la hauteur de ligne */
+      line-height: 1; /* Ajuste la hauteur de ligne */
       transition: background 0.3s, color 0.3s;
+      padding: 0.5rem
 
       &:hover {
         background-color: #026d6e; /* Teinte plus foncée au survol */
@@ -134,20 +135,24 @@
     /* Bouton d'activation spécifique */
       .btn-activate {
         @extend .btn-custom;
-        background-color: #dc3546c9; /* Vert pour activer */
+        background-color: #dc354657;
+        border: 1px solid #dc3546c9;  /* Bordure fine */
 
         &:hover {
-          background-color: #c82333ad; /* Vert plus foncé au survol */
+          // background-color: #c82333ad;
+          border: 1px solid #dc3546c9;  /* Bordure fine */
         }
       }
 
       /* Bouton de désactivation spécifique */
       .btn-deactivate {
         @extend .btn-custom;
-        background-color: #dc3546c0; /* Rouge pour désactiver */
+        // background-color: #dc3546c0; /* Rouge pour désactiver */
+        border: 1px solid #dc3546c9;  /* Bordure fine */
 
         &:hover {
-          background-color: #c82333b3; /* Rouge plus foncé au survol */
+          // background-color: #c82333b3; /* Rouge plus foncé au survol */
+          border: 1px solid #dc3546c9;  /* Bordure fine */
         }
       }
 
@@ -168,7 +173,7 @@
         justify-content: center; /* Centre le contenu horizontalement */
         align-items: center; /* Centre verticalement */
         width: 250px; /* Largeur fixe pour TOUS les boutons */
-        height: 50px; /* Hauteur fixe pour TOUS les boutons */
+        height: 40px; /* Hauteur fixe pour TOUS les boutons */
         text-align: center; /* Centre le texte */
         padding: 0; /* Enlève tout padding supplémentaire */
         font-weight: bold;
