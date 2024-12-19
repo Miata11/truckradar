@@ -13,4 +13,4 @@ module MetaTagsHelper
   # petite modification pour que cela fonctionne aussi bien avec un asset qu'avec une url
   meta_image.starts_with?("http") ? meta_image : image_url(meta_image)
   end
-  end
+end
