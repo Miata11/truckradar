@@ -9,6 +9,33 @@
   color: rgba(0, 0, 0, 0.77);
   min-height: 105vh; /* Assure que la section prend une grande partie de la hauteur */
 
+  .dashboard-card {
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    background-color: $white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: -0.5rem;
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+
+    .foodtruck-photo {
+      margin-bottom: 1rem;
+      border-radius: 3%;
+    }
+
+    .profile-actions,
+    .presence-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+  }
+
 
   .form-container-dashboard {
     background: rgba(255, 255, 255, 0.859);
