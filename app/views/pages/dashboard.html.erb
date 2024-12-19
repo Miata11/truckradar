@@ -43,7 +43,7 @@
               <%= cl_image_tag current_user.foodtruck.photo.key, alt: "Photo de #{current_user.foodtruck.name}", class: "img-fluid rounded mb-3", width: 150, crop: :fill %>
             <% else %>
               <p>Aucune photo disponible pour ce foodtruck.</p>
-            <% end %>
+            <% end %> 
 
             <!-- Détails du Foodtruck -->
             <p><strong>Nom :</strong> <%= current_user.foodtruck.name %></p>
