@@ -4,7 +4,7 @@
   align-content: center;
   align-items: center;
   height: calc(100vh - 12vh);
-  min-height: 120vh;
+  min-height: 105vh;
   background: linear-gradient(to bottom left, #e4eeef92 , #ffffff);
 
   .foodtruck-container {
@@ -69,7 +69,44 @@
     box-shadow: 0 0 0 3px rgba(2, 144, 148, 0.3) !important; /* Mise en avant au focus */
   }
 
+  .foodtruck-info {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
 
+  .foodtruck-info__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .foodtruck-info__icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: #029094;
+  }
+
+  .foodtruck-info__text {
+    color: #374151;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .foodtruck-info__label {
+    font-weight: 600;
+    color: #111827;
+    margin-right: 0.5rem;
+  }
+
+  .foodtruck-info__description {
+    margin-top: 0.5rem;
+    color: #6b7280;
+  }
 
   .tabs-dashboard {
     display: flex;
