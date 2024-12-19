@@ -1,12 +1,12 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home]
+  skip_before_action :authenticate_user!, only: [:home, :faq, :foodtrucks]
 
   def dashboard
     @favorites = current_user.favorites.includes(:foodtruck)
   end
 
   def faq
-  end 
+  end
 
   def home
   end
