@@ -1,0 +1,128 @@
+@import "config/bootstrap_variables";
+
+.edit-foodtruck-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('https://www.evenement.com/wp-content/uploads/2024/02/food-truck-prive.png') center/cover no-repeat;
+  color: white;
+  margin: none;
+  padding: 2rem 0;
+
+  .edit-foodtruck-form-container-inside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.859);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    margin: 20px 0 15vh;
+
+    .edit-form-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #029094;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .edit-form-group {
+      width: 100%;
+      margin-bottom: 1rem;
+
+      label {
+        font-weight: bold;
+        color: #029094;
+        margin-bottom: 0.5rem;
+      }
+
+      .edit-input-field, .edit-textarea-field, .edit-file-input {
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+
+        &:focus {
+          border-color: #029094;
+          box-shadow: 0 0 5px rgba(2, 144, 148, 0.5);
+          outline: none;
+        }
+      }
+
+      .edit-textarea-field {
+        min-height: 100px;
+      }
+    }
+
+    .edit-category-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+
+      .edit-category-label {
+        display: inline-block;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        border: 2px solid #029094;
+        color: #029094;
+        background-color: transparent;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        padding: 0.5rem 1rem;
+        text-align: center;
+
+        &:hover {
+          background-color: #029094;
+          color: white;
+        }
+      }
+    }
+
+    .edit-form-actions {
+      width: 100%;
+      margin-top: 1.5rem;
+
+      .edit-submit-button {
+        background-color: #029094;
+        color: white;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 0.8rem 1.2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #027b7d;
+        }
+      }
+    }
+  }
+}
+
+.edit-btn-check {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.edit-btn-check:checked + .edit-category-label {
+  background-color: #029094;
+  color: white;
+  border: none;
+}
+
+.edit-category-label:active {
+  background-color: #027b7d;
+  color: white;
+}

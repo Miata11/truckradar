@@ -1,23 +1,51 @@
 .dashboard-container {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   padding: 2rem;
-  min-height: 100vh;
-  min-height: 100vh; /* Utilisation de min-height pour garantir un affichage complet */
-  align-items: center;
-  background-size: cover;
-  background-position: center;
-  background-image: url('https://www.evenement.com/wp-content/uploads/2024/02/food-truck-prive.png');
-  overflow-y: auto; /* Active le scroll si nécessaire */
-  color: white;
+  min-height: 100vh; /* Assure que la page prend toute la hauteur de l'écran */
+  background: url('https://www.evenement.com/wp-content/uploads/2024/02/food-truck-prive.png') center / cover no-repeat;
+  overflow-y: auto;
+  color: rgba(0, 0, 0, 0.77);
+  min-height: 105vh; /* Assure que la section prend une grande partie de la hauteur */
+
+  .dashboard-card {
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    background-color: $white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: -0.5rem;
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+
+    .foodtruck-photo {
+      margin-bottom: 1rem;
+      border-radius: 3%;
+    }
+
+    .profile-actions,
+    .presence-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+  }
+
 
   .form-container-dashboard {
-    background: white;
+    background: rgba(255, 255, 255, 0.859);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 2rem;
-    max-width: 500px;
     width: 100%;
+    max-width: 600px;
+    min-height: 80vh; /* Assure que la section prend une grande partie de la hauteur */
+
 
     .form-header {
       font-size: 1.5rem;
@@ -35,34 +63,36 @@
 
     .tabs-dashboard {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;  /* Centrer les onglets */
       margin-bottom: 1.5rem;
+      width: 100%;  /* Prendre toute la largeur disponible */
 
       .tab-link-dashboard {
-        flex: 1;
-        padding: 0.8rem;
+        flex: 1;  /* Permet à chaque onglet de prendre la même largeur */
+        padding: 1rem;  /* Espacement interne */
         text-align: center;
         font-size: 1rem;
         font-weight: bold;
-        background: #f0f0f0;
-        color: #666;
-        border: none;
+        background: transparent; /* Fond transparent */
+        color: #029094;  /* Couleur du texte */
+        border: none;  /* Pas de bordure */
         cursor: pointer;
-        transition: background 0.3s, color 0.3s;
+        //transition: background 0.3s, color 0.3s, border-bottom 0.3s;
+        border-bottom: 2px solid transparent; /* Lignes sous les onglets */
 
         &.active {
-          background: #029094;
-          color: white;
-          border-radius: 5px;
+          background: transparent;
+          color: #029094;
+          border-bottom: 2px solid #029094; /* Ligne sous l'onglet actif */
         }
 
         &:hover {
-          background: #029094;
-          color: white;
+          background: rgba(2, 144, 148, 0.1);  /* Effet léger de survol */
+          color: #029094;
         }
 
         &:not(:last-child) {
-          margin-right: 0.5rem;
+          margin-right: 1rem;  /* Espacement entre les onglets */
         }
       }
     }
@@ -85,22 +115,101 @@
           text-decoration: underline;
         }
       }
+    }
 
-      .btn-dashboard {
-        display: inline-block;
-        background: #029094;
-        color: white;
-        padding: 0.8rem 1.2rem;
-        border-radius: 5px;
+    .profile-actions {
+      display: flex; /* Active Flexbox */
+      flex-direction: column; /* Place les boutons l'un sous l'autre */
+      justify-content: center; /* Centre les boutons verticalement */
+      align-items: center; /* Centre les boutons horizontalement */
+      gap: 1rem; /* Espacement entre les boutons */
+      margin-top: 1.5rem; /* Espacement par rapport au contenu précédent */
+    }
+
+    .btn-flex {
+      width: 100%; /* Prend toute la largeur */
+      max-width: 250px; /* Limite la largeur maximale */
+      text-align: center; /* Centre le texte */
+      padding: 0.5rem; /* Espacement interne */
+      font-weight: bold;
+      border-radius: 10px; /* Coins arrondis */
+      text-transform: uppercase; /* Texte en majuscules */
+      // transition: background 0.3s, color 0.3s;
+    }
+
+    .btn-custom {
+      display: inline-flex; /* Utilise flexbox */
+      align-items: center; /* Centre verticalement */
+      justify-content: center; /* Centre horizontalement */
+
+      color: #029094;
+      border: 1px solid #029094;  /* Bordure fine */
+      border-radius: 10px; /* Coins arrondis */
+      padding: 0.5rem 1rem; /* Espacement interne */
+      font-weight: normal;
+      text-transform: uppercase; /* Texte en majuscules */
+      text-align: center; /* Assure l'alignement horizontal */
+      line-height: 1; /* Ajuste la hauteur de ligne */
+      // transition: background 0.3s, color 0.3s;
+      padding: 0.5rem;
+
+      &:hover {
+        background-color: #026d6e; /* Teinte plus foncée au survol */
+        color: #FFFFFF;
         text-decoration: none;
-        text-align: center;
-        font-size: 1rem;
-        transition: background 0.3s;
-
-        &:hover {
-          background: #026c6d;
-        }
       }
     }
+    /* Bouton d'activation spécifique */
+      .btn-activate {
+        @extend .btn-custom;
+        background-color: #dc354657;
+        border: 1px solid #dc3546c9;  /* Bordure fine */
+
+        &:hover {
+          // background-color: #c82333ad;
+          border: 1px solid #dc3546c9;  /* Bordure fine */
+        }
+      }
+
+      /* Bouton de désactivation spécifique */
+      .btn-deactivate {
+        @extend .btn-custom;
+        // background-color: #dc3546c0; /* Rouge pour désactiver */
+        border: 1px solid #dc3546c9;  /* Bordure fine */
+
+        &:hover {
+          // background-color: #c82333b3; /* Rouge plus foncé au survol */
+          border: 1px solid #dc3546c9;  /* Bordure fine */
+        }
+      }
+
+      /* Alignement des boutons */
+      .presence-actions {
+        display: flex; /* Active Flexbox */
+        flex-direction: column; /* Met les éléments en colonne */
+        justify-content: center; /* Centre les boutons verticalement */
+        align-items: center; /* Centre horizontalement */
+        gap: 1rem; /* Espacement vertical entre les boutons */
+        margin-top: 1.5rem; /* Espacement par rapport au contenu précédent */
+      }
+
+      .btn-custom,
+      .btn-activate,
+      .btn-deactivate {
+        display: inline-flex; /* Flexbox pour ajuster contenu */
+        justify-content: center; /* Centre le contenu horizontalement */
+        align-items: center; /* Centre verticalement */
+        width: 250px; /* Largeur fixe pour TOUS les boutons */
+        height: 40px; /* Hauteur fixe pour TOUS les boutons */
+        text-align: center; /* Centre le texte */
+        padding: 0; /* Enlève tout padding supplémentaire */
+        font-weight: bold;
+        font-size: 1rem; /* Taille de texte identique */
+        border-radius: 10px; /* Coins arrondis */
+        text-transform: uppercase;
+        // transition: background 0.3s, color 0.3s, border 0.3s;
+      }
+
+
   }
 }

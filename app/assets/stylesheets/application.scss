@@ -20,9 +20,11 @@
 
 // Pages
 @import "foodtrucks/index";
-
-// Rating
-
+@import "foodtrucks/show";
 @import "components/star_rating";
-
 @import "pages/faq";
+@import "components/popupmap";
+// edit foodtruck
+@import "foodtrucks/edit";
+@import "components/flashes";
+

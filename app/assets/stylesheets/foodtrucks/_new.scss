@@ -1,78 +1,119 @@
-.new_container {
-  background-color: #acdbdd;
-  padding: 30px;
-  border-radius: 10px;  
+@import "config/bootstrap_variables";
 
-  h1 {
-    color: #2c3e50;
-    font-weight: 400;
-    font-size: 1rem;
-    font-family: 'Dancing Script', cursive;
+.foodtruck-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('https://www.evenement.com/wp-content/uploads/2024/02/food-truck-prive.png') center/cover no-repeat;
+  color: white;
+  margin: none;
+  padding: 2rem 1rem;
+
+  .foodtruck-form-container-inside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    padding: 1rem;
+    background-color: rgba(71, 86, 87, 0.45); /* Transparence */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 450px;
+    margin: 1rem; /* Ajout de marges pour éviter les débordements sur petits écrans */
+    height: auto; /* Permet au formulaire de s'étendre en fonction de son contenu */
+    overflow-y: auto;
+    margin: 20px;
+    margin-bottom: 15vh;/* Ajout du défilement vertical si nécessaire */
+
+    .form-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      text-align: left;
     }
 
-    .form-control {
-    border: 1px solid #242525;
-    border-radius: 5px;
-    padding: 12px;
-    background-color: #acdbdd;
-    color: #2c3e50;
-    font-size: 1rem;
-    font-family: 'Arial', sans-serif;
-    font-weight: 300;
+    .form-container {
+      background-color: #ffffff83;
+      border-radius: 10px;
+      margin: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 450px;
+      padding: 1.5rem;
     }
 
-    .form-control:focus {
-    border-color: #81c7bc;
-    box-shadow: 0 0 5px rgba(81, 196, 132, 0.5);
+    .form-group {
+      width: 100%;
+      margin-bottom: 1rem;
+
+      label {
+        font-weight: bold;
+        color: #dcdcdc;
+        margin-bottom: 0.5rem;
+      }
+
+      .input-field, .textarea-field, .file-input {
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+        margin-top: 0.5rem;
+
+        &:focus {
+          border-color: #029094;
+          box-shadow: 0 0 5px rgba(2, 144, 148, 0.5);
+          outline: none;
+        }
+      }
     }
 
-    label {
-    font-family: 'Arial', sans-serif;
-    color: #2c3e50;
-    font-size: 1rem;
-    font-weight: 700;
+    .category-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      .category-label {
+        border-radius: 5px;
+        font-size: smaller;
+        border: 1px solid #fcfcfc;
+        color: #ffffff;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      }
     }
 
-    .row.mb-3 {
-    margin-bottom: 20px;
-    }
+    .form-actions {
+      width: 100%;
 
-    .select2-container .select2-selection {
-    border: 1px solid #a5d6a7;
-    border-radius: 5px;
-    background-color: #029094;
-    }
+      .submit-button {
+        background-color: #029094;
+        color: white;
+        font-size: 1.1rem;
+        padding: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s;
 
-    .btn-primary {
-    background-color: #029094;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
-    font-size: 1.2rem;
-    font-weight: 500;
-    padding: 12px 30px;
-    transition: background-color 0.3s ease;
+        &:hover {
+          background-color: #027b7d;
+        }
+      }
     }
+  }
+}
 
-    .col-md-6 {
-    padding: 15px;
-    }
-
-    input[type="file"] {
-    padding: 6px;
-    font-size: 1rem;
-    }
-
-    .text-center {
-    text-align: center;
-    }
-
-    .mt-4 {
-    margin-top: 20px;
-    }
-
-    .my-5 {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    }
+.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+  color: white;
+  background-color: #029094;
+  border-color: #029094;
 }

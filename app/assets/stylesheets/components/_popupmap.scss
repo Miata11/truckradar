@@ -1,0 +1,50 @@
+.mapboxgl-popup {
+  max-width: 100px !important;
+
+  .mapboxgl-popup-content {
+    padding: 0 !important;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .fav-image {
+      height: 50% !important; // Réduit de 60% à 50%
+    }
+
+    .fav-details {
+      height: 50% !important; // Augmenté de 40% à 50%
+      padding: 6px !important;
+    }
+
+    .fav-card-link {
+      text-decoration: none;
+    }
+
+    .fav-name {
+      font-size: 0.7rem !important;
+      margin-bottom: 4px !important;
+      color: black !important;
+      font-weight: bold !important;
+    }
+
+    .category-tag {
+      background-color: #029094;
+      color: white !important;
+      font-size: 0.45rem !important;
+      padding: 1px 4px !important;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .mapboxgl-popup-close-button {
+      background-color: transparent;
+      border: 0;
+      border-radius: 0 3px 0 0;
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #f8fafa;
+  }
+  }
+}

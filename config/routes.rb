@@ -10,14 +10,16 @@ Rails.application.routes.draw do
   get '/faq', to: 'pages#faq'
 
   resources :foodtrucks do
+    member do
+      patch :available_status
+      patch :unavailable_status
+    end
     resources :dishes, only: [:index, :new, :create, :edit, :update]
     resources :favorites, only: [:create, :destroy]
     resources :reviews, only: [:new, :create]
     end
 
   resources :favorites, only: [:index]
-
-
   resources :dishes
 
   get 'dashboard', to: 'pages#dashboard'
