@@ -23,41 +23,40 @@
       <!-- Onglet Profil -->
       <div class="tab-pane fade show active" id="profil" role="tabpanel" aria-labelledby="profil-tab">
         <div class="dashboard-card">
-<p class="text-center d-flex align-items-center justify-content-center gap-2">
-  <i class="fa-solid fa-user"></i>
-  <strong><%= "#{current_user.first_name} #{current_user.last_name}" %></strong>
-</p>
+            <p class="text-center d-flex align-items-center justify-content-center gap-2">
+              <strong><%= "#{current_user.first_name} #{current_user.last_name}" %></strong>
+            </p>
 
-<p><i class="fa-solid fa-envelope"></i>  <%= current_user.email %></p>
-<p><i class="fa-solid fa-location-dot"></i> </strong> <%= current_user.address_default || "Non spécifiée" %></p>
-<p><i class="fa-solid fa-building"></i> </strong> <%= current_user.company_name.presence || "Nom de la société non spécifiée" %></p>        </div>
-
-        <div class="profile-actions mt-3">
-          <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn btn-custom btn-flex" %>
-          <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter ?" }, class: "btn btn-custom btn-flex" %>
+            <p><i class="fa-solid fa-envelope" style="color: #029094;"></i>  <%= current_user.email %></p>
+            <p><i class="fa-solid fa-location-dot" style="color: #029094;"></i> </strong> <%= current_user.address_default || "Non spécifiée" %></p>
+            <p><i class="fa-solid fa-building" style="color: #029094;"></i> </strong> <%= current_user.company_name.presence || "Nom de la société non spécifiée" %></p>
         </div>
+          <div class="profile-actions mt-3">
+            <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn btn-custom btn-flex" %>
+            <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter ?" }, class: "btn btn-custom btn-flex" %>
+          </div>
       </div>
 
       <!-- Onglet Foodtruck -->
       <div class="tab-pane fade" id="foodtruck" role="tabpanel" aria-labelledby="foodtruck-tab">
         <% if current_user.foodtruck.present? %>
           <div class="foodtruck-details">
-            <!-- Photo -->
-            <div class="dashboard-card">
-            <!-- Photo -->
-              <% if current_user.foodtruck.photo.present? %>
-                <%= cl_image_tag current_user.foodtruck.photo.key, alt: "Photo de #{current_user.foodtruck.name}", class: "foodtruck-photo img-fluid mb-3, crop: :fill" %>
-              <% else %>
-                <p>Aucune photo disponible pour ce foodtruck.</p>
-              <% end %>
+            <%= link_to foodtruck_path(current_user.foodtruck), class: "text-decoration-none text-dark" do %>
+              <div class="dashboard-card">
+              <!-- Photo -->
+                <% if current_user.foodtruck.photo.present? %>
+                  <%= cl_image_tag current_user.foodtruck.photo.key, alt: "Photo de #{current_user.foodtruck.name}", class: "foodtruck-photo img-fluid mb-3, crop: :fill" %>
+                <% else %>
+                  <p>Aucune photo disponible pour ce foodtruck.</p>
+                <% end %>
 
-              <!-- Détails du Foodtruck -->
-              <p class="text-center d-flex align-items-center justify-content-center gap-2"><i class="fa-solid fa-truck-fast"></i> <strong> <%= current_user.foodtruck.name %> </strong></p>
-              <p><i class="fa-solid fa-location-dot"></i> <%= current_user.foodtruck.address_default || "Non spécifiée" %></p>
-              <p><i class="fa-solid fa-phone"></i> <%= current_user.foodtruck.phone_number.presence || "Pas de numéro de téléphone disponible." %></p>
-              <p><i class="fa-solid fa-tags"></i> <%= current_user.foodtruck.categories.any? ? current_user.foodtruck.categories.join(', ') : "Aucune catégorie définie." %></p>
-            </div>
-
+                <!-- Détails du Foodtruck -->
+                <p class="text-center d-flex align-items-center justify-content-center gap-2"><strong> <%= current_user.foodtruck.name %> </strong></p>
+                <p><i class="fa-solid fa-location-dot" style="color: #029094;"></i> <%= current_user.foodtruck.address_default || "Non spécifiée" %></p>
+                <p><i class="fa-solid fa-phone" style="color: #029094;"></i> <%= current_user.foodtruck.phone_number.presence || "Pas de numéro de téléphone disponible." %></p>
+                <p><i class="fa-solid fa-tags" style="color: #029094;"></i> <%= current_user.foodtruck.categories.any? ? current_user.foodtruck.categories.join(', ') : "Aucune catégorie définie." %></p>
+              </div>
+            <% end %>
             <!-- Boutons d'activation/désactivation et Modifier -->
             <div class="presence-actions">
             <%= link_to "Modifier mon foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn btn-custom" %>
