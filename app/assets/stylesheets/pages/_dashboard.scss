@@ -15,11 +15,7 @@
     background-color: $white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
-    margin-bottom: -0.5rem;
-
-    p {
-      margin-bottom: 0.5rem;
-    }
+    margin-bottom: 2rem;
 
     .foodtruck-photo {
       margin-bottom: 1rem;
@@ -162,8 +158,8 @@
     /* Bouton d'activation spécifique */
       .btn-activate {
         @extend .btn-custom;
-        background-color: #dc354657;
-        border: 1px solid #dc3546c9;  /* Bordure fine */
+        background-color: #35dc372e;
+        border: 1px solid #029094;  /* Bordure fine */
 
         &:hover {
           // background-color: #c82333ad;
