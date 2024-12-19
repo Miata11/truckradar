@@ -281,13 +281,13 @@ end
     name: FOOD_NAMES.sample,
     phone_number: "0#{rand(6..7)} #{rand(10..99)} #{rand(10..99)} #{rand(10..99)} #{rand(10..99)}",
     categories: FOOD_CATEGORIES.sample(rand(1..2)),
-    description: le_teich_description || "Un food truck unique proposant une cuisine #{FOOD_CATEGORIES.sample} de qualité dans les rues de #{city}.",
+    description: le_teich_description || 'Un food truck unique proposant une cuisine #{FOOD_CATEGORIES.sample} de qualité dans les rues de #{city}.',
     address_default: "#{rand(1..200)} rue de #{city}",
     latitude: latitude,
     longitude: longitude,
     status: [true, false].sample,
     horaires: rand(11..14).to_s + ":00 à " + rand(19..22).to_s + ":30",
-    jours: ["lundi, mercredi", "mardi, jeudi", "vendredi, samedi", "dimanche"].sample,
+    jours: ["Lundi, Mercredi", "Mardi, Jeudi", "Vendredi, Samedi", "Dimanche"].sample,
     user: user_pro
   )
 
