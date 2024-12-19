@@ -1,0 +1,21 @@
+<div class="page-faq-spe">
+  <div class="faq-container">
+      <h1>FAQ</h1>
+
+      <% @faq_items = [
+          { question: "Qu'est-ce que Trucks Radar?", answer: "Trucks Radar est une application qui permet de localiser les foodtrucks autour de vous en temps réel !" },
+          { question: "Comment trouver un foodtruck près de chez moi?", answer: "Vous pouvez activer votre géolocalisation sur la carte afin d’afficher les foodtrucks les plus proches automatiquement." },
+          { question: "Comment savoir si un foodtruck est bien présent ?", answer: "Les foodtrucks affichés en vert ont confirmés leur présence en temps réel. En revanche, ceux affichés en rouge n’ont pas confirmés leur présence ou n’ont pas mis à jour leur statut." },
+          { question: "Comment contacter le support client?", answer: "Si vous avez des questions ou si vous rencontrez un problème technique, contactez notre support client en envoyant un mail à support@trucksradar.com." }
+      ] %>
+
+      <% @faq_items.each do |item| %>
+          <div class="faq-item">
+              <button class="question-btn"><%= item[:question] %></button>
+              <div class="answer">
+                  <p><%= item[:answer] %></p>
+              </div>
+          </div>
+      <% end %>
+  </div>
+</div>

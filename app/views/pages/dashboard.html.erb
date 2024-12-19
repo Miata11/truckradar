@@ -23,12 +23,14 @@
       <!-- Onglet Profil -->
       <div class="tab-pane fade show active" id="profil" role="tabpanel" aria-labelledby="profil-tab">
         <div class="dashboard-card">
-          <p><strong>Prénom :</strong> <%= current_user.first_name %></p>
-          <p><strong>Nom :</strong> <%= current_user.last_name %></p>
-          <p><strong>Email :</strong> <%= current_user.email %></p>
-          <p><strong>Adresse par défaut :</strong> <%= current_user.address_default || "Non spécifiée" %></p>
-          <p><strong>Nom de la société :</strong> <%= current_user.company_name.presence || "Non spécifié" %></p>
-        </div>
+<p class="text-center d-flex align-items-center justify-content-center gap-2">
+  <i class="fa-solid fa-user"></i>
+  <strong><%= "#{current_user.first_name} #{current_user.last_name}" %></strong>
+</p>
+
+<p><i class="fa-solid fa-envelope"></i>  <%= current_user.email %></p>
+<p><i class="fa-solid fa-location-dot"></i> </strong> <%= current_user.address_default || "Non spécifiée" %></p>
+<p><i class="fa-solid fa-building"></i> </strong> <%= current_user.company_name.presence || "Nom de la société non spécifiée" %></p>        </div>
 
         <div class="profile-actions mt-3">
           <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn btn-custom btn-flex" %>
@@ -50,11 +52,10 @@
               <% end %>
 
               <!-- Détails du Foodtruck -->
-              <p><strong>Nom :</strong> <%= current_user.foodtruck.name %></p>
-              <p><strong>Description :</strong> <%= current_user.foodtruck.description.presence || "Pas de description disponible." %></p>
-              <p><strong>Adresse :</strong> <%= current_user.foodtruck.address_default || "Non spécifiée" %></p>
-              <p><strong>Téléphone :</strong> <%= current_user.foodtruck.phone_number.presence || "Pas de numéro de téléphone disponible." %></p>
-              <p><strong>Catégories :</strong> <%= current_user.foodtruck.categories.any? ? current_user.foodtruck.categories.join(', ') : "Aucune catégorie définie." %></p>
+              <p class="text-center d-flex align-items-center justify-content-center gap-2"><i class="fa-solid fa-truck-fast"></i> <strong> <%= current_user.foodtruck.name %> </strong></p>
+              <p><i class="fa-solid fa-location-dot"></i> <%= current_user.foodtruck.address_default || "Non spécifiée" %></p>
+              <p><i class="fa-solid fa-phone"></i> <%= current_user.foodtruck.phone_number.presence || "Pas de numéro de téléphone disponible." %></p>
+              <p><i class="fa-solid fa-tags"></i> <%= current_user.foodtruck.categories.any? ? current_user.foodtruck.categories.join(', ') : "Aucune catégorie définie." %></p>
             </div>
 
             <!-- Boutons d'activation/désactivation et Modifier -->

@@ -1,0 +1,100 @@
+/* Réinitialisation des marges et paddings de base */
+.page-faq-spe {
+
+  .faq-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem; /* Réduire l'espace autour du contenu */
+    min-height: 105vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url('https://www.evenement.com/wp-content/uploads/2024/02/food-truck-prive.png');
+    overflow-y: auto;
+    color: white;
+    font-family: Arial, sans-serif; /* Choisir une police lisible */
+    text-align: center;
+  }
+
+  .faq-container h1 {
+    font-size: 2rem; /* Taille du titre */
+    font-weight: bold;
+    color: white;
+    margin-top: 1rem; /* Ajoute un espace supplémentaire au-dessus du titre */
+    margin-bottom: 1rem; /* Espacement en dessous du titre */
+  }
+
+  .faq-item {
+    background: rgba(255, 255, 255, 0.8); /* Fond blanc légèrement transparent pour les éléments */
+    border-radius: 12px;
+    margin-bottom: 30px; /* Espacement entre les éléments */
+    width: 100%;
+    max-width: 480px; /* Largeur maximale réduite */
+    padding: 1rem; /* Réduire le padding à l'intérieur de chaque élément */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .question-btn {
+    width: 100%;
+    padding: 5px; /* Réduire la taille du padding */
+    background: #029094;
+    border: none;
+    text-align: center;
+    font-size: 0.75em; /* Réduire la taille de la police */
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .question-btn:hover {
+    background: #026c6d;
+    color: white;
+  }
+
+  .answer {
+    background: white;
+    padding: 5px;
+    border-radius: 6px;
+    margin-top: 5px;
+    color: #444;
+    font-size: 0.85em; /* Réduire la taille de la police des réponses */
+    border: 1px solid #d4e8c5;
+    text-align:left;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .answer a {
+    text-decoration: none;
+    color: #029094;
+    font-weight: bold;
+  }
+
+  .answer a:hover {
+    text-decoration: underline;
+  }
+
+  .btn-dashboard {
+    display: inline-block;
+    background: #aedfe1;
+    color: white;
+    padding: 0.5rem 1rem; /* Réduire le padding du bouton */
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.85em; /* Réduire la taille de la police */
+  }
+
+  .btn-dashboard:hover {
+    background: #026c6d;
+  }
+
+  /* Séparateur entre les éléments */
+  .separator-dashboard {
+    height: 2px;
+    background-color: #e0e0e0;
+    margin: 0.5rem 0;
+  }
+}

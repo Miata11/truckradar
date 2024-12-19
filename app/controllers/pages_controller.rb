@@ -5,6 +5,9 @@ class PagesController < ApplicationController
     @favorites = current_user.favorites.includes(:foodtruck)
   end
 
+  def faq
+  end 
+
   def home
   end
 end
