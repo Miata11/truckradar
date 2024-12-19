@@ -1,4 +1,5 @@
 <div class="home-container" data-controller="home">
+  <%= link_to "En savoir plus +", faq_path, class: "home-faq-link" %>
 
   <div class="home-background">
     <div class="home-content">
@@ -20,7 +21,7 @@
           <!-- Bouton de recherche avec icône -->
           <div class="search-button">
             <%= button_tag type: 'submit', class: "btn-search" do %>
-              <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i> <!-- Icône de loupe -->
+              <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
             <% end %>
           </div>
         <% end %>
@@ -31,7 +32,7 @@
         <div class="home-separator"></div>
       </div>
       <div class="home-text">
-        <p>Découvrez facilement les meilleurs <br>food-trucks proches de vous ! C’est l’assurance de se régaler et pour les propriétaires de food-trucks, un coup de projecteur pour gagner en visibilité.</p>
+        <p>Découvrez facilement les meilleurs <br>food-trucks proches de vous ! C'est l'assurance de se régaler et pour les propriétaires de food-trucks, un coup de projecteur pour gagner en visibilité.</p>
       </div>
     </div>
   </div>

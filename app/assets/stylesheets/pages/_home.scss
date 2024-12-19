@@ -5,6 +5,29 @@
   align-items: center;
   min-height: 105vh;
 
+  .home-faq-link {
+    position: fixed;
+    bottom: 11rem;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    text-decoration: none;
+    color: #029094;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #029094;
+      color: white;
+      text-decoration: none;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 0.9rem;
+    }
+  }
 
   .home-background {
     top: 0;
