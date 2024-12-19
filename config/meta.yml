@@ -1,0 +1,5 @@
+meta_product_name: "Trucks radar"
+meta_title: "Trucks radar - La boussole à FoodTrucks"
+meta_description: "La meilleure boussole pour trouver des food trucks près de chez vous."
+meta_image: "default_logo.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account" # required for Twitter Cards
