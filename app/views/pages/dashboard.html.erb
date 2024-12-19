@@ -1,4 +1,4 @@
-<div class="dashboard-container">
+<div class="dashboard-container" data-controller="acti-tab">
   <div class="form-container-dashboard">
     <!-- En-tête utilisateur -->
     <p class="form-header">Salut <%= "#{current_user.first_name} #{current_user.last_name}" %> !</p>
@@ -28,40 +28,44 @@
           <p><strong>Email :</strong> <%= current_user.email %></p>
           <p><strong>Adresse par défaut :</strong> <%= current_user.address_default || "Non spécifiée" %></p>
           <p><strong>Nom de la société :</strong> <%= current_user.company_name.presence || "Non spécifié" %></p>
+        </div>
 
-          <div class="profile-actions d-flex flex-column align-items-center gap-2">
-            <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn btn-custom" %>
-            <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter ?" }, class: "btn btn-custom" %>
-          </div>
+        <div class="profile-actions mt-3">
+          <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn btn-custom btn-flex" %>
+          <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir vous déconnecter ?" }, class: "btn btn-custom btn-flex" %>
         </div>
       </div>
 
       <!-- Onglet Foodtruck -->
       <div class="tab-pane fade" id="foodtruck" role="tabpanel" aria-labelledby="foodtruck-tab">
         <% if current_user.foodtruck.present? %>
-          <div class="dashboard-card">
-            <% if current_user.foodtruck.photo.present? %>
-              <%= cl_image_tag current_user.foodtruck.photo.key, alt: "Photo de #{current_user.foodtruck.name}", class: "foodtruck-photo img-fluid d-block mx-auto" %>
-            <% else %>
-              <p>Aucune photo disponible pour ce foodtruck.</p>
-            <% end %>
+          <div class="foodtruck-details">
+            <!-- Photo -->
+            <div class="dashboard-card">
+            <!-- Photo -->
+              <% if current_user.foodtruck.photo.present? %>
+                <%= cl_image_tag current_user.foodtruck.photo.key, alt: "Photo de #{current_user.foodtruck.name}", class: "foodtruck-photo img-fluid mb-3" %>
+              <% else %>
+                <p>Aucune photo disponible pour ce foodtruck.</p>
+              <% end %>
 
-            <!-- Détails du Foodtruck -->
-            <p><strong>Nom :</strong> <%= current_user.foodtruck.name %></p>
-            <p><strong>Description :</strong> <%= current_user.foodtruck.description.presence || "Pas de description disponible." %></p>
-            <p><strong>Adresse :</strong> <%= current_user.foodtruck.address_default || "Non spécifiée" %></p>
-            <p><strong>Téléphone :</strong> <%= current_user.foodtruck.phone_number.presence || "Pas de numéro de téléphone disponible." %></p>
-            <p><strong>Catégories :</strong> <%= current_user.foodtruck.categories.any? ? current_user.foodtruck.categories.join(', ') : "Aucune catégorie définie." %></p>
+              <!-- Détails du Foodtruck -->
+              <p><strong>Nom :</strong> <%= current_user.foodtruck.name %></p>
+              <p><strong>Description :</strong> <%= current_user.foodtruck.description.presence || "Pas de description disponible." %></p>
+              <p><strong>Adresse :</strong> <%= current_user.foodtruck.address_default || "Non spécifiée" %></p>
+              <p><strong>Téléphone :</strong> <%= current_user.foodtruck.phone_number.presence || "Pas de numéro de téléphone disponible." %></p>
+              <p><strong>Catégories :</strong> <%= current_user.foodtruck.categories.any? ? current_user.foodtruck.categories.join(', ') : "Aucune catégorie définie." %></p>
+            </div>
 
             <!-- Boutons d'activation/désactivation et Modifier -->
-            <div class="presence-actions d-flex flex-column align-items-center gap-2">
-              <%= link_to "Modifier mon foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn btn-custom" %>
+            <div class="presence-actions">
+            <%= link_to "Modifier mon foodtruck", edit_foodtruck_path(current_user.foodtruck), class: "btn btn-custom" %>
               <% if current_user.foodtruck.status %>
-                <%= button_to "Désactiver ma présence", unavailable_status_foodtruck_path(current_user.foodtruck, anchor: 'foodtruck'), method: :patch, class: "btn btn-custom", data:{action:"click->acti-tab#toggle",turbo:false} %>
+                <%= button_to "Désactiver ma présence", unavailable_status_foodtruck_path(current_user.foodtruck, anchor: 'foodtruck'), method: :patch, class: "btn btn-deactivate", data:{action:"click->acti-tab#toggle",turbo:false} %>
               <% else %>
-                <%= button_to "Activer ma présence", available_status_foodtruck_path(current_user.foodtruck, anchor: 'foodtruck'), method: :patch, class: "btn btn-custom", data:{action:"click->acti-tab#toggle",turbo:false} %>
+                <%= button_to "Activer ma présence", available_status_foodtruck_path(current_user.foodtruck, anchor: 'foodtruck'), method: :patch, class: "btn btn-activate", data:{action:"click->acti-tab#toggle",turbo:false} %>
               <% end %>
-            </div>
+
           </div>
         <% else %>
           <p>Vous n'avez pas encore ajouté de foodtruck.</p>
