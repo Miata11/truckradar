@@ -26,7 +26,7 @@
     }
 
     i.fas {  /* Ciblage spécifique des icônes Font Awesome dans la navbar */
-      font-size: 28px; /* Taille augmentée */
+      font-size: 25px; /* Taille augmentée */
       display: block;
       margin-bottom: 4px; /* Ajoute un peu d'espace sous l'icône */
     }
@@ -35,7 +35,7 @@
       color: #029094;
 
       i.fas {  /* Style spécifique pour les icônes actives */
-        font-size: 28px; /* Maintient la même taille pour cohérence */
+        font-size: 32px; /* Maintient la même taille pour cohérence */
       }
     }
   }
