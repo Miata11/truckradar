@@ -4,7 +4,7 @@
   align-content: center;
   align-items: center;
   height: calc(100vh - 12vh);
-  min-height: 105vh;
+  min-height: 120vh;
   background: linear-gradient(to bottom left, #e4eeef92 , #ffffff);
 
   .foodtruck-container {
@@ -92,7 +92,6 @@
 
   .foodtruck-info__text {
     color: #374151;
-    font-size: 1rem;
     line-height: 1.5;
     margin: 0;
   }
@@ -173,7 +172,7 @@
     }
 
     p {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: #444;
       margin-bottom: 1rem;
     }

@@ -172,7 +172,7 @@ foodtruck1 = Foodtruck.create!(
   longitude: -0.556544,
   status: true,
   horaires: "12:00 à 15:00",
-  jours: "lundi, jeudi",
+  jours: "Lundi, Jeudi",
   user: user_pro1
 )
 

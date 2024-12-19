@@ -5,11 +5,35 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 105vh;
   background: url('https://www.evenement.com/wp-content/uploads/2024/02/food-truck-prive.png') center/cover no-repeat;
   color: white;
   margin: none;
   padding: 2rem 0;
+
+  .home-faq-link {
+    position: absolute;
+    bottom: -13.5rem;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    text-decoration: none;
+    color: #029094;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #029094;
+      color: white;
+      text-decoration: none;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 0.9rem;
+    }
+  }
 
   .edit-foodtruck-form-container-inside {
     display: flex;
