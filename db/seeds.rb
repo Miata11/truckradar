@@ -101,9 +101,9 @@ User.destroy_all
 
 # Existing profiles to preserve
 user1 = User.create!(
-  first_name: "Claire",
-  last_name: "Cagnat",
-  email: "claire@gmail.com",
+  first_name: "Max",
+  last_name: "El Poirier",
+  email: "max@gmail.com",
   password: "123456",
   address_default: "15 rue des terres neuves, Bordeaux",
   latitude: 44.841225,
@@ -121,9 +121,9 @@ user2 = User.create!(
   role: "false")
 
 user_pro1 = User.create!(
-  first_name: "Max",
-  last_name: "El Poirier",
-  email: "max@gmail.com",
+  first_name: "Claire",
+  last_name: "Cagnat",
+  email: "claire@gmail.com",
   password: "123456",
   address_default: "15 rue des terres neuves, Bordeaux",
   latitude: 44.841225,
@@ -176,12 +176,12 @@ foodtruck1.save
 end
 
 # Créer des reviews pour le Sando Truck
-existing_review_users = [user1, user2]
+existing_review_users = [user1, user2, user_pro2]
 existing_review_users.each do |user|
   Review.create(
     foodtruck_id: foodtruck1.id,
     user_id: user.id,
-    comment: ["Super food truck, je recommande!", "Une expérience culinaire délicieuse!", "Très bon rapport qualité-prix"].sample,
+    comment: ["Super food truck, je recommande!", "Une expérience culinaire délicieuse!", "Très bon rapport qualité-prix", "Le Top du Top !", "J'ai beaucoup aimé", "Ils sont super sympa"].sample,
     rating: rand(3..5)
   )
 end
