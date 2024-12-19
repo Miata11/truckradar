@@ -2,25 +2,21 @@
   <!-- Onglet Home -->
   <%= link_to root_path, class: (current_page?(root_path) ? "active" : "") do %>
     <i class="fas fa-home"></i>
-    <span>Home</span>
   <% end %>
 
   <!-- Onglet Favoris -->
     <%= link_to favorites_path, class: (current_page?(favorites_path) ? "active" : "") do %>
       <i class="fas fa-heart"></i>
-      <span>Favoris</span>
     <% end %>
 
 
 <!-- Onglet Carte -->
 <%= link_to foodtrucks_path, class: (current_page?(foodtrucks_path) ? "active" : "") do %>
   <i class="fas fa-map-marker-alt"></i>
-  <span>Carte</span>
 <% end %>
 
   <!-- Onglet Profil -->
   <%= link_to dashboard_path, class: (current_page?(dashboard_path) ? "active" : "") do %>
     <i class="fas fa-user"></i>
-    <span>Profil</span>
   <% end %>
 </div>

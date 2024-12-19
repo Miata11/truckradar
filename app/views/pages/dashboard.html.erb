@@ -44,7 +44,7 @@
             <div class="dashboard-card">
             <!-- Photo -->
               <% if current_user.foodtruck.photo.present? %>
-                <%= cl_image_tag current_user.foodtruck.photo.key, alt: "Photo de #{current_user.foodtruck.name}", class: "foodtruck-photo img-fluid mb-3" %>
+                <%= cl_image_tag current_user.foodtruck.photo.key, alt: "Photo de #{current_user.foodtruck.name}", class: "foodtruck-photo img-fluid mb-3, crop: :fill" %>
               <% else %>
                 <p>Aucune photo disponible pour ce foodtruck.</p>
               <% end %>

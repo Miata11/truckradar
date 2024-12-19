@@ -58,9 +58,9 @@
               <%= cl_image_tag dish.photo.attached? ? dish.photo.key : 'default_dish.jpg', class: "img-thumbnail", alt: dish.title %>
               <div>
                 <strong><%= dish.title %></strong>
-                <p><%= dish.description %></p>
+                <p id="ingredients" ><%= dish.description %></p>
               </div>
-              <span class="fw-bold"><%= number_to_currency(dish.price, unit: "€") %></span>
+              <span  id="price" class="fw-bold"><%= number_to_currency(dish.price, unit: "€") %></span>
 
               <!-- Si l'utilisateur est propriétaire du foodtruck, permettre la suppression -->
               <% if @foodtruck.is_owned_by?(current_user) %>
@@ -80,7 +80,7 @@
     </div>
 
     <div id="avis" class="tab-content-dashboard" data-tabs-target="tabContent" style="display: none;">
-      <%= link_to "Ajouter un avis", new_foodtruck_review_path(@foodtruck), class: "btn btn-primary mb-2" %>
+      <%= link_to "Ajouter un avis", new_foodtruck_review_path(@foodtruck), class: "btn btn-success mb-2" %>
       <% @foodtruck.reviews.each do |review| %>
         <div class="review mb-2">
           <p><strong><%= review.user.name %> :</strong> <%= review.comment %></p>

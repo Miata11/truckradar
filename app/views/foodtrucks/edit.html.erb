@@ -1,23 +1,29 @@
 <div class="edit-foodtruck-form-container">
   <div class="edit-foodtruck-form-container-inside">
     <h1 class="edit-form-title">Modifier ton Foodtruck</h1>
-
     <%= form_with model: @foodtruck, data: { turbo_method: :patch }, local: true do |f| %>
-      <!-- Champs du foodtruck -->
       <div class="edit-form-container">
+        <!-- Nom -->
         <div class="edit-form-group">
           <%= f.label :name, "Nom du Foodtruck" %>
           <%= f.text_field :name, class: "edit-input-field" %>
         </div>
 
+        <!-- Catégories -->
         <div class="edit-form-group edit-category-selector">
           <%= f.label :categories, "Catégories" %>
           <div class="d-flex flex-wrap gap-2">
             <% ["Asiatique", "Burger", "Mexicain", "Veggie", "Pizza", "Indien", "Français", "Coffeeshop"].each do |category| %>
               <div>
-                <input type="checkbox" name="foodtruck[categories][]" id="<%= category.downcase %>" value="<%= category %>"
-                      class="edit-btn-check" <%= 'checked' if @foodtruck.categories&.include?(category) %>>
-                <label class="edit-category-label" for="<%= category.downcase %>">
+                <input
+                  type="checkbox"
+                  name="foodtruck[categories][]"
+                  id="<%= category.parameterize %>"
+                  value="<%= category %>"
+                  class="edit-btn-check"
+                  <%= 'checked' if @foodtruck.categories&.include?(category) %>
+                >
+                <label class="edit-category-label" for="<%= category.parameterize %>">
                   <%= category %>
                 </label>
               </div>
@@ -25,21 +31,25 @@
           </div>
         </div>
 
+        <!-- Adresse -->
         <div class="edit-form-group">
           <%= f.label :address_default, "Adresse" %>
           <%= f.text_field :address_default, class: "edit-input-field" %>
         </div>
 
+        <!-- Description -->
         <div class="edit-form-group">
           <%= f.label :description, "Description" %>
           <%= f.text_area :description, class: "edit-textarea-field" %>
         </div>
 
+        <!-- Numéro de téléphone -->
         <div class="edit-form-group">
           <%= f.label :phone_number, "Numéro de téléphone" %>
           <%= f.telephone_field :phone_number, class: "edit-input-field" %>
         </div>
 
+        <!-- Photo -->
         <div class="edit-form-group">
           <%= f.label :photo, "Photo du Foodtruck" %>
           <%= f.file_field :photo, class: "edit-file-input" %>
@@ -48,7 +58,7 @@
           <% end %>
         </div>
 
-        <!-- Bouton de soumission -->
+        <!-- Bouton d'enregistrement -->
         <div class="edit-form-actions">
           <%= f.submit "Enregistrer les modifications", class: "edit-submit-button" %>
         </div>
