@@ -1,11 +1,5 @@
 module MetaTagsHelper
 
-  DEFAULT_META = {
-    "meta_title" => "Default Title",
-    "meta_description" => "Default Description",
-    "meta_image" => "default_image.jpg" # Define the default image here
-  }
-
   def meta_title
   content_for?(:meta_title) ? content_for(:meta_title) : DEFAULT_META["meta_title"]
   end
