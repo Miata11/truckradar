@@ -68,14 +68,21 @@
       gap: 0.75rem;
 
       .edit-category-label {
-        border-radius: 5px;
+        display: inline-block;
+        border-radius: 20px;
         font-size: 0.85rem;
-        border: 1px solid #029094;
-        color: #444;
+        border: 2px solid #029094;
+        color: #029094;
         background-color: transparent;
         cursor: pointer;
         transition: background-color 0.3s, color 0.3s;
-        padding: 0.4rem 0.6rem;
+        padding: 0.5rem 1rem;
+        text-align: center;
+
+        &:hover {
+          background-color: #029094;
+          color: white;
+        }
       }
     }
 
@@ -109,10 +116,13 @@
   z-index: -1;
 }
 
-.edit-btn-check:checked + .edit-category-label,
-.edit-category-label:active,
-.edit-category-label.edit-active {
+.edit-btn-check:checked + .edit-category-label {
   background-color: #029094;
   color: white;
   border: none;
+}
+
+.edit-category-label:active {
+  background-color: #027b7d;
+  color: white;
 }
