@@ -50,7 +50,7 @@ CITIES = [
   ["Tours", 47.3942, 0.6896]
 ]
 
-FOOD_CATEGORIES = ["fr", "asiatique", "mexicain", "végétarien", "burger", "italien", "cuisine de saison", "barbecue", "poisson", "vegan"]
+FOOD_CATEGORIES = ["asiatique", "mexicain", "végétarien", "burger", "italien", "cuisine de saison", "barbecue", "poisson", "vegan"]
 FOOD_NAMES = [
   "Le Truck Gourmand",
   "Street Food Nation",
@@ -258,7 +258,7 @@ end
   # Création du food truck
   foodtruck = Foodtruck.create!(
     name: FOOD_NAMES.sample,
-    phone_number: "0#{rand(6..7)}#{rand(10..99)} #{rand(10..99)} #{rand(10..99)} #{rand(10..99)}",
+    phone_number: "0#{rand(6..7)} #{rand(10..99)} #{rand(10..99)} #{rand(10..99)} #{rand(10..99)}",
     categories: FOOD_CATEGORIES.sample(rand(1..2)),
     description: le_teich_description || "Un food truck unique proposant une cuisine #{FOOD_CATEGORIES.sample} de qualité dans les rues de #{city}.",
     address_default: "#{rand(1..200)} rue de #{city}",
